@@ -1,7 +1,8 @@
 import { withLayout } from '../layouts/layout';
+import { HomePageComponent } from '../pageComponent';
 
 const Home = () => {
-  return <div>Home</div>;
+  return <HomePageComponent />;
 };
 
 export default withLayout(Home);
