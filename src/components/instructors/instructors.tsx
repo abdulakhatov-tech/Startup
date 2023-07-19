@@ -25,7 +25,15 @@ const Instructors = () => {
         subtitle="All our mentor with high experienced"
       />
 
-      <Grid gap={3} gridTemplateColumns={'repeat(4, 1fr)'} mt={5}>
+      <Grid
+        gap={3}
+        gridTemplateColumns={{
+          base: 'repeat(1, 1fr)',
+          md: 'repeat(2, 1fr)',
+          xl: 'repeat(4, 1fr)',
+        }}
+        mt={5}
+      >
         {data?.map((item, index) => (
           <GridItem key={index}>
             <Stack spacing={3}>
