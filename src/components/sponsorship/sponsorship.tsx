@@ -1,16 +1,19 @@
 import { Icon } from '@chakra-ui/react';
 import Carousel from 'react-multi-carousel';
+import { useTranslation } from 'react-i18next';
 
 import { sponsorshipCarousel } from 'src/config/carousel';
 import { trustedCompeny } from 'src/config/constants';
 import SectionTitle from '../section-title/section-title';
 
 const Sponsorship = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <SectionTitle
         title=""
-        subtitle="Trusted by the world’s best"
+        subtitle={t('sponsor_title', { ns: 'home' })}
         textAlign={'center'}
         mb={5}
       />

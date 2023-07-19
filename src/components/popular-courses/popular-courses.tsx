@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import Carousel from 'react-multi-carousel';
 import ReactStars from 'react-stars';
+import { useTranslation } from 'react-i18next';
 
 import { AiOutlineClockCircle } from 'react-icons/ai';
 import { SiGoogleanalytics } from 'react-icons/si';
@@ -19,11 +20,13 @@ import { CourseType } from 'src/interfaces/course.interface';
 import SectionTitle from '../section-title/section-title';
 import { courseCarousel } from 'src/config/carousel';
 const PopularCourses = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <SectionTitle
-        title="Explore Featured Courses"
-        subtitle="10,000+ unique online course list designs"
+        title={t('popular_courses_title', { ns: 'home' })}
+        subtitle={t('popular_courses_title', { ns: 'home' })}
       />
       <Carousel
         responsive={courseCarousel}
@@ -37,7 +40,7 @@ const PopularCourses = () => {
           <Stack key={item.title} spacing={3} p={3} cursor={'pointer'}>
             <Image
               src={item.image}
-              alt={item.title}
+              alt={`${t(item.title, { ns: 'home' })}`}
               objectFit={'cover'}
               h={'210px'}
               w={'full'}

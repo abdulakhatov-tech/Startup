@@ -7,8 +7,11 @@ import {
 } from '@chakra-ui/react';
 import { format } from 'date-fns';
 import { FaInstagram, FaTelegram, FaYoutube } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <Box
       pl={{ base: 0, lg: '320px' }}
@@ -22,7 +25,8 @@ const Footer = () => {
     >
       <Flex justify={'space-between'} align={'center'} h={'full'}>
         <Text>
-          © {format(new Date(), 'yyyy')} Education. All Right Reserved.
+          © {format(new Date(), 'yyyy')} Education.{' '}
+          {t('footer', { ns: 'layout' })}
         </Text>
         <Flex gap={3} mr={10}>
           <IconButton

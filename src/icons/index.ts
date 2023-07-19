@@ -2,6 +2,7 @@ export { default as DarkLogo } from './dark-logo';
 export { default as LightLogo } from './light-logo';
 export { default as UzbIcons } from './uzb';
 export { default as RusIcons } from './rus';
+export { default as TurkIcon } from './turk';
 export { default as EngIcons } from './eng';
 export { default as DesignIcons } from './design';
 export { default as AnnouncementIcons } from './announcement';

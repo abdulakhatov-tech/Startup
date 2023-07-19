@@ -1,5 +1,6 @@
 import { Center, Icon, Text } from '@chakra-ui/react';
 import Carousel from 'react-multi-carousel';
+import { useTranslation } from 'react-i18next';
 
 import { ImQuotesRight } from 'react-icons/im';
 
@@ -7,12 +8,14 @@ import { testimonialsCarousel } from 'src/config/carousel';
 import SectionTitle from '../section-title/section-title';
 
 const Testimonials = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <SectionTitle
         textAlign={'center'}
-        title="Testimonials"
-        subtitle="10,000+ unique online course list designs"
+        title={t('testimonials_title', { ns: 'home' })}
+        subtitle={t('testimonials_description', { ns: 'home' })}
       />
 
       <Carousel
