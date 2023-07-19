@@ -10,7 +10,7 @@ const Print = ({ ...props }: IconProp): JSX.Element => (
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
-    <g clip-path="url(#clip0_200_7166)">
+    <g clipPath="url(#clip0_200_7166)">
       <path
         d="M11.4258 13.3715H40.6055V37.1019H11.4258V13.3715Z"
         fill="#91EFFB"
