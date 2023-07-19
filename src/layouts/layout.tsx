@@ -21,7 +21,7 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
         minH={'90vh'}
         transition={'all .4s ease'}
       >
-        <Container maxW={'container.lg'}>{children}</Container>
+        <Container maxW={'container.2xl'}>{children}</Container>
       </Box>
 
       <Footer />

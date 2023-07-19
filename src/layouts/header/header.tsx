@@ -70,8 +70,8 @@ const Header = ({ onToggle }: HeaderProps): JSX.Element => {
             <MenuButton
               as={Button}
               rightIcon={<BsTranslate />}
-              colorScheme={'facebook'}
-              variant={'solid'}
+              colorScheme={'gray'}
+              variant={'outline'}
               textTransform={'capitalize'}
             >
               {i18n.resolvedLanguage}
