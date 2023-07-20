@@ -36,7 +36,7 @@ const AuthPageComponent = () => {
       case 'login':
         return <Login onNavigateStateComponent={onNavigateStateComponent} />;
       case 'register':
-        return <Register />;
+        return <Register onNavigateStateComponent={onNavigateStateComponent} />;
       case 'verification':
         return <Verification />;
     }
