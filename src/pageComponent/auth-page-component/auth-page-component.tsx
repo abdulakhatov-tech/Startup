@@ -34,7 +34,7 @@ const AuthPageComponent = () => {
   const renderStateComponent = () => {
     switch (state) {
       case 'login':
-        return <Login />;
+        return <Login onNavigateStateComponent={onNavigateStateComponent} />;
       case 'register':
         return <Register />;
       case 'verification':
