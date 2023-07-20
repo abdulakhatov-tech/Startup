@@ -22,12 +22,15 @@ import { BiMenuAltLeft, BiUserCircle } from 'react-icons/bi';
 
 import { language } from '@/src/config/constants';
 import { HeaderProps } from './header.props';
+import { useRouter } from 'next/router';
 
 const Header = ({ onToggle }: HeaderProps): JSX.Element => {
   const { toggleColorMode, colorMode } = useColorMode();
   const { t, i18n } = useTranslation();
+  const router = useRouter();
 
   const onLanguage = (lng: string) => {
+    router.replace(router.asPath);
     i18n.changeLanguage(lng);
   };
 

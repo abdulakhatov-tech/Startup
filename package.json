@@ -32,10 +32,15 @@
     "i18next-resources-to-backend": "^1.1.2",
     "react-i18next": "^12.2.0",
     "react-hydration-provider": "^1.0.2",
-    "framer-motion": "^9.0.7"
+    "framer-motion": "^9.0.7",
+    "graphql": "^16.6.0",
+    "graphql-request": "^5.2.0",
+    "nprogress": "^0.2.0",
+    "@graphcms/rich-text-react-renderer": "^0.6.1"
   },
   "devDependencies": {
     "@types/node": "18.14.0",
+    "@types/nprogress": "^0.2.0",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
     "@types/react-stars": "^2.2.1",
