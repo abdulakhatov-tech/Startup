@@ -5,9 +5,9 @@ const LightLogo = ({ ...props }: IconProp): JSX.Element => (
   <Icon
     xmlns="http://www.w3.org/2000/svg"
     width="150px"
+    height="40px"
     zoomAndPan="magnify"
     viewBox="0 0 112.5 30.000001"
-    height="40px"
     preserveAspectRatio="xMidYMid meet"
     version="1.0"
     {...props}

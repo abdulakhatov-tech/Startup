@@ -1,4 +1,4 @@
-import { DarkLogo, LightLogo } from '@/src/icons';
+import { Logo } from '@/src/icons';
 import {
   Box,
   Flex,
@@ -58,9 +58,7 @@ const Header = ({ onToggle }: HeaderProps): JSX.Element => {
             h={6}
             cursor={'pointer'}
           />
-          <Link href={'/'}>
-            {colorMode === 'light' ? <DarkLogo /> : <LightLogo />}
-          </Link>
+          <Link href={'/'}>{colorMode === 'light' ? <Logo /> : <Logo />}</Link>
         </HStack>
         <HStack>
           <IconButton
@@ -102,6 +100,7 @@ const Header = ({ onToggle }: HeaderProps): JSX.Element => {
             variant={'outline'}
           />
           <Button
+            onClick={() => router.push('/auth')}
             rightIcon={<BiUserCircle fontSize={'22px'} />}
             colorScheme={'facebook'}
           >
