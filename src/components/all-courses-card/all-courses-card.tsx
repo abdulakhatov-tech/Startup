@@ -19,9 +19,13 @@ import { CiViewList } from 'react-icons/ci';
 import { SiGoogleanalytics } from 'react-icons/si';
 
 import { AllCoursesCardProps } from './all-courses-card.props';
+import { useRouter } from 'next/router';
 
 const AllCoursesCard = ({ course }: AllCoursesCardProps) => {
   const { t } = useTranslation();
+  const router = useRouter();
+
+  const onDetailedCourse = () => router.push(`/courses/${course.slug}`);
 
   return (
     <>
@@ -34,6 +38,8 @@ const AllCoursesCard = ({ course }: AllCoursesCardProps) => {
             h={'250px'}
             borderRadius={'lg'}
             objectFit={'cover'}
+            cursor={'pointer'}
+            onClick={onDetailedCourse}
           />
           <Stack>
             <HStack>
@@ -108,7 +114,12 @@ const AllCoursesCard = ({ course }: AllCoursesCardProps) => {
                 >
                   {t('add_to_cart', { ns: 'courses' })}
                 </Button>
-                <Button colorScheme={'facebook'} variant={'outline'}>
+                <Button
+                  colorScheme={'facebook'}
+                  variant={'outline'}
+                  onClick={onDetailedCourse}
+                  cursor={'pointer'}
+                >
                   {t('detail', { ns: 'courses' })}
                 </Button>
               </Flex>
