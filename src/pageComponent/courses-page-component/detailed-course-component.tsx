@@ -84,12 +84,13 @@ const DetailedCourseComponent = () => {
                 </Flex>
                 <Flex fontSize={'sm'} align={'center'} gap={1}>
                   <Icon as={FaUserGraduate} />
-                  <Text>100 O'quvchilar</Text>
+                  <Text>100 {t('students', { ns: 'courses' })}</Text>
                 </Flex>
                 <Flex fontSize={'sm'} align={'center'} gap={1}>
                   <Icon as={TfiAlarmClock} />
                   <Text>
-                    Oxirgi yangilanish {format(new Date(), 'dd, MMMM, yyyy')}
+                    {t('last_update', { ns: 'courses' })}{' '}
+                    {format(new Date(), 'dd, MMMM, yyyy')}
                   </Text>
                 </Flex>
               </Stack>
@@ -115,7 +116,9 @@ const DetailedCourseComponent = () => {
                     align={'flex-end'}
                     justify={'space-between'}
                   >
-                    <Heading fontSize={'2xl'}>Bepul</Heading>
+                    <Heading fontSize={'2xl'}>
+                      {t('free', { ns: 'courses' })}
+                    </Heading>
                     <Text textDecoration={'line-through'}>
                       {course?.price.toLocaleString('en-US', {
                         currency: 'USD',

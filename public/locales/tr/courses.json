@@ -41,5 +41,10 @@
   "hour": "saat",
   "add_to_cart": "Sepete ekle",
   "detail": "Detay",
-  "hours": "saat"
+  "hours": "saat",
+  "free": "Özgür",
+  "courses": "Dersler",
+  "students": "öğrenciler",
+  "ratings": "Değerlendirme",
+  "last_update": "Son Güncelleme"
 }

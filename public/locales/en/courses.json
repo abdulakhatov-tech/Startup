@@ -41,5 +41,10 @@
   "hour": "hour",
   "add_to_cart": "Add to cart",
   "detail": "Detail",
-  "hours": "hours"
+  "hours": "hours",
+  "free": "Free",
+  "courses": "Courses",
+  "students": "Students",
+  "ratings": "Ratings",
+  "last_update": "Latest update"
 }

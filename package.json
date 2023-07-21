@@ -36,9 +36,11 @@
     "graphql": "^16.6.0",
     "graphql-request": "^5.2.0",
     "nprogress": "^0.2.0",
-    "@graphcms/rich-text-react-renderer": "^0.6.1"
+    "@graphcms/rich-text-react-renderer": "^0.6.1",
+    "js-cookie": "^3.0.1"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.3",
     "@types/node": "18.14.0",
     "@types/nprogress": "^0.2.0",
     "@types/react": "18.0.28",

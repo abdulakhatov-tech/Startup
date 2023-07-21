@@ -41,5 +41,10 @@
   "hour": "soat",
   "add_to_cart": "Savatga qo'shish",
   "detail": "Tafsilot",
-  "hours": "soat"
+  "hours": "soat",
+  "free": "Bepul",
+  "courses": "Kurslar",
+  "students": "O'quvchilar",
+  "ratings": "Reyting",
+  "last_update": "Oxirgi yangilanish"
 }
