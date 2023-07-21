@@ -11,7 +11,7 @@ const SocialMedia = () => {
         _before={{
           content: '""',
           position: 'absolute',
-          width: '45%',
+          width: '42%',
           left: 0,
           top: '50%',
           transform: 'translateY(-50%)',
@@ -21,7 +21,7 @@ const SocialMedia = () => {
         _after={{
           content: '""',
           position: 'absolute',
-          width: '45%',
+          width: '42%',
           right: 0,
           top: '50%',
           transform: 'translateY(-50%)',
@@ -30,7 +30,7 @@ const SocialMedia = () => {
         }}
         textAlign={'center'}
       >
-        OR
+        {t('or', { ns: 'global' })}
       </Box>
       <HStack flexWrap={{ base: 'wrap', '2xl': 'nowrap' }}>
         <Button w={'full'} colorScheme={'gray'} leftIcon={<FaGithub />}>

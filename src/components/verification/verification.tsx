@@ -33,7 +33,7 @@ const Verification = () => {
       <Text color={'gray.500'} fontSize={{ base: 'sm', sm: 'md' }}>
         {t('verification_description', { ns: 'global' })}{' '}
       </Text>
-      <HStack justify={'center'}>
+      <HStack justify={'center'} my={3}>
         <PinInput
           otp
           size={'lg'}
@@ -54,7 +54,6 @@ const Verification = () => {
           bgGradient: 'linear(to-r, facebook.500, gray.500)',
           boxShadow: 'xl',
         }}
-        mt={3}
       >
         {' '}
         {t('register_btn', { ns: 'global' })}
