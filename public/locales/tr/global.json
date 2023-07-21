@@ -52,5 +52,7 @@
   "register_btn": "E-posta Onayı",
   "verification_title": "Onayla",
   "verification_description": "Son adım ve neredeyse bitti, e-postanıza gönderdiğimiz e-postayı kontrol edin ve 6 haneli doğrulama kodunu kontrol edin.",
-  "verification_btn": "Kayıt"
+  "verification_btn": "Kayıt",
+  "continue_with_github": "Github ile devam et",
+  "sign_in_with_google": "Google ile giriş yap"
 }

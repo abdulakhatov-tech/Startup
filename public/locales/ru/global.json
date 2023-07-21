@@ -52,5 +52,7 @@
   "register_btn": "Подтвердить Email",
   "verification_title": "Проверка",
   "verification_description": "Последний шаг, и это почти сделано, просто проверьте свою электронную почту, которую мы отправили на вашу электронную почту проверочный код otp с 6-значным номером.",
-  "verification_btn": "Зарегистрироваться"
+  "verification_btn": "Зарегистрироваться",
+  "continue_with_github": "Продолжить с Github",
+  "sign_in_with_google": "Войти через Google"
 }

@@ -52,5 +52,7 @@
   "register_btn": "Email tasdiqlash",
   "verification_title": "Tasdiqlash",
   "verification_description": "Oxirgi qadam va deyarli bajarildi, biz sizning elektron pochtangizga yuborgan elektron pochtangizni tekshiring va 6 ta raqamdan iborat tasdiqlash kodini tekshiring.",
-  "verification_btn": "Ro'yhatdan o'tish"
+  "verification_btn": "Ro'yhatdan o'tish",
+  "continue_with_github": "Github bilan davom eting",
+  "sign_in_with_google": "Google bilan kiring"
 }

@@ -44,7 +44,7 @@ const AuthPageComponent = () => {
   return (
     <>
       <AuthNavbarComponent />
-      <Box pos={'relative'}>
+      <Box pos={'relative'} mt={{ base: '10vh', md: '0' }}>
         <Container
           as={SimpleGrid}
           maxW={'7xl'}
