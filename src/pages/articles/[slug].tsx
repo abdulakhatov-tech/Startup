@@ -1,15 +1,23 @@
 import { GetServerSideProps } from 'next';
 
+import Seo from '@/src/layouts/seo/seo';
 import { withLayout } from '@/src/layouts/layout';
 import { Articles } from '@/src/services/article.service';
-import { Language } from '@/src/interfaces/constants.interface';
 import { ArticleDetailedComponent } from '@/src/pageComponent';
+import { Language } from '@/src/interfaces/constants.interface';
 import { ArticleType } from '@/src/interfaces/article.interface';
 
 const ArticleDetailPage = ({
   article,
 }: ArticleDetailedPageProps): JSX.Element => {
-  return <ArticleDetailedComponent article={article} />;
+  return (
+    <Seo
+      metaTitle={`Education || ${article?.title}`}
+      metaDescription={`${article?.excert}`}
+    >
+      <ArticleDetailedComponent article={article} />;
+    </Seo>
+  );
 };
 
 export default withLayout(ArticleDetailPage);
