@@ -18,8 +18,7 @@ import { useTranslation } from 'react-i18next';
 import { BiMenuAltLeft } from 'react-icons/bi';
 import { useState } from 'react';
 
-import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
-import { TbWorld } from 'react-icons/tb';
+import { BsFillMoonFill, BsFillSunFill, BsTranslate } from 'react-icons/bs';
 
 import { language, navigation } from 'src/config/constants';
 import { Logo } from 'src/icons';
@@ -86,7 +85,7 @@ const AuthNavbarComponent = () => {
               <Menu placement="bottom">
                 <MenuButton
                   as={Button}
-                  rightIcon={<TbWorld />}
+                  rightIcon={<BsTranslate />}
                   textTransform={'capitalize'}
                   colorScheme={'facebook'}
                   variant={'ghost'}

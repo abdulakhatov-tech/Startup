@@ -66,5 +66,10 @@
   "successfully_edited": "Успешно отредактировано.",
   "successfully_edited_description": "Вы можете войти в свою учетную запись с новым паролем.",
   "continue_with_github": "Продолжить с Github",
-  "sign_in_with_google": "Войти через Google"
+  "sign_in_with_google": "Войти через Google",
+
+  "start_reading_article": "Искусственный интеллект начинает читать",
+  "article": "статью",
+  "play": "Играть",
+  "stop": "Стоп"
 }

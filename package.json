@@ -37,7 +37,8 @@
     "graphql-request": "^5.2.0",
     "nprogress": "^0.2.0",
     "@graphcms/rich-text-react-renderer": "^0.6.1",
-    "js-cookie": "^3.0.1"
+    "js-cookie": "^3.0.1",
+    "react-speech-kit": "^3.0.1"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.3",

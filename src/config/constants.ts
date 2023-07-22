@@ -366,3 +366,16 @@ export const avatars = [
     url: 'https://bit.ly/code-beast',
   },
 ];
+
+export const voiceLanguages = [
+  {
+    language: 'en',
+    codes: 'en-US',
+    voiceUrl: 'Google US English',
+  },
+  {
+    language: 'ru',
+    codes: 'ru-RU',
+    voiceUrl: 'Microsoft Irina - Russian (Russia)',
+  },
+];

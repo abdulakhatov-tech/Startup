@@ -17,8 +17,9 @@ import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 
 import { BsFillMoonFill, BsFillSunFill, BsTranslate } from 'react-icons/bs';
-import { MdOutlineContactSupport } from 'react-icons/md';
+// import { MdOutlineContactSupport } from 'react-icons/md';
 import { BiMenuAltLeft, BiUserCircle } from 'react-icons/bi';
+import { AiOutlineLogin } from 'react-icons/ai';
 
 import { language } from '@/src/config/constants';
 import { HeaderProps } from './header.props';
@@ -39,7 +40,7 @@ const Header = ({ onToggle }: HeaderProps): JSX.Element => {
       zIndex={1001}
       w={'full'}
       h={'10vh'}
-      px={10}
+      px={{ base: 5, md: 10 }}
       borderBottom={'1px'}
       pos={'fixed'}
       top={0}
@@ -61,12 +62,12 @@ const Header = ({ onToggle }: HeaderProps): JSX.Element => {
           <Link href={'/'}>{colorMode === 'light' ? <Logo /> : <Logo />}</Link>
         </HStack>
         <HStack>
-          <IconButton
+          {/* <IconButton
             aria-label="support"
             icon={<MdOutlineContactSupport />}
             colorScheme={'facebook'}
             variant={'ghost'}
-          />
+          /> */}
           <Menu placement="bottom">
             <MenuButton
               as={Button}
@@ -100,12 +101,21 @@ const Header = ({ onToggle }: HeaderProps): JSX.Element => {
             variant={'outline'}
           />
           <Button
+            display={{ base: 'none', md: 'flex' }}
             onClick={() => router.push('/auth')}
             rightIcon={<BiUserCircle fontSize={'22px'} />}
             colorScheme={'facebook'}
           >
             {t('login', { ns: 'layout' })}
           </Button>
+          <IconButton
+            display={{ base: 'flex', md: 'none' }}
+            aria-label="login"
+            onClick={() => router.push('/auth')}
+            icon={<AiOutlineLogin />}
+            colorScheme={'facebook'}
+            variant={'outline'}
+          />
         </HStack>
       </Flex>
     </Box>

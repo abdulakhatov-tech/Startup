@@ -66,5 +66,10 @@
   "successfully_edited": "Successfully Edited.",
   "successfully_edited_description": "You can login to your account with new password.",
   "continue_with_github": "Continue with Github",
-  "sign_in_with_google": "Sign in with Google"
+  "sign_in_with_google": "Sign in with Google",
+
+  "start_reading_article": "Artificial Intelligence starting read",
+  "article": "article",
+  "play": "Play",
+  "stop": "Stop"
 }

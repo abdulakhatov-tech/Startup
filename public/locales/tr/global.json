@@ -66,5 +66,10 @@
   "successfully_edited": "Başarıyla Düzenlendi.",
   "successfully_edited_description": "Yeni şifreniz ile hesabınıza giriş yapabilirsiniz.",
   "continue_with_github": "Github ile devam et",
-  "sign_in_with_google": "Google ile giriş yap"
+  "sign_in_with_google": "Google ile giriş yap",
+
+  "start_reading_article": "Yapay Zeka başlangıç okuması",
+  "article": "makale",
+  "play": "Oynamak",
+  "stop": "Durmak"
 }

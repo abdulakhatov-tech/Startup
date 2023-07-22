@@ -66,5 +66,10 @@
   "successfully_edited": "Muvaffaqiyatli tahrirlandi.",
   "successfully_edited_description": "Hisobingizga yangi parol bilan kirishingiz mumkin.",
   "continue_with_github": "Github bilan davom eting",
-  "sign_in_with_google": "Google bilan kiring"
+  "sign_in_with_google": "Google bilan kiring",
+
+  "start_reading_article": "Sun'iy intellekt o'qishni boshlaydi",
+  "article": "maqola",
+  "play": "Ijro etmoq",
+  "stop": "To'xtash"
 }
