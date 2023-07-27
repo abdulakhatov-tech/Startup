@@ -41,7 +41,9 @@
     "js-cookie": "^3.0.1",
     "react-speech-kit": "^3.0.1",
     "@reduxjs/toolkit": "^1.9.3",
-    "react-redux": "^8.0.5"
+    "react-redux": "^8.0.5",
+    "formik": "^2.2.9",
+    "yup": "^1.0.2"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.3",
