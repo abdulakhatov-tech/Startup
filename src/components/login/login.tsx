@@ -18,11 +18,20 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { LoginProps } from './login.props';
+import { useActions } from '@/src/hooks/useActions';
 
 const Login = ({ onNavigateStateComponent }: LoginProps) => {
   const [show, setShow] = useState<boolean>(false);
 
   const { t } = useTranslation();
+  const { login } = useActions();
+
+  const onSubmit = () => {
+    login({
+      email: 'islomabdulakhatov@gmail.com',
+      password: '123456',
+    });
+  };
 
   const toggleShow = () => setShow((prev) => !prev);
 
@@ -97,6 +106,7 @@ const Login = ({ onNavigateStateComponent }: LoginProps) => {
           boxShadow: 'xl',
         }}
         h={14}
+        onClick={onSubmit}
       >
         {t('login_btn', { ns: 'global' })}
       </Button>

@@ -13,6 +13,8 @@ import { useEffect } from 'react';
 
 import i18n from 'src/i18n';
 import { theme } from '../config/theme';
+import { Provider } from 'react-redux';
+import { store } from '../store/store';
 
 NProgress.configure({ showSpinner: false });
 
@@ -33,13 +35,15 @@ export default function App({ Component, pageProps }: AppProps) {
   }, []);
   return (
     <HydrationProvider>
-      <I18nextProvider i18n={i18n}>
-        <ChakraProvider theme={theme}>
-          <Client>
-            <Component {...pageProps} />
-          </Client>
-        </ChakraProvider>
-      </I18nextProvider>
+      <Provider store={store}>
+        <I18nextProvider i18n={i18n}>
+          <ChakraProvider theme={theme}>
+            <Client>
+              <Component {...pageProps} />
+            </Client>
+          </ChakraProvider>
+        </I18nextProvider>
+      </Provider>
     </HydrationProvider>
   );
 }
