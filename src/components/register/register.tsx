@@ -29,14 +29,17 @@ const Register = ({ onNavigateStateComponent }: RegisterProps) => {
     useShowPassword();
 
   const { t } = useTranslation();
-  const { pendingRegister } = useActions();
+  const { pendingRegister, sendVerificationCode } = useActions();
   const { error, isLoading } = useTypedSelector((state) => state.user);
 
-  const onSubmit = (formData: InterfaceEmailAndPassword) => {
-    pendingRegister({
-      email: formData.email,
-      password: formData.password,
-    });
+  const onSubmit = async (formData: InterfaceEmailAndPassword) => {
+    const { email, password } = formData;
+    const response = await sendVerificationCode({ email });
+    const result: any = response;
+    if (result.payload === 'Success') {
+      pendingRegister({ email, password });
+      !isLoading && onNavigateStateComponent('verification');
+    }
   };
 
   return (
