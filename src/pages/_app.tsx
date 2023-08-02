@@ -16,6 +16,7 @@ import i18n from 'src/i18n';
 import { theme } from '../config/theme';
 import { Provider } from 'react-redux';
 import { store } from '../store/store';
+import AuthProvider from '../provider/auth.provider';
 
 NProgress.configure({ showSpinner: false });
 
@@ -44,7 +45,9 @@ export default function App({
           <I18nextProvider i18n={i18n}>
             <ChakraProvider theme={theme}>
               <Client>
-                <Component {...pageProps} />
+                <AuthProvider>
+                  <Component {...pageProps} />
+                </AuthProvider>
               </Client>
             </ChakraProvider>
           </I18nextProvider>

@@ -19,6 +19,7 @@ const nextConfig = {
   },
   include: ['next-env.d.ts', '**/*.ts', '**/*.tsx'],
   exclude: ['node_modules'],
+  reactStrictMode: false,
 };
 
 module.exports = nextConfig;
