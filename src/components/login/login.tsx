@@ -2,13 +2,9 @@ import {
   Box,
   Button,
   Checkbox,
-  FormControl,
-  FormLabel,
   Heading,
   HStack,
   Icon,
-  Input,
-  InputGroup,
   InputRightElement,
   Stack,
   Text,
@@ -18,15 +14,16 @@ import {
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { Form, Formik } from 'formik';
+import { useRouter } from 'next/router';
+
 import { LoginProps } from './login.props';
 import { useActions } from '@/src/hooks/useActions';
 import { useTypedSelector } from '@/src/hooks/useTypedSelector';
-import { Form, Formik } from 'formik';
 import ErrorAlert from '../error-alert/error-alert';
 import { AuthValidation } from '@/src/validations/auth.validation';
 import TextField from '../text-field/text-field';
 import { InterfaceEmailAndPassword } from '@/src/store/user/user.interface';
-import { useRouter } from 'next/router';
 
 const Login = ({ onNavigateStateComponent }: LoginProps) => {
   const [show, setShow] = useState<boolean>(false);
@@ -41,13 +38,15 @@ const Login = ({ onNavigateStateComponent }: LoginProps) => {
     login({
       email: formData.email,
       password: formData.password,
-    });
-    router.push('/');
-    toast({
-      title: 'Successfully logged in',
-      status: 'info',
-      isClosable: true,
-      position: 'top-right',
+      callback: () => {
+        router.push('/');
+        toast({
+          title: 'Successfully logged in',
+          status: 'info',
+          isClosable: true,
+          position: 'top-right',
+        });
+      },
     });
   };
 

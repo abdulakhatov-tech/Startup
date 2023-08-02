@@ -34,12 +34,14 @@ const Register = ({ onNavigateStateComponent }: RegisterProps) => {
 
   const onSubmit = async (formData: InterfaceEmailAndPassword) => {
     const { email, password } = formData;
-    const response = await sendVerificationCode({ email });
-    const result: any = response;
-    if (result.payload === 'Success') {
-      pendingRegister({ email, password });
-      !isLoading && onNavigateStateComponent('verification');
-    }
+    await sendVerificationCode({
+      email,
+      isUser: false,
+      callback: () => {
+        pendingRegister({ email, password });
+        onNavigateStateComponent('verification');
+      },
+    });
   };
 
   return (
