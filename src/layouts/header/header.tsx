@@ -12,23 +12,29 @@ import {
   MenuItem,
   useColorModeValue,
   Icon,
+  Avatar,
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/router';
+import { useAuth } from '@/src/hooks/useAuth';
 
 import { BsFillMoonFill, BsFillSunFill, BsTranslate } from 'react-icons/bs';
-// import { MdOutlineContactSupport } from 'react-icons/md';
 import { BiMenuAltLeft, BiUserCircle } from 'react-icons/bi';
 import { AiOutlineLogin } from 'react-icons/ai';
+import { TbFileSettings } from 'react-icons/tb';
+import { IoIosLogOut } from 'react-icons/io';
 
 import { language } from '@/src/config/constants';
 import { HeaderProps } from './header.props';
-import { useRouter } from 'next/router';
+import { useActions } from '@/src/hooks/useActions';
 
 const Header = ({ onToggle }: HeaderProps): JSX.Element => {
   const { toggleColorMode, colorMode } = useColorMode();
   const { t, i18n } = useTranslation();
   const router = useRouter();
+  const { user } = useAuth();
+  const { logout } = useActions();
 
   const onLanguage = (lng: string) => {
     router.replace(router.asPath);
@@ -62,12 +68,6 @@ const Header = ({ onToggle }: HeaderProps): JSX.Element => {
           <Link href={'/'}>{colorMode === 'light' ? <Logo /> : <Logo />}</Link>
         </HStack>
         <HStack>
-          {/* <IconButton
-            aria-label="support"
-            icon={<MdOutlineContactSupport />}
-            colorScheme={'facebook'}
-            variant={'ghost'}
-          /> */}
           <Menu placement="bottom">
             <MenuButton
               as={Button}
@@ -100,22 +100,56 @@ const Header = ({ onToggle }: HeaderProps): JSX.Element => {
             colorScheme={'facebook'}
             variant={'outline'}
           />
-          <Button
-            display={{ base: 'none', md: 'flex' }}
-            onClick={() => router.push('/auth')}
-            rightIcon={<BiUserCircle fontSize={'22px'} />}
-            colorScheme={'facebook'}
-          >
-            {t('login', { ns: 'layout' })}
-          </Button>
-          <IconButton
-            display={{ base: 'flex', md: 'none' }}
-            aria-label="login"
-            onClick={() => router.push('/auth')}
-            icon={<AiOutlineLogin />}
-            colorScheme={'facebook'}
-            variant={'outline'}
-          />
+          {user ? (
+            <Menu>
+              <MenuButton
+                as={Button}
+                rounded={'full'}
+                variant={'link'}
+                cursor={'pointer'}
+                minW={0}
+              >
+                <Avatar backgroundColor={'facebook.500'} />
+              </MenuButton>
+              <MenuList p={0} m={0}>
+                <MenuItem
+                  h={14}
+                  onClick={() => router.push('/setting')}
+                  fontWeight={'bold'}
+                  icon={<TbFileSettings fontSize={17} />}
+                >
+                  Settings
+                </MenuItem>
+                <MenuItem
+                  h={14}
+                  onClick={logout}
+                  fontWeight={'bold'}
+                  icon={<IoIosLogOut fontSize={17} />}
+                >
+                  Logout
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          ) : (
+            <>
+              <Button
+                display={{ base: 'none', md: 'flex' }}
+                onClick={() => router.push('/auth')}
+                rightIcon={<BiUserCircle fontSize={'22px'} />}
+                colorScheme={'facebook'}
+              >
+                {t('login', { ns: 'layout' })}
+              </Button>
+              <IconButton
+                display={{ base: 'flex', md: 'none' }}
+                aria-label="login"
+                onClick={() => router.push('/auth')}
+                icon={<AiOutlineLogin />}
+                colorScheme={'facebook'}
+                variant={'outline'}
+              />
+            </>
+          )}
         </HStack>
       </Flex>
     </Box>
