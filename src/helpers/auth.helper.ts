@@ -8,7 +8,7 @@ export const saveTokensCookie = (data: AuthTokens) => {
 
 export const saveStorage = (data: AuthUserResponse) => {
   saveTokensCookie(data);
-  localStorage.setItem('user', JSON.stringify(data.user));
+  // localStorage.setItem('user', JSON.stringify(data.user));
 };
 
 export const removeTokensCookie = () => {

@@ -10,6 +10,7 @@ import { HydrationProvider, Client } from 'react-hydration-provider';
 import NProgress from 'nprogress';
 import Router from 'next/router';
 import { useEffect } from 'react';
+import { SessionProvider } from 'next-auth/react';
 
 import i18n from 'src/i18n';
 import { theme } from '../config/theme';
@@ -18,7 +19,10 @@ import { store } from '../store/store';
 
 NProgress.configure({ showSpinner: false });
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
   useEffect(() => {
     const handleRouteStart = () => NProgress.start();
     const handleRouteDone = () => NProgress.done();
@@ -36,13 +40,15 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <HydrationProvider>
       <Provider store={store}>
-        <I18nextProvider i18n={i18n}>
-          <ChakraProvider theme={theme}>
-            <Client>
-              <Component {...pageProps} />
-            </Client>
-          </ChakraProvider>
-        </I18nextProvider>
+        <SessionProvider session={session}>
+          <I18nextProvider i18n={i18n}>
+            <ChakraProvider theme={theme}>
+              <Client>
+                <Component {...pageProps} />
+              </Client>
+            </ChakraProvider>
+          </I18nextProvider>
+        </SessionProvider>
       </Provider>
     </HydrationProvider>
   );
