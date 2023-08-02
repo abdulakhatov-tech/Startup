@@ -13,23 +13,41 @@ import {
   Stack,
   Text,
   useColorModeValue,
+  useToast,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { LoginProps } from './login.props';
 import { useActions } from '@/src/hooks/useActions';
+import { useTypedSelector } from '@/src/hooks/useTypedSelector';
+import { Form, Formik } from 'formik';
+import ErrorAlert from '../error-alert/error-alert';
+import { AuthValidation } from '@/src/validations/auth.validation';
+import TextField from '../text-field/text-field';
+import { InterfaceEmailAndPassword } from '@/src/store/user/user.interface';
+import { useRouter } from 'next/router';
 
 const Login = ({ onNavigateStateComponent }: LoginProps) => {
   const [show, setShow] = useState<boolean>(false);
 
   const { t } = useTranslation();
   const { login } = useActions();
+  const { error, isLoading } = useTypedSelector((state) => state.user);
+  const router = useRouter();
+  const toast = useToast();
 
-  const onSubmit = () => {
+  const onSubmit = (formData: InterfaceEmailAndPassword) => {
     login({
-      email: 'islomabdulakhatov@gmail.com',
-      password: '123456',
+      email: formData.email,
+      password: formData.password,
+    });
+    router.push('/');
+    toast({
+      title: 'Successfully logged in',
+      status: 'info',
+      isClosable: true,
+      position: 'top-right',
     });
   };
 
@@ -54,62 +72,65 @@ const Login = ({ onNavigateStateComponent }: LoginProps) => {
       <Text color={'gray.500'} fontSize={{ base: 'sm', sm: 'md' }}>
         {t('login_description', { ns: 'global' })}
       </Text>
-      <FormControl isRequired>
-        <FormLabel>{t('login_input_email_label', { ns: 'global' })}</FormLabel>
-        <Input
-          focusBorderColor="facebook.500"
-          type="text"
-          placeholder={'info@sammi.ac'}
-          h={14}
-        />
-      </FormControl>
-      <FormControl isRequired>
-        <FormLabel>
-          {t('login_input_password_label', { ns: 'global' })}
-        </FormLabel>
-        <InputGroup>
-          <Input
-            focusBorderColor="facebook.500"
+      <Formik
+        onSubmit={onSubmit}
+        initialValues={{ email: '', password: '' }}
+        validationSchema={AuthValidation.login}
+      >
+        <Form>
+          {(error as string) && <ErrorAlert title={error as string} />}
+          <TextField
+            name="email"
+            type="text"
+            label={t('login_input_email_label', { ns: 'global' })}
+            placeholder={'info@sammi.ac'}
+          />
+          <TextField
+            name="password"
+            label={t('login_input_password_label', { ns: 'global' })}
             type={!show ? 'password' : 'text'}
             placeholder={'****'}
-            h={14}
-          />
-          <InputRightElement pt={4}>
-            <Icon
-              as={!show ? AiOutlineEye : AiOutlineEyeInvisible}
+          >
+            <InputRightElement pt={4}>
+              <Icon
+                as={!show ? AiOutlineEye : AiOutlineEyeInvisible}
+                cursor={'pointer'}
+                onClick={toggleShow}
+              />
+            </InputRightElement>
+          </TextField>
+          <HStack my={4} justify={'space-between'}>
+            <Checkbox colorScheme={'facebook'}>
+              {t('auth_remember_me', { ns: 'global' })}
+            </Checkbox>
+            <Box
+              as={'a'}
+              onClick={() => onNavigateStateComponent('account-recovery')}
               cursor={'pointer'}
-              onClick={toggleShow}
-            />
-          </InputRightElement>
-        </InputGroup>
-      </FormControl>
-      <HStack justify={'space-between'}>
-        <Checkbox colorScheme={'facebook'}>
-          {t('auth_remember_me', { ns: 'global' })}
-        </Checkbox>
-        <Box
-          as={'a'}
-          onClick={() => onNavigateStateComponent('account-recovery')}
-          cursor={'pointer'}
-          color={'teal.500'}
-          _hover={{ textDecoration: 'underline' }}
-        >
-          {t('auth_forgot_password', { ns: 'global' })}
-        </Box>
-      </HStack>
-      <Button
-        w={'full'}
-        bgGradient="linear(to-r, facebook.400,gray.400)"
-        color={'white'}
-        _hover={{
-          bgGradient: 'linear(to-r, facebook.500,gray.500)',
-          boxShadow: 'xl',
-        }}
-        h={14}
-        onClick={onSubmit}
-      >
-        {t('login_btn', { ns: 'global' })}
-      </Button>
+              color={'teal.500'}
+              _hover={{ textDecoration: 'underline' }}
+            >
+              {t('auth_forgot_password', { ns: 'global' })}
+            </Box>
+          </HStack>
+          <Button
+            w={'full'}
+            bgGradient="linear(to-r, facebook.400,gray.400)"
+            color={'white'}
+            _hover={{
+              bgGradient: 'linear(to-r, facebook.500,gray.500)',
+              boxShadow: 'xl',
+            }}
+            h={14}
+            type="submit"
+            isLoading={isLoading}
+            loadingText="Loading..."
+          >
+            {t('login_btn', { ns: 'global' })}
+          </Button>
+        </Form>
+      </Formik>
+
       <Text>
         {t('login_not_account_yet', { ns: 'global' })}{' '}
         <Box

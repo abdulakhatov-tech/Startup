@@ -17,3 +17,4 @@ export { default as CourseOverview } from './course-overview/course-overview';
 export { default as CourseCurriculum } from './course-curriculum/course-curriculum';
 export { default as CourseReview } from './course-review/course-review';
 export { default as CourseMentor } from './course-mentor/course-mentor';
+export { default as ErrorAlert } from './error-alert/error-alert';

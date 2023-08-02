@@ -11,34 +11,32 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
 import { Form, Formik } from 'formik';
+import { useTranslation } from 'react-i18next';
 
-import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import { useShowPassword } from 'src/hooks/useShowPassword';
 import { RegisterProps } from './register.props';
-import { useActions } from '@/src/hooks/useActions';
 import TextField from '../text-field/text-field';
+import { useActions } from '@/src/hooks/useActions';
+import ErrorAlert from '../error-alert/error-alert';
+import { useShowPassword } from 'src/hooks/useShowPassword';
+import { useTypedSelector } from '@/src/hooks/useTypedSelector';
 import { AuthValidation } from '@/src/validations/auth.validation';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { InterfaceEmailAndPassword } from '@/src/store/user/user.interface';
 
 const Register = ({ onNavigateStateComponent }: RegisterProps) => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>('');
-
   const { show, toggleShow, showConfirm, toggleShowConfirm } =
     useShowPassword();
+
   const { t } = useTranslation();
-  const { register } = useActions();
+  const { pendingRegister } = useActions();
+  const { error, isLoading } = useTypedSelector((state) => state.user);
 
   const onSubmit = (formData: InterfaceEmailAndPassword) => {
-    setIsLoading(true);
-    register({
+    pendingRegister({
       email: formData.email,
       password: formData.password,
     });
-    setIsLoading(false);
   };
 
   return (
@@ -66,6 +64,7 @@ const Register = ({ onNavigateStateComponent }: RegisterProps) => {
         validationSchema={AuthValidation.register}
       >
         <Form>
+          {(error as string) && <ErrorAlert title={error as string} />}
           <TextField
             name="email"
             type="text"

@@ -17,3 +17,6 @@ export { default as OnlineCourseIcon } from './online-course';
 export { default as OnlineStudentIcon } from './online-student';
 export { default as Logo } from './logo';
 export { default as Blur } from './blur';
+export { default as TeachVal1Icon } from './teach-val-1';
+export { default as TeachVal2Icon } from './teach-val-2';
+export { default as TeachVal3Icon } from './teach-val-3';
