@@ -29,7 +29,7 @@ const Register = ({ onNavigateStateComponent }: RegisterProps) => {
     useShowPassword();
 
   const { t } = useTranslation();
-  const { pendingRegister, sendVerificationCode } = useActions();
+  const { pendingRegister, sendVerificationCode, clearError } = useActions();
   const { error, isLoading } = useTypedSelector((state) => state.user);
 
   const onSubmit = async (formData: InterfaceEmailAndPassword) => {
@@ -69,7 +69,9 @@ const Register = ({ onNavigateStateComponent }: RegisterProps) => {
         validationSchema={AuthValidation.register}
       >
         <Form>
-          {(error as string) && <ErrorAlert title={error as string} />}
+          {(error as string) && (
+            <ErrorAlert title={error as string} clearHandler={clearError} />
+          )}
           <TextField
             name="email"
             type="text"

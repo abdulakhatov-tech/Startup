@@ -37,8 +37,12 @@ const AccountRecovery = ({
     useShowPassword();
   const toast = useToast();
   const { t } = useTranslation();
-  const { sendVerificationCode, verifyVerificationCode, editProfilePassword } =
-    useActions();
+  const {
+    sendVerificationCode,
+    verifyVerificationCode,
+    editProfilePassword,
+    clearError,
+  } = useActions();
   const { error, isLoading } = useTypedSelector((state) => state.user);
 
   const onForm1Submit = async (formData: { email: string }) => {
@@ -70,7 +74,11 @@ const AccountRecovery = ({
         </Text>
       </Heading>
       <Text>{t('account_recovery_description_form1', { ns: 'global' })}</Text>
-      <>{error && <ErrorAlert title={error as string} />}</>
+      <>
+        {error && (
+          <ErrorAlert title={error as string} clearHandler={clearError} />
+        )}
+      </>
       <Formik
         onSubmit={onForm1Submit}
         initialValues={{ email: '' }}
@@ -132,7 +140,11 @@ const AccountRecovery = ({
         </Text>
       </Heading>
       <Text>{t('account_recovery_description_form2', { ns: 'global' })}</Text>
-      <>{error && <ErrorAlert title={error as string} />}</>
+      <>
+        {error && (
+          <ErrorAlert title={error as string} clearHandler={clearError} />
+        )}
+      </>
       <Formik
         onSubmit={onForm2Submit}
         initialValues={{ otp: '' }}
