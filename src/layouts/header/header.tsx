@@ -114,7 +114,11 @@ const Header = ({ onToggle }: HeaderProps): JSX.Element => {
                 cursor={'pointer'}
                 minW={0}
               >
-                <Avatar backgroundColor={'facebook.500'} />
+                <Avatar
+                  backgroundColor={'facebook.500'}
+                  name={user.fullName}
+                  src={user.avatar}
+                />
               </MenuButton>
               <MenuList p={0} m={0}>
                 <MenuItem
