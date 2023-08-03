@@ -10,3 +10,4 @@ export { default as FaqPageComponent } from './faq-page-component/faq-page-compo
 export { default as AuthPageComponent } from './auth-page-component/auth-page-component';
 export { default as DetailedCourseComponent } from './courses-page-component/detailed-course-component';
 export { default as BecomeInstructorPageComponent } from './become-instructor-page-component/become-instructor-page-component';
+export { default as StudentPageComponent } from './instructor-page-component/student-page-component';

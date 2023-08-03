@@ -442,3 +442,41 @@ export const instructorSidebar = [
     route: 'revenue',
   },
 ];
+
+export const courseUsers = [
+  {
+    id: 1,
+    email: 'islomabdulakhatov@gmail.com',
+    fullName: 'Islom Abdulakhatov',
+    year: 2022,
+    userGain: 100,
+  },
+  {
+    id: 2,
+    email: 'ab@gmail.com',
+    fullName: 'Osman Ali',
+    year: 2022,
+    userGain: 450,
+  },
+  {
+    id: 3,
+    year: 2023,
+    fullName: 'Shox Abdulloh',
+    email: 'ab@gmail.com',
+    userGain: 550,
+  },
+  {
+    id: 4,
+    year: 2023,
+    fullName: 'Abdulaziz Alimov',
+    email: 'ab@gmail.com',
+    userGain: 1000,
+  },
+  {
+    id: 5,
+    year: 2023,
+    fullName: 'Yusuf Khamdamov',
+    email: 'ab@gmail.com',
+    userGain: 1500,
+  },
+];
