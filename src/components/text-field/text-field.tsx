@@ -8,6 +8,7 @@ import {
 import { ErrorMessage, FieldHookConfig, useField } from 'formik';
 
 import { TextFieldProps } from './text-field.props';
+import { useTranslation } from 'react-i18next';
 
 const TextField = ({
   label,
@@ -18,6 +19,7 @@ const TextField = ({
   ...props
 }: TextFieldProps & FieldHookConfig<string>) => {
   const [field, meta] = useField(props);
+  const { t } = useTranslation();
 
   return (
     <FormControl mt={15} isRequired isInvalid={!!meta.touched && !!meta.error}>
@@ -34,7 +36,7 @@ const TextField = ({
         {children}
       </InputGroup>
       <FormErrorMessage>
-        <ErrorMessage name={field.name} />
+        {t(`${meta.error}`, { ns: 'global' })}
       </FormErrorMessage>
     </FormControl>
   );

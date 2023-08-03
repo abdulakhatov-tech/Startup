@@ -102,7 +102,7 @@ const AccountRecovery = ({
             }}
             h={14}
             isLoading={isLoading}
-            loadingText={'Loading...'}
+            loadingText={t('loading', { ns: 'global' })}
             type={'submit'}
           >
             {t('account_recovery_btn_form1', { ns: 'global' })}
@@ -190,7 +190,7 @@ const AccountRecovery = ({
               mt={4}
               type={'submit'}
               isLoading={isLoading}
-              loadingText={'Loading...'}
+              loadingText={t('loading', { ns: 'global' })}
             >
               {t('account_recovery_btn_form2', { ns: 'global' })}
             </Button>
@@ -207,8 +207,8 @@ const AccountRecovery = ({
       callback: () => {
         onNavigateStateComponent('login');
         toast({
-          title: 'Successfully edited',
-          description: 'You can login to account with new passowrd',
+          title: t('successfully_edited', { ns: 'global' }),
+          description: t('successfully_edited_description', { ns: 'global' }),
           status: 'success',
           position: 'top-right',
           isClosable: true,
@@ -280,7 +280,7 @@ const AccountRecovery = ({
             mt={4}
             type={'submit'}
             isLoading={isLoading}
-            loadingText={'Loading...'}
+            loadingText={t('loading', { ns: 'global' })}
           >
             {t('account_recovery_btn_form3', { ns: 'global' })}
           </Button>
