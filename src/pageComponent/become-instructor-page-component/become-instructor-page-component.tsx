@@ -37,24 +37,36 @@ import {
   PlanCurriculumIcon,
   RecordVideoIcon,
 } from 'src/icons';
-import { Form, Formik } from 'formik';
+import { Form, Formik, FormikConfig } from 'formik';
 import TextField from '@/src/components/text-field/text-field';
 import { GoVerified } from 'react-icons/go';
 import { InstructorValidation } from 'src/validations/instructor.validation';
+import { InstructorApplyBody } from '@/src/store/instructor/instructor.interface';
+import { useActions } from '@/src/hooks/useActions';
+import { useTypedSelector } from '@/src/hooks/useTypedSelector';
+import { InstructorType } from '@/src/interfaces/instructor.interface';
+import { ErrorAlert } from '@/src/components';
 
 const BecomeInstructorPageComponent = () => {
   const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
+  const { applyInstructor, clearInstructorError } = useActions();
+  const { error, isLoading } = useTypedSelector((state) => state.instructor);
 
-  const onSubmit = () => {
-    toast({
-      title: t('successfully_sent', { ns: 'global' }),
-      description: t('contact_with_you_coming_soon', { ns: 'global' }),
-      isClosable: true,
-      position: 'top-right',
+  const onSubmit = (formData) => {
+    applyInstructor({
+      ...formData,
+      callback: () => {
+        toast({
+          title: t('successfully_sent', { ns: 'global' }),
+          description: t('contact_with_you_coming_soon', { ns: 'global' }),
+          isClosable: true,
+          position: 'top-right',
+        });
+        onClose();
+      },
     });
-    onClose();
   };
 
   return (
@@ -175,6 +187,12 @@ const BecomeInstructorPageComponent = () => {
             <Form>
               <ModalBody>
                 <Stack spacing={4}>
+                  {(error as string) && (
+                    <ErrorAlert
+                      title={error as string}
+                      clearHandler={clearInstructorError}
+                    />
+                  )}
                   <Flex flexDirection={{ base: 'column', md: 'row' }} gap={4}>
                     <TextField
                       name={'firstName'}
@@ -211,6 +229,8 @@ const BecomeInstructorPageComponent = () => {
                   colorScheme={'facebook'}
                   h={14}
                   rightIcon={<GoVerified />}
+                  isLoading={isLoading}
+                  loadingText={t('loading', { ns: 'global' })}
                 >
                   {t('send_to_verify_btn', { ns: 'global' })}
                 </Button>
