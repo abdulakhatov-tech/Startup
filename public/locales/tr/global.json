@@ -90,5 +90,15 @@
   "login_with_new_password": "Programa yeni bir şifre ile girebilirsiniz",
   "settings": "Ayarlar",
   "logout": "Cıkış Yap",
-  "loading": "Yükleniyor..."
+  "loading": "Yükleniyor...",
+  "first_name": "İlk adı",
+  "first_name_required": "Ad gereklidir",
+  "last_name": "Soy isim",
+  "last_name_required": "Soyadı gereklidir",
+  "social_media": "Sosyal medya",
+  "social_media_required": "Sosyal medya bağlantısı gerekli",
+  "send_to_verify_btn": "Doğrulamak için gönder",
+  "link_to_your_lesson": "Dersinize baglanti",
+  "successfully_sent": "Başarıyla gönderildi",
+  "contact_with_you_coming_soon": "Yakında sizinle iletişime geçeceğiz"
 }

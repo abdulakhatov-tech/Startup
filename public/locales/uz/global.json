@@ -90,5 +90,15 @@
   "login_with_new_password": "Dasturga yangi parol bilan kirishingiz mumkin",
   "settings": "Sozlamalar",
   "logout": "Chiqish",
-  "loading": "Yuklanmoqda..."
+  "loading": "Yuklanmoqda...",
+  "first_name": "Ismingiz",
+  "first_name_required": "Ismingiz kiritng",
+  "last_name": "Familiyangiz",
+  "last_name_required": "Familiyangizni kiriting",
+  "social_media": "Ijtimoiy tarmoq",
+  "social_media_required": "Ijtimoiy tarmoqlarga havola kerak",
+  "send_to_verify_btn": "Tasdiqlash uchun yuboring",
+  "link_to_your_lesson": "Darsingizga havola",
+  "successfully_sent": "Muvaffaqiyatli yuborildi",
+  "contact_with_you_coming_soon": "Siz bilan tez orada bog'lanamiz"
 }

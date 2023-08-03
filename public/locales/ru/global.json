@@ -90,5 +90,15 @@
   "login_with_new_password": "Вы можете войти в аккаунт с новым паролем",
   "settings": "Настройки",
   "logout": "Выйти",
-  "loading": "Загрузка..."
+  "loading": "Загрузка...",
+  "first_name": "Имя",
+  "first_name_required": "Требуется имя",
+  "last_name": "Фамилия",
+  "last_name_required": "Требуется фамилия",
+  "social_media": "Социальные медиа",
+  "social_media_required": "Ссылка на социальные сети обязательна",
+  "send_to_verify_btn": "Отправить для проверки",
+  "link_to_your_lesson": "Ссылка на ваш урок",
+  "successfully_sent": "Успешно отправлено",
+  "contact_with_you_coming_soon": "Мы свяжемся с вами в ближайшее время"
 }

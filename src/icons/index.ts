@@ -20,3 +20,6 @@ export { default as Blur } from './blur';
 export { default as TeachVal1Icon } from './teach-val-1';
 export { default as TeachVal2Icon } from './teach-val-2';
 export { default as TeachVal3Icon } from './teach-val-3';
+export { default as LaunchCourseIcon } from './launch-course';
+export { default as PlanCurriculumIcon } from './plan-curriculum';
+export { default as RecordVideoIcon } from './record-video';

@@ -90,5 +90,15 @@
   "login_with_new_password": "You can login to account with new password",
   "settings": "Settings",
   "logout": "logout",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "first_name": "First Name",
+  "first_name_required": "First Name is required",
+  "last_name": "Last Name",
+  "last_name_required": "Last Name is required",
+  "social_media": "Social media",
+  "social_media_required": "Social media link is required",
+  "send_to_verify_btn": "Send to verify",
+  "link_to_your_lesson": "Link to your lesson",
+  "successfully_sent": "Successfully sent",
+  "contact_with_you_coming_soon": "We'll contact with you coming soon"
 }
