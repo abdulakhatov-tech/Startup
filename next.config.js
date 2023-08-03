@@ -20,6 +20,10 @@ const nextConfig = {
   include: ['next-env.d.ts', '**/*.ts', '**/*.tsx'],
   exclude: ['node_modules'],
   reactStrictMode: false,
+  images: {
+    domains: ['media.graphassets.com'],
+    dangerouslyAllowSVG: true,
+  },
 };
 
 module.exports = nextConfig;
