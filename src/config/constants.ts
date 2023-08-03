@@ -3,14 +3,23 @@ import {
   AiOutlineDashboard,
   AiOutlineDollar,
 } from 'react-icons/ai';
+import { CiViewList } from 'react-icons/ci';
 import {
   FaApplePay,
   FaBookReader,
   FaDraftingCompass,
+  FaFirstdraft,
+  FaListAlt,
   FaQuestionCircle,
+  FaUserGraduate,
 } from 'react-icons/fa';
-import { CiViewList } from 'react-icons/ci';
-import { MdImportContacts, MdOutlineContactMail } from 'react-icons/md';
+import { FiEdit } from 'react-icons/fi';
+import {
+  MdImportContacts,
+  MdOutlineContactMail,
+  MdOutlineCreateNewFolder,
+} from 'react-icons/md';
+import { RiMoneyDollarBoxLine } from 'react-icons/ri';
 import {
   AnnouncementIcons,
   CodingIcons,
@@ -398,5 +407,38 @@ export const teachValues = [
     title: 'get_rewarded',
     description: 'get_rewarded_description',
     icon: TeachVal3Icon,
+  },
+];
+
+export const instructorSidebar = [
+  {
+    name: 'Students',
+    icon: FaUserGraduate,
+    route: 'students',
+  },
+  {
+    name: 'Courses',
+    icon: FaListAlt,
+    route: 'courses',
+  },
+  {
+    name: 'Create course',
+    icon: MdOutlineCreateNewFolder,
+    route: 'create-course',
+  },
+  {
+    name: 'Edit courses',
+    icon: FiEdit,
+    route: 'edit-courses',
+  },
+  {
+    name: 'Draft courses',
+    icon: FaFirstdraft,
+    route: 'draft-courses',
+  },
+  {
+    name: 'Revenue',
+    icon: RiMoneyDollarBoxLine,
+    route: 'revenue',
   },
 ];
