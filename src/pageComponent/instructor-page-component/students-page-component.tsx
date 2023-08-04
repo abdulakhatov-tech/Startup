@@ -53,8 +53,11 @@ const StudentPageComponent = () => {
         <CardBody>
           <Stack>
             <SectionTitle
-              title="Students"
-              subtitle="Enrolled users to your courses and analytics"
+              title={t('students_title', { ns: 'instructor' }) || 'Students'}
+              subtitle={
+                t('students_description', { ns: 'instructor' }) ||
+                'Enrolled users to your courses and analytics'
+              }
             />
             <Box className="chart-container">
               <Line
@@ -71,7 +74,7 @@ const StudentPageComponent = () => {
         </CardBody>
       </Card>
       <Box mt={10}>
-        <Heading>All users</Heading>
+        <Heading>{t('all_users', { ns: 'instructor' }) || 'All users'}</Heading>
         <Box pos={'relative'} mt={5}>
           <Input
             h={14}
@@ -99,7 +102,7 @@ const StudentPageComponent = () => {
                 variant={'outline'}
                 rightIcon={<AiOutlineReload />}
               >
-                more...
+                {t('more', { ns: 'instructor' }) || 'more'}...
               </Button>
             </TableCaption>
             <Thead>
@@ -107,10 +110,12 @@ const StudentPageComponent = () => {
                 <Th isNumeric>
                   <AiOutlineFieldNumber fontSize={20} />
                 </Th>
-                <Th>Email</Th>
-                <Th>FullName</Th>
-                <Th>Courses</Th>
-                <Th>Enrolled date</Th>
+                <Th>{t('email', { ns: 'instructor' }) || 'Email'}</Th>
+                <Th>{t('full_name', { ns: 'instructor' }) || 'FullName'}</Th>
+                <Th>{t('courses', { ns: 'instructor' }) || 'Courses'}</Th>
+                <Th>
+                  {t('enrolled_date', { ns: 'instructor' }) || 'Enrolled date'}
+                </Th>
               </Tr>
             </Thead>
             <Tbody>

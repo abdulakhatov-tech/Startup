@@ -22,3 +22,7 @@ export { default as InstructorCoursesCard } from './instructor-courses-card/inst
 export { default as InstructorEditCoursesCard } from './instructor-courses-card/instructor-edit-courses-card';
 export { default as InstructorDraftCourseCard } from './draft-course-card/draft-course-card';
 export { default as StatisticsCard } from './statistics-card/statistics-card';
+export { default as InstructorManageCourse } from './instructor-manage-course/instructor-manage-course';
+export { default as TextAreaField } from './text-area-field/text-area-field';
+export { default as SelectField } from './select-field/select-field';
+export { default as TagField } from './tag-field/tag-field';
