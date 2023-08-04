@@ -19,3 +19,4 @@ export { default as CourseReview } from './course-review/course-review';
 export { default as CourseMentor } from './course-mentor/course-mentor';
 export { default as ErrorAlert } from './error-alert/error-alert';
 export { default as InstructorCoursesCard } from './instructor-courses-card/instructor-courses-card';
+export { default as InstructorEditCoursesCard } from './instructor-courses-card/instructor-edit-courses-card';
