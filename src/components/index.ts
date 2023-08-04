@@ -21,3 +21,4 @@ export { default as ErrorAlert } from './error-alert/error-alert';
 export { default as InstructorCoursesCard } from './instructor-courses-card/instructor-courses-card';
 export { default as InstructorEditCoursesCard } from './instructor-courses-card/instructor-edit-courses-card';
 export { default as InstructorDraftCourseCard } from './draft-course-card/draft-course-card';
+export { default as StatisticsCard } from './statistics-card/statistics-card';

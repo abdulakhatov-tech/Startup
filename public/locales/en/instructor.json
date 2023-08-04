@@ -70,7 +70,7 @@
   "status": "Status",
   "revenue_title": "Hi Instructor, that's your revenue statistics",
   "earn": "Earn",
-  "payouts": "Payouts",
+  "": "Payouts",
   "balance": "Balance",
   "revenue_report": "Revenue report",
   "revenue_report_description": "You get paid directly from stripe yo your bank account every 48 hours",
