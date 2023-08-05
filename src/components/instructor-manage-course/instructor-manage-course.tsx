@@ -30,6 +30,8 @@ import { editorModules } from 'src/config/editor.config';
 import TextAreaField from '../text-area-field/text-area-field';
 import { FileService } from '@/src/services/file.service';
 import { useActions } from '@/src/hooks/useActions';
+import { useTypedSelector } from '@/src/hooks/useTypedSelector';
+import ErrorAlert from '../error-alert/error-alert';
 
 const InstructorManageCourse = ({
   submitHandler,
@@ -37,20 +39,27 @@ const InstructorManageCourse = ({
 }: InstructorManageCourseProps) => {
   const { t } = useTranslation();
   const [file, setFile] = useState<File>();
-  const { createCourse } = useActions();
+  const [errorFile, setErrorFile] = useState('');
+  const { error, isLoading } = useTypedSelector((state) => state.course);
+  const { clearCourseError, startLoading } = useActions();
 
   const handleChange = (file: File) => {
     setFile(file);
   };
 
   const onSubmit = async (formValues: FormikValues) => {
-    if (file) {
-      const formData = new FormData();
-      formData.append('image', file as File);
-      await FileService.fileUpload(formData, 'preview-image');
+    if (!file) {
+      setErrorFile('Preview image is required');
+      return;
     }
-    const data = formValues as SubmitValuesInterface;
-    createCourse({ ...data, callback: () => console.log('Success') });
+    const formData = new FormData();
+    formData.append('image', file as File);
+    startLoading();
+    const response = await FileService.fileUpload(formData, 'preview-image');
+    const data = {
+      ...formValues,
+      previewImage: response.url,
+    } as SubmitValuesInterface;
     submitHandler(data);
   };
 
@@ -128,13 +137,22 @@ const InstructorManageCourse = ({
                       </Text>
                     )}
                   </Box>
-
+                  <>
+                    {error && (
+                      <ErrorAlert
+                        title={error as string}
+                        clearHandler={clearCourseError}
+                      />
+                    )}
+                  </>
                   <Button
                     type="submit"
                     w={'full'}
                     h={14}
                     colorScheme={'facebook'}
                     rightIcon={<GiSave />}
+                    isLoading={isLoading}
+                    loadingText={`${t('loading', { ns: 'global' })}`}
                   >
                     {titleBtn}
                   </Button>
@@ -185,6 +203,11 @@ const InstructorManageCourse = ({
                       types={['JPG', 'PNG', 'GIF']}
                       style={{ minWidth: '100%' }}
                     />
+                    {errorFile && (
+                      <Text mt={2} fontSize="14px" color="red.500">
+                        {errorFile}
+                      </Text>
+                    )}
                   </Box>
                 </Stack>
               </Box>

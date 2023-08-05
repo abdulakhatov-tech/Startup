@@ -11,6 +11,9 @@ export const courseSlice = createSlice({
   name: 'course',
   initialState,
   reducers: {
+    startLoading: (state) => {
+      state.isLoading = true;
+    },
     clearCourseError: (state) => {
       state.error = null;
     },
