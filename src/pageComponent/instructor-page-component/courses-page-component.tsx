@@ -1,3 +1,4 @@
+import { useTypedSelector } from '@/src/hooks/useTypedSelector';
 import {
   Card,
   CardBody,
@@ -13,10 +14,11 @@ import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 import { InstructorCoursesCard } from 'src/components';
 import SectionTitle from 'src/components/section-title/section-title';
-import { courses } from 'src/config/constants';
+// import { courses } from 'src/config/constants';
 
 const CoursesPageComponent = () => {
   const { t } = useTranslation();
+  const { courses } = useTypedSelector((state) => state.instructor);
 
   return (
     <>

@@ -8,6 +8,7 @@ const TagField = ({
   name,
   placeholder,
   errorMessage,
+  values,
 }: TagFieldProps) => {
   return (
     <Box w={'full'}>
@@ -18,7 +19,7 @@ const TagField = ({
         </Box>
       </FormLabel>
       <TagsInput
-        value={formik.values.name}
+        value={values}
         onChange={(data) => formik.setFieldValue(name, data)}
         name={name}
         placeHolder={placeholder}

@@ -23,6 +23,7 @@ import { BsTrash } from 'react-icons/bs';
 
 import { InstructorCoursesCardProps } from './instructor-courses-card.props';
 import { useTranslation } from 'react-i18next';
+import { loadImage } from '@/src/helpers/image.helper';
 
 const InstructorEditCoursesCard: FC<InstructorCoursesCardProps> = ({
   item,
@@ -43,7 +44,7 @@ const InstructorEditCoursesCard: FC<InstructorCoursesCardProps> = ({
         <Box pos={'relative'} w={'full'} h={'300px'}>
           <Image
             fill
-            src={item.image}
+            src={loadImage(item.previewImage)}
             style={{ objectFit: 'cover', borderRadius: '10px' }}
             alt={item.title}
           />

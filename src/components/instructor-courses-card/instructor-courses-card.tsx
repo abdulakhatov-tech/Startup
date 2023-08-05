@@ -20,6 +20,7 @@ import { SiGoogleanalytics } from 'react-icons/si';
 import { VscOpenPreview } from 'react-icons/vsc';
 import { InstructorCoursesCardProps } from './instructor-courses-card.props';
 import { useTranslation } from 'react-i18next';
+import { loadImage } from '@/src/helpers/image.helper';
 
 const InstructorCoursesCard: FC<InstructorCoursesCardProps> = ({
   item,
@@ -76,7 +77,7 @@ const InstructorCoursesCard: FC<InstructorCoursesCardProps> = ({
       <Box w={'30%'} h={'300px'} position={'relative'}>
         <Image
           fill
-          src={item.image}
+          src={loadImage(item.previewImage)}
           alt={item.title}
           style={{ objectFit: 'cover', borderRadius: '10px' }}
         />

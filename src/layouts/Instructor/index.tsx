@@ -4,6 +4,8 @@ import Footer from '../footer/footer';
 import Header from '../header/header';
 import { LayoutProps } from '../layout.props';
 import InstructorSidebar from '../sidebar/instructor-sidebar';
+import InstructorProvider from '@/src/provider/instructor.provider';
+import { InstructorProviderProps } from './instructor.props';
 // import InstructorSidebar from '../sidebar/instructor-sidebar';
 
 const Layout: FC<LayoutProps> = ({ children }): JSX.Element => {
@@ -30,13 +32,17 @@ const Layout: FC<LayoutProps> = ({ children }): JSX.Element => {
 
 export default Layout;
 
-export const withInstructorLayout = <T extends Record<string, unknown>>(
+export const withInstructorLayout = <
+  T extends Record<string, unknown> & InstructorProviderProps
+>(
   Component: FunctionComponent<T>
 ) => {
   return function withLayoutComponent(props: T): JSX.Element {
     return (
       <Layout>
-        <Component {...props} />
+        <InstructorProvider courses={props.courses} course={props.course}>
+          <Component {...props} />
+        </InstructorProvider>
       </Layout>
     );
   };

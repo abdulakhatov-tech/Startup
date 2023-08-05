@@ -5,10 +5,12 @@ import { useTranslation } from 'react-i18next';
 import SectionTitle from 'src/components/section-title/section-title';
 import { InstructorManageCourse } from '@/src/components';
 import { SubmitValuesInterface } from '@/src/components/instructor-manage-course/instructor-manage-course.props';
+import { useTypedSelector } from '@/src/hooks/useTypedSelector';
 
 const EditDetailedCoursePageComponent = () => {
   const { t } = useTranslation();
   const router = useRouter();
+  const { course } = useTypedSelector((state) => state.instructor);
 
   const onSubmit = (data: SubmitValuesInterface) => {
     console.log(data);
@@ -26,6 +28,7 @@ const EditDetailedCoursePageComponent = () => {
       <InstructorManageCourse
         titleBtn={t('edit_course_title', { ns: 'instructor' }) || 'Edit course'}
         submitHandler={onSubmit}
+        courseValues={course}
       />
     </>
   );
