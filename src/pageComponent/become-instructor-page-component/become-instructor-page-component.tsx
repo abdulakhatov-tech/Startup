@@ -37,14 +37,12 @@ import {
   PlanCurriculumIcon,
   RecordVideoIcon,
 } from 'src/icons';
-import { Form, Formik, FormikConfig } from 'formik';
+import { Form, Formik } from 'formik';
 import TextField from '@/src/components/text-field/text-field';
 import { GoVerified } from 'react-icons/go';
 import { InstructorValidation } from 'src/validations/instructor.validation';
-import { InstructorApplyBody } from '@/src/store/instructor/instructor.interface';
 import { useActions } from '@/src/hooks/useActions';
 import { useTypedSelector } from '@/src/hooks/useTypedSelector';
-import { InstructorType } from '@/src/interfaces/instructor.interface';
 import { ErrorAlert } from '@/src/components';
 
 const BecomeInstructorPageComponent = () => {
@@ -82,7 +80,7 @@ const BecomeInstructorPageComponent = () => {
                   ns: 'instructor',
                 })}
               />
-              <Button h={14} colorScheme="facebook">
+              <Button onClick={onOpen} h={14} colorScheme="facebook">
                 {t('instructor_page_get_started', { ns: 'instructor' })}
               </Button>
             </Stack>

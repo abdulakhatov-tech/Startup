@@ -28,6 +28,8 @@ import TextField from '../text-field/text-field';
 import SelectField from '../select-field/select-field';
 import { editorModules } from 'src/config/editor.config';
 import TextAreaField from '../text-area-field/text-area-field';
+import { FileService } from '@/src/services/file.service';
+import { useActions } from '@/src/hooks/useActions';
 
 const InstructorManageCourse = ({
   submitHandler,
@@ -35,13 +37,20 @@ const InstructorManageCourse = ({
 }: InstructorManageCourseProps) => {
   const { t } = useTranslation();
   const [file, setFile] = useState<File>();
+  const { createCourse } = useActions();
 
   const handleChange = (file: File) => {
     setFile(file);
   };
 
-  const onSubmit = (formData: FormikValues) => {
-    const data = formData as SubmitValuesInterface;
+  const onSubmit = async (formValues: FormikValues) => {
+    if (file) {
+      const formData = new FormData();
+      formData.append('image', file as File);
+      await FileService.fileUpload(formData, 'preview-image');
+    }
+    const data = formValues as SubmitValuesInterface;
+    createCourse({ ...data, callback: () => console.log('Success') });
     submitHandler(data);
   };
 
@@ -77,7 +86,11 @@ const InstructorManageCourse = ({
                         t('what_students_will_learn', { ns: 'instructor' }) ||
                         'What will students learn in your course?'
                       }
-                      errorMessage={formik.errors.learn as string}
+                      errorMessage={
+                        formik.touched.learn
+                          ? (formik.errors.learn as string)
+                          : ''
+                      }
                     />
 
                     <TagField
@@ -88,7 +101,11 @@ const InstructorManageCourse = ({
                         t('requirements', { ns: 'instructor' }) ||
                         'Requirements'
                       }
-                      errorMessage={formik.errors.requirements as string}
+                      errorMessage={
+                        formik.touched.requirements
+                          ? (formik.errors.requirements as string)
+                          : ''
+                      }
                     />
                   </Flex>
                   <Box>
@@ -150,7 +167,9 @@ const InstructorManageCourse = ({
                     label={
                       t('course_tags', { ns: 'instructor' }) || 'Course tags'
                     }
-                    errorMessage={formik.errors.tags as string}
+                    errorMessage={
+                      formik.touched.tags ? (formik.errors.tags as string) : ''
+                    }
                   />
                   <Box>
                     <FormLabel>
