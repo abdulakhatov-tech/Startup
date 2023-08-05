@@ -93,5 +93,6 @@
   "hour": "Saat",
   "minute": "Dakika",
   "second": "saniye",
-  "lesson": "dersler"
+  "lesson": "dersler",
+  "is_agree": "Emin misin?"
 }

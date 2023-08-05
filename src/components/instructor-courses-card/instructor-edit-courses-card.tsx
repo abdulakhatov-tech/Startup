@@ -9,6 +9,7 @@ import {
   Icon,
   Stack,
   Text,
+  useToast,
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -24,12 +25,39 @@ import { BsTrash } from 'react-icons/bs';
 import { InstructorCoursesCardProps } from './instructor-courses-card.props';
 import { useTranslation } from 'react-i18next';
 import { loadImage } from '@/src/helpers/image.helper';
+import { useActions } from '@/src/hooks/useActions';
 
 const InstructorEditCoursesCard: FC<InstructorCoursesCardProps> = ({
   item,
 }): JSX.Element => {
   const { t } = useTranslation();
   const router = useRouter();
+  const { deleteCourse } = useActions();
+  const toast = useToast();
+
+  const onDelete = () => {
+    const isAgree = confirm(
+      t('is_agree', { ns: 'instructor' }) || 'Are you sure?'
+    );
+    if (isAgree) {
+      deleteCourse({
+        courseId: item._id,
+        callback: () => {
+          toast({
+            title:
+              t('successfully_deleted', { ns: 'instructor' }) ||
+              'Successfully deleted',
+            description: item.title,
+            position: 'top-right',
+            isClosable: true,
+          });
+          setTimeout(() => {
+            router.reload();
+          }, 1500);
+        },
+      });
+    }
+  };
 
   return (
     <Flex
@@ -82,7 +110,7 @@ const InstructorEditCoursesCard: FC<InstructorCoursesCardProps> = ({
           >
             Edit
           </Button>
-          <Button rightIcon={<BsTrash />}>
+          <Button rightIcon={<BsTrash />} onClick={onDelete}>
             {t('delete_course', { ns: 'instructor' }) || 'Delete'}
           </Button>
           <Button rightIcon={<HiOutlineStatusOnline />}>

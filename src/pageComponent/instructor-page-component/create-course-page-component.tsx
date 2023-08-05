@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 
 import { InstructorManageCourse } from '@/src/components';
 import SectionTitle from '@/src/components/section-title/section-title';
-import { SubmitValuesInterface } from '@/src/components/instructor-manage-course/instructor-manage-course.props';
 import { useActions } from '@/src/hooks/useActions';
 import { useRouter } from 'next/router';
+import { CourseType } from '@/src/interfaces/course.interface';
 
 const CreateCoursePageComponent = () => {
   const { t } = useTranslation();
@@ -13,7 +13,7 @@ const CreateCoursePageComponent = () => {
   const toast = useToast();
   const router = useRouter();
 
-  const onSubmit = (data: SubmitValuesInterface) => {
+  const onSubmit = (data: CourseType) => {
     createCourse({
       ...data,
       callback: () => {
@@ -28,8 +28,6 @@ const CreateCoursePageComponent = () => {
         router.push('/instructor/courses');
       },
     });
-
-    console.log(data);
   };
 
   return (

@@ -43,6 +43,7 @@ import ErrorAlert from '../error-alert/error-alert';
 import Image from 'next/image';
 import { loadImage } from '@/src/helpers/image.helper';
 import { FaTimes } from 'react-icons/fa';
+import { CourseType } from '@/src/interfaces/course.interface';
 
 const InstructorManageCourse = ({
   submitHandler,
@@ -66,14 +67,18 @@ const InstructorManageCourse = ({
       setErrorFile('Preview image is required');
       return;
     }
-    const formData = new FormData();
-    formData.append('image', file as File);
-    startLoading();
-    const response = await FileService.fileUpload(formData, 'preview-image');
+    let imageUrl = file;
+    if (typeof file !== 'string') {
+      startLoading();
+      const formData = new FormData();
+      formData.append('image', file as File);
+      const response = await FileService.fileUpload(formData, 'preview-image');
+      imageUrl = response.url;
+    }
     const data = {
       ...formValues,
-      previewImage: response.url,
-    } as SubmitValuesInterface;
+      previewImage: imageUrl,
+    } as CourseType;
     submitHandler(data);
   };
 

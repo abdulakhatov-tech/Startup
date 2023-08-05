@@ -93,5 +93,6 @@
   "hour": "Soat",
   "minute": "Minut",
   "second": "Sekund",
-  "lesson": "darslar"
+  "lesson": "darslar",
+  "is_agree": "Ishonchingiz komilmi?"
 }

@@ -92,5 +92,6 @@
   "hour": "Hour",
   "minute": "Minute",
   "second": "Seconds",
-  "lesson": "lesson"
+  "lesson": "lesson",
+  "is_agree": "Are you sure?"
 }
