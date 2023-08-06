@@ -1,3 +1,4 @@
+import { SectionAccordion } from 'src/components';
 export { default as Hero } from './hero/hero';
 export { default as Categories } from './categories/categories';
 export { default as PopularCourses } from './popular-courses/popular-courses';
@@ -26,3 +27,5 @@ export { default as InstructorManageCourse } from './instructor-manage-course/in
 export { default as TextAreaField } from './text-area-field/text-area-field';
 export { default as SelectField } from './select-field/select-field';
 export { default as TagField } from './tag-field/tag-field';
+export { default as SectionAccordion } from './section-accordion/section-accordion';
+export { default as SectionForm } from './section-form/section-form';

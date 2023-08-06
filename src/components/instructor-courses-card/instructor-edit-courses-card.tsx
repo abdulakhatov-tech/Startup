@@ -111,8 +111,11 @@ const InstructorEditCoursesCard: FC<InstructorCoursesCardProps> = ({
           <Button rightIcon={<BsTrash />} onClick={onDelete}>
             {t('delete_course', { ns: 'instructor' }) || 'Delete'}
           </Button>
-          <Button rightIcon={<HiOutlineStatusOnline />}>
-            {t('status', { ns: 'instructor' }) || 'Status'}
+          <Button
+            rightIcon={<HiOutlineStatusOnline />}
+            onClick={() => router.push(`/instructor/curriculum/${item.slug}`)}
+          >
+            {t('curriculum_course', { ns: 'instructor' }) || 'Curriculum'}
           </Button>
         </HStack>
       </Stack>
