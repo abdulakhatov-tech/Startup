@@ -51,9 +51,7 @@ const InstructorEditCoursesCard: FC<InstructorCoursesCardProps> = ({
             position: 'top-right',
             isClosable: true,
           });
-          setTimeout(() => {
-            router.reload();
-          }, 1500);
+          router.replace(router.asPath);
         },
       });
     }

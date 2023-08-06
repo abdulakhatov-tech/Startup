@@ -1,10 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { errorCatch } from 'src/helpers/api.helper';
 import { CourseService } from 'src/services/course.service';
-import {
-  CourseCreateBodyInterface,
-  DeleteBodyInterface,
-} from './course.interface';
+import { ByIdInterface, CourseCreateBodyInterface } from './course.interface';
 
 export const createCourse = createAsyncThunk<
   'Success',
@@ -32,11 +29,37 @@ export const editCourse = createAsyncThunk<
   }
 });
 
-export const deleteCourse = createAsyncThunk<'Success', DeleteBodyInterface>(
+export const deleteCourse = createAsyncThunk<'Success', ByIdInterface>(
   'course/delete',
   async (body, thunkApi) => {
     try {
       const response = await CourseService.deleteCourse(body.courseId);
+      body.callback();
+      return response;
+    } catch (error) {
+      return thunkApi.rejectWithValue(errorCatch(error));
+    }
+  }
+);
+
+export const activateCourse = createAsyncThunk<'Success', ByIdInterface>(
+  'course/activate',
+  async (body, thunkApi) => {
+    try {
+      const response = await CourseService.activateCourse(body.courseId);
+      body.callback();
+      return response;
+    } catch (error) {
+      return thunkApi.rejectWithValue(errorCatch(error));
+    }
+  }
+);
+
+export const draftCourse = createAsyncThunk<'Success', ByIdInterface>(
+  'course/draft',
+  async (body, thunkApi) => {
+    try {
+      const response = await CourseService.draftCourse(body.courseId);
       body.callback();
       return response;
     } catch (error) {

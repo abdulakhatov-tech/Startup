@@ -9,7 +9,7 @@ export interface CourseCreateBodyInterface extends CourseType {
   callback: () => void;
 }
 
-export interface DeleteBodyInterface {
+export interface ByIdInterface {
   courseId: string;
   callback: () => void;
 }

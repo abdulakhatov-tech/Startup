@@ -1,3 +1,4 @@
+import { useTypedSelector } from '@/src/hooks/useTypedSelector';
 import {
   Box,
   Card,
@@ -16,10 +17,11 @@ import { useTranslation } from 'react-i18next';
 
 import { InstructorDraftCourseCard } from 'src/components';
 import SectionTitle from 'src/components/section-title/section-title';
-import { courses } from 'src/config/constants';
+// import { courses } from 'src/config/constants';
 
 const DraftCoursesPageComponent = () => {
   const { t } = useTranslation();
+  const { courses } = useTypedSelector((state) => state.instructor);
 
   return (
     <>
@@ -57,27 +59,19 @@ const DraftCoursesPageComponent = () => {
             <TabPanel>
               <Grid gridTemplateColumns={'1fr 1fr'} gap={4}>
                 {courses
+                  .filter((c) => !c.isActive)
                   .map((item) => (
-                    <InstructorDraftCourseCard
-                      key={item.slug}
-                      item={item}
-                      status={t('draft', { ns: 'instructor' }) || 'Draft'}
-                    />
-                  ))
-                  .splice(0, 2)}
+                    <InstructorDraftCourseCard key={item.slug} item={item} />
+                  ))}
               </Grid>
             </TabPanel>
             <TabPanel>
               <Grid gridTemplateColumns={'1fr 1fr'} gap={4}>
                 {courses
+                  .filter((c) => c.isActive)
                   .map((item) => (
-                    <InstructorDraftCourseCard
-                      key={item.slug}
-                      item={item}
-                      status={t('active', { ns: 'instructor' }) || 'Active'}
-                    />
-                  ))
-                  .splice(0, 2)}
+                    <InstructorDraftCourseCard key={item.slug} item={item} />
+                  ))}
               </Grid>
             </TabPanel>
           </TabPanels>
