@@ -12,19 +12,55 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
+  Skeleton,
   Stack,
   Text,
   useDisclosure,
+  useToast,
 } from '@chakra-ui/react';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import { BsFillPlusCircleFill } from 'react-icons/bs';
 import { SectionAccordion, SectionForm } from 'src/components';
 import SectionTitle from 'src/components/section-title/section-title';
+import { useActions } from 'src/hooks/useActions';
 import { useTypedSelector } from 'src/hooks/useTypedSelector';
 
 const CurriculumPageComponent = () => {
+  const [sectionTitle, setSectionTitle] = useState<{
+    title: string;
+    id: string;
+  } | null>({
+    title: '',
+    id: '',
+  });
+
   const { course } = useTypedSelector((state) => state.instructor);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { getSection } = useActions();
+  const { pendingSection, sections } = useTypedSelector(
+    (state) => state.section
+  );
+  const toast = useToast();
+
+  useEffect(() => {
+    getSection({
+      courseId: course?._id,
+      callback: () => {
+        toast({
+          title: 'Successfully get sections',
+          position: 'top-right',
+          isClosable: true,
+        });
+      },
+    });
+  }, [course]);
+
+  const onCreateSection = () => {
+    onOpen();
+    setSectionTitle(null);
+  };
+
   return (
     <>
       <Card>
@@ -55,15 +91,27 @@ const CurriculumPageComponent = () => {
               w={6}
               h={6}
               cursor={'pointer'}
-              onClick={onOpen}
+              onClick={onCreateSection}
             />
           </Flex>
-
-          <Accordion allowToggle>
-            {sections.map((section) => (
-              <SectionAccordion key={section.title} section={section} />
-            ))}
-          </Accordion>
+          {pendingSection ? (
+            <Stack>
+              <Skeleton height="20px" />
+              <Skeleton height="20px" />
+              <Skeleton height="20px" />
+            </Stack>
+          ) : (
+            <Accordion allowToggle>
+              {sections.map((section) => (
+                <SectionAccordion
+                  key={section.title}
+                  section={section}
+                  setSectionTitle={setSectionTitle}
+                  onOpen={onOpen}
+                />
+              ))}
+            </Accordion>
+          )}
         </CardBody>
       </Card>
 
@@ -74,7 +122,7 @@ const CurriculumPageComponent = () => {
           <ModalCloseButton />
           <Divider />
           <ModalBody pb={5}>
-            <SectionForm />
+            <SectionForm onClose={onClose} values={sectionTitle} />
           </ModalBody>
         </ModalContent>
       </Modal>
@@ -83,64 +131,3 @@ const CurriculumPageComponent = () => {
 };
 
 export default CurriculumPageComponent;
-
-const sections = [
-  {
-    title: '#1 Modul. ReactJS asoslari',
-    lessons: [
-      {
-        name: '1-dars: ReactJS nima',
-      },
-      {
-        name: '1-dars: ReactJS nima',
-      },
-      {
-        name: '1-dars: ReactJS nima',
-      },
-      {
-        name: '1-dars: ReactJS nima',
-      },
-      {
-        name: '1-dars: ReactJS nima',
-      },
-      {
-        name: '1-dars: ReactJS nima',
-      },
-      {
-        name: '1-dars: ReactJS nima',
-      },
-      {
-        name: '1-dars: ReactJS nima',
-      },
-      {
-        name: '1-dars: ReactJS nima',
-      },
-      {
-        name: '1-dars: ReactJS nima',
-      },
-      {
-        name: '1-dars: ReactJS nima',
-      },
-      {
-        name: '1-dars: ReactJS nima',
-      },
-    ],
-  },
-  {
-    title: '#2 Modul. VueJS asoslari',
-    lessons: [
-      {
-        name: '1-dars: VueJS nima',
-      },
-      {
-        name: '1-dars: VueJS nima',
-      },
-      {
-        name: '1-dars: VueJS nima',
-      },
-      {
-        name: '1-dars: VueJS nima',
-      },
-    ],
-  },
-];
