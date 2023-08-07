@@ -1,5 +1,5 @@
 import $axios from 'src/api/axios';
-import { getSectionUrl } from 'src/config/api.config';
+import { getCourseUrl, getSectionUrl } from 'src/config/api.config';
 import { SectionBodyType } from 'src/store/section/section.interface';
 
 export const SectionService = {
@@ -27,6 +27,7 @@ export const SectionService = {
       `${getSectionUrl('edit')}/${body.sectionId}`,
       {
         title: body.title,
+        lessons: body.lessons,
       }
     );
 
@@ -36,6 +37,17 @@ export const SectionService = {
   async getSection(body: SectionBodyType) {
     const response = await $axios.get(
       `${getSectionUrl('get')}/${body.courseId}`
+    );
+
+    return response.data;
+  },
+
+  async dragSection(body: SectionBodyType) {
+    const response = await $axios.put(
+      `${getCourseUrl('drag')}/${body.courseId}`,
+      {
+        sections: body.sections,
+      }
     );
 
     return response.data;

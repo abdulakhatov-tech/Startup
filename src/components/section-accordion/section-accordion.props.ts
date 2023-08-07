@@ -7,4 +7,5 @@ export interface SectionAccordionProps {
     SetStateAction<{ title: string; id: string } | null>
   >;
   onOpen: () => void;
+  sectionIdx: number;
 }
