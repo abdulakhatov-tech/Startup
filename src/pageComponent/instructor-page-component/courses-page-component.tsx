@@ -56,18 +56,17 @@ const CoursesPageComponent = () => {
           </TabPanel>
           <TabPanel>
             {courses
+              .filter((c) => c.isActive)
               .map((item) => (
                 <InstructorCoursesCard key={item.slug} item={item} />
-              ))
-              .splice(1, 4)}
+              ))}
           </TabPanel>
           <TabPanel>
             {courses
+              .filter((c) => !c.isActive)
               .map((item) => (
                 <InstructorCoursesCard key={item.slug} item={item} />
-              ))
-              .reverse()
-              .splice(0, 2)}
+              ))}
           </TabPanel>
         </TabPanels>
       </Tabs>

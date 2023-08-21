@@ -60,17 +60,13 @@ const InstructorCoursesCard: FC<InstructorCoursesCardProps> = ({
         </HStack>
         <Divider />
         <HStack>
-          <Button rightIcon={<VscOpenPreview />}>
+          <Button
+            rightIcon={<VscOpenPreview />}
+            w="full"
+            h={16}
+            colorScheme="facebook"
+          >
             {t('preview', { ns: 'instructor' })}
-          </Button>
-          <Button rightIcon={<FiEdit2 />}>
-            {t('edit_course', { ns: 'instructor' })}
-          </Button>
-          <Button rightIcon={<BsTrash />}>
-            {t('delete_course', { ns: 'instructor' })}
-          </Button>
-          <Button rightIcon={<HiOutlineStatusOnline />}>
-            {t('status', { ns: 'instructor' })}
           </Button>
         </HStack>
       </Stack>
