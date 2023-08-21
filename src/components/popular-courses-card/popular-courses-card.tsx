@@ -22,7 +22,7 @@ const PopularCoursesCard = ({ item }: PopularCoursesCardProps): JSX.Element => {
   return (
     <Stack spacing={3} p={3} cursor={'pointer'}>
       <Image
-        src={item.image}
+        src={item.previewImage}
         alt={t(item.title, { ns: 'home' }) || ''}
         objectFit={'cover'}
         h={'210px'}

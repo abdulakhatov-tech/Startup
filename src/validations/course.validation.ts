@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 interface Type {
   title: string;
-  exerpt: string;
+  excerpt: string;
   learn: string[];
   requirements: string[];
   description: string;
@@ -14,7 +14,7 @@ interface Type {
 
 export const manageCourseValues: Type = {
   title: '',
-  exerpt: '',
+  excerpt: '',
   learn: [],
   requirements: [],
   description: '',
@@ -48,9 +48,9 @@ export const CourseValidation = {
       title: Yup.string()
         .min(8, 'title_min_char')
         .required('title_is_required'),
-      exerpt: Yup.string()
-        .min(15, 'exerpt_min_char')
-        .required('exerpt_is_required'),
+      excerpt: Yup.string()
+        .min(15, 'excerpt_min_char')
+        .required('excerpt_is_required'),
       learn: Yup.array().required('level_is_required'),
       requirements: Yup.array().required('requirements_is_required'),
       tags: Yup.array().required('course_tags_is_required'),

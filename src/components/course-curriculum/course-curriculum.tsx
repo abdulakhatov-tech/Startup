@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { AiFillPlayCircle } from 'react-icons/ai';
-import { GoPrimitiveDot } from 'react-icons/go';
+import { BsQuestionCircle } from 'react-icons/bs';
 import { getLessonTime } from 'src/helpers/time.helper';
 
 const CourseCurriculum = () => {
@@ -24,7 +24,7 @@ const CourseCurriculum = () => {
       <Heading mt={10}>{t('curriculum', { ns: 'courses' })}</Heading>
       <Flex align={'center'} gap={2} mt={3}>
         {data.length} {t('modules', { ns: 'courses' })}{' '}
-        <Icon as={GoPrimitiveDot} />{' '}
+        <Icon as={BsQuestionCircle} />{' '}
         {data.map((c) => c.lessons.length).reduce((a, b) => +a + +b, 0)}{' '}
         {t('lessons', { ns: 'courses' })}
       </Flex>

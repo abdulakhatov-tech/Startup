@@ -1,6 +1,6 @@
 import { UserType } from 'src/interfaces/user.interface';
 
-export interface UserIntialStateType {
+export interface UserInitialStateType {
   user: UserType | null;
   isLoading: boolean;
   error: string | null | unknown;

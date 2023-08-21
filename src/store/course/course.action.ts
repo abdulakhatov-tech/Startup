@@ -1,7 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { errorCatch } from 'src/helpers/api.helper';
 import { CourseService } from 'src/services/course.service';
-import { ByIdInterface, CourseCreateBodyInterface } from './course.interface';
+import {
+  ByIdBodyInterface,
+  CourseCreateBodyInterface,
+} from './course.interface';
 
 export const createCourse = createAsyncThunk<
   'Success',
@@ -29,7 +32,7 @@ export const editCourse = createAsyncThunk<
   }
 });
 
-export const deleteCourse = createAsyncThunk<'Success', ByIdInterface>(
+export const deleteCourse = createAsyncThunk<'Success', ByIdBodyInterface>(
   'course/delete',
   async (body, thunkApi) => {
     try {
@@ -42,7 +45,7 @@ export const deleteCourse = createAsyncThunk<'Success', ByIdInterface>(
   }
 );
 
-export const activateCourse = createAsyncThunk<'Success', ByIdInterface>(
+export const activateCourse = createAsyncThunk<'Success', ByIdBodyInterface>(
   'course/activate',
   async (body, thunkApi) => {
     try {
@@ -55,7 +58,7 @@ export const activateCourse = createAsyncThunk<'Success', ByIdInterface>(
   }
 );
 
-export const draftCourse = createAsyncThunk<'Success', ByIdInterface>(
+export const draftCourse = createAsyncThunk<'Success', ByIdBodyInterface>(
   'course/draft',
   async (body, thunkApi) => {
     try {

@@ -93,7 +93,7 @@ export default Instructors;
 const data = [
   {
     firstName: 'Samar',
-    lastName: 'Badrddinov',
+    lastName: 'Badriddinov',
     job: 'Software Engineer',
     students: 230,
     courses: 20,

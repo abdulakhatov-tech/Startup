@@ -195,7 +195,7 @@ export const coursesFilter = [
   },
 ];
 
-export const courses: CourseType[] = [
+export const courses = [
   {
     image: 'https://media.graphassets.com/3gf746AKRbWNjB8OCoEB',
     title: 'JavaScript full course',
@@ -493,3 +493,5 @@ export const courseCategory = [
 ];
 
 export const coursePrice = [10, 20, 30, 40, 50];
+
+export const courseLng = ['en', 'ru', 'tr', 'uz'];

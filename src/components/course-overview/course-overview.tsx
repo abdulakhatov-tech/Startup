@@ -1,7 +1,6 @@
 import { Box, Flex, Grid, Heading, Icon, Text } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
-import { BsCheck } from 'react-icons/bs';
-import { GoPrimitiveDot } from 'react-icons/go';
+import { BsCheck, BsQuestionCircle } from 'react-icons/bs';
 
 const CourseOverview = () => {
   const { t } = useTranslation();
@@ -34,7 +33,7 @@ const CourseOverview = () => {
       <Box mt={3}>
         {requirement.split(', ').map((text, idx) => (
           <Flex key={idx} gap={2} align={'center'} mt={2}>
-            <Icon as={GoPrimitiveDot} w={5} h={5} />
+            <Icon as={BsQuestionCircle} w={5} h={5} />
             <Text>{text}</Text>
           </Flex>
         ))}

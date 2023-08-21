@@ -17,9 +17,7 @@ export const getServerSideProps: GetServerSideProps<CoursesPageType> = async ({
   const courses = await InstructorService.getAllCourses(req.cookies.refresh);
 
   return {
-    props: {
-      courses,
-    },
+    props: { courses },
   };
 };
 

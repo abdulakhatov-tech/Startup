@@ -74,10 +74,10 @@
   "balance": "Баланс",
   "revenue_report": "Отчет о доходах",
   "revenue_report_description": "Вы получаете оплату прямо с полосы на свой банковский счет каждые 48 часов.",
-  "pending_balance": "Ожидающий баланс",
+  "pending_balance": "Незавершенный баланс",
   "pending_balance_description": "На 48 часов",
   "payouts_description": "Обновите данные своей учетной записи или просмотрите предыдущие выплаты",
-  "preview": "Просмотр",
+  "preview": "Предварительный просмотр",
   "successfully_created_course": "Создано успешно",
   "successfully_created_course_description": "Вы можете настроить учебную программу для своего курса",
   "edit_course": "Редактировать",
@@ -92,6 +92,5 @@
   "hour": "Час",
   "minute": "Минута",
   "seconds": "Секунды",
-  "lesson": "урок",
-  "is_agree": "Вы уверены?"
+  "language": "Язык"
 }

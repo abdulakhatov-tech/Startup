@@ -14,7 +14,6 @@ import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 import { InstructorCoursesCard } from 'src/components';
 import SectionTitle from 'src/components/section-title/section-title';
-// import { courses } from 'src/config/constants';
 
 const CoursesPageComponent = () => {
   const { t } = useTranslation();

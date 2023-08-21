@@ -150,7 +150,7 @@ const data = [
   },
 
   {
-    name: 'Proffessional Photoshop',
+    name: 'Professional Photoshop',
     image: 'https://wallpaperaccess.com/full/1533478.jpg',
     category: 'design',
     price: 90,

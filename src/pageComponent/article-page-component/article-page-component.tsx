@@ -61,7 +61,7 @@ const ArticlePageComponent = ({
                     h={'full'}
                   >
                     <Heading color={'white'}>{item?.title}</Heading>
-                    <Text color={'gray.400'}>{item?.excert}</Text>
+                    <Text color={'gray.400'}>{item?.excerpt}</Text>
                     <HStack>
                       <Avatar src={item?.author?.avatar?.url} />
                       <Box>
@@ -110,7 +110,7 @@ const ArticlePageComponent = ({
                 <Heading fontSize={'2xl'} fontFamily={'body'}>
                   {item?.title}
                 </Heading>
-                <Text color={'gray.500'}>{item?.excert}</Text>
+                <Text color={'gray.500'}>{item?.excerpt}</Text>
               </Stack>
               <Divider my={5} />
               <Stack mt={6} direction={'row'} spacing={4} align={'center'}>

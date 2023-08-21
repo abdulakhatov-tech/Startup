@@ -94,7 +94,7 @@ const ArticleDetailedComponent = ({ article }: ArticleDetailedProps) => {
                 {article?.title}
               </Heading>
               <Text fontSize={{ base: '12px', md: '18px', lg: '22px' }}>
-                {article?.excert}
+                {article?.excerpt}
               </Text>
               <HStack>
                 <Avatar src={article?.author?.avatar?.url} />

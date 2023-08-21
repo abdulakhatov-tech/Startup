@@ -8,7 +8,7 @@ export interface InstructorManageCourseProps {
 
 export interface SubmitValuesInterface {
   title: string;
-  excert: string;
+  excerpt: string;
   learn: string[];
   requirements: string[];
   description: string;

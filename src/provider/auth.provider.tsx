@@ -1,8 +1,8 @@
-import { FC, ReactNode, useEffect } from 'react';
-import { useAuth } from '../hooks/useAuth';
-import { useActions } from '../hooks/useActions';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
+import { FC, ReactNode, useEffect } from 'react';
+import { useActions } from 'src/hooks/useActions';
+import { useAuth } from 'src/hooks/useAuth';
 
 interface Props {
   children: ReactNode;
@@ -20,7 +20,6 @@ const AuthProvider: FC<Props> = ({ children }): JSX.Element => {
 
   useEffect(() => {
     const refreshToken = Cookies.get('refresh');
-
     if (!refreshToken && user) logout();
   }, [pathname]);
 

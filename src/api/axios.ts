@@ -1,6 +1,5 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-
 import { API_URL } from 'src/config/api.config';
 import { errorCatch } from 'src/helpers/api.helper';
 import { removeTokensCookie } from 'src/helpers/auth.helper';

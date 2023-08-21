@@ -17,7 +17,6 @@ import { useTranslation } from 'react-i18next';
 
 import { InstructorDraftCourseCard } from 'src/components';
 import SectionTitle from 'src/components/section-title/section-title';
-// import { courses } from 'src/config/constants';
 
 const DraftCoursesPageComponent = () => {
   const { t } = useTranslation();

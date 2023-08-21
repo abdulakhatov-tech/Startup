@@ -54,7 +54,6 @@ const DetailedCourseComponent = () => {
 
   useEffect(() => {
     const currentCourse = courses.find((c) => c.slug === router.query.slug);
-
     setData(currentCourse);
   }, [router.query]);
 
@@ -104,7 +103,7 @@ const DetailedCourseComponent = () => {
               <Card variant={'outline'} boxShadow={'dark-lg'}>
                 <CardBody p={{ base: 2, lg: 5 }}>
                   <Image
-                    src={course?.image}
+                    src={course?.previewImage}
                     alt={course?.title}
                     w={'full'}
                     h={'300px'}

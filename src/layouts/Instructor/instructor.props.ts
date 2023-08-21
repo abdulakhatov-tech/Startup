@@ -1,6 +1,6 @@
-import { CourseType } from '@/src/interfaces/course.interface';
+import { CourseType } from 'src/interfaces/course.interface';
 
-export interface InstructorProviderProps {
+export interface InstructorProvideProps {
   courses: CourseType[];
   course: CourseType;
 }

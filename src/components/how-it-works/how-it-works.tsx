@@ -9,13 +9,6 @@ import {
 import { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import {
-  FinishRightIcon,
-  OnlineCourseIcon,
-  OnlineLearningIcon,
-  OnlineStudentIcon,
-  RightLineIcon,
-} from 'src/icons';
 import SectionTitle from '../section-title/section-title';
 import { howItWorks } from '@/src/config/constants';
 

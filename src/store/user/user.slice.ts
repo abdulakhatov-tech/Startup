@@ -10,10 +10,10 @@ import {
 } from './user.action';
 import {
   InterfaceEmailAndPassword,
-  UserIntialStateType,
+  UserInitialStateType,
 } from './user.interface';
 
-const initialState: UserIntialStateType = {
+const initialState: UserInitialStateType = {
   user: null,
   isLoading: false,
   error: null,
@@ -66,7 +66,6 @@ export const userSlice = createSlice({
         state.user = null;
         state.error = payload;
       })
-
       .addCase(sendVerificationCode.pending, (state) => {
         state.isLoading = true;
         state.error = null;

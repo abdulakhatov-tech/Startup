@@ -1,6 +1,6 @@
 export interface ArticleType {
   createdAt: string;
-  excert: string;
+  excerpt: string;
   id: string;
   image: {
     url: string;

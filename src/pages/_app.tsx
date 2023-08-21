@@ -38,6 +38,7 @@ export default function App({
       Router.events.off('routeChangeError', handleRouteDone);
     };
   }, []);
+
   return (
     <HydrationProvider>
       <Provider store={store}>

@@ -25,7 +25,6 @@ const LessonAccordionItem = ({
   const { t } = useTranslation();
 
   const { deleteLesson, getSection, editSection } = useActions();
-  const { course } = useTypedSelector((state) => state.instructor);
   const { sections, isLoading } = useTypedSelector((state) => state.section);
 
   const onDeleteLesson = () => {

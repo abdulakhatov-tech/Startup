@@ -38,6 +38,7 @@ export const Articles = {
     );
     return result.articles;
   },
+
   async getDetailedArticle(slug: string) {
     const query = gql`
       query DetailedArticle($slug: String!) {

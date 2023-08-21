@@ -1,7 +1,7 @@
 export interface CourseType {
+  slug: string;
   previewImage: string;
   title: string;
-  slug: string;
   lessonCount: number;
   totalHour: number;
   level: string;
@@ -12,13 +12,12 @@ export interface CourseType {
   tags: string[];
   requirements: string[];
   learn: string[];
-  excert: string;
+  excerpt: string;
   description: string;
   category: string;
   _id: string;
   isActive: boolean;
 }
-
 export interface AuthorType {
   firstName: string;
   lastName: string;

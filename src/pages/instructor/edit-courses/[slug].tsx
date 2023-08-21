@@ -21,9 +21,7 @@ export const getServerSideProps: GetServerSideProps<CoursesPageType> = async ({
   );
 
   return {
-    props: {
-      course,
-    },
+    props: { course },
   };
 };
 

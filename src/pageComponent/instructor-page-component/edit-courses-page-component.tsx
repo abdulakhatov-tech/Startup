@@ -1,6 +1,5 @@
 import { InstructorEditCoursesCard } from '@/src/components';
 import SectionTitle from '@/src/components/section-title/section-title';
-// import { courses } from '@/src/config/constants';
 import { useTypedSelector } from '@/src/hooks/useTypedSelector';
 import { Grid } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';

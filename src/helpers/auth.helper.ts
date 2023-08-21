@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import { AuthTokens, AuthUserResponse } from 'src/store/user/user.interface';
+import { AuthTokens } from 'src/store/user/user.interface';
 
 export const saveTokensCookie = (data: AuthTokens) => {
   Cookies.set('access', data.accessToken);

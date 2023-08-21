@@ -13,7 +13,7 @@ const ArticleDetailPage = ({
   return (
     <Seo
       metaTitle={`Education || ${article?.title}`}
-      metaDescription={`${article?.excert}`}
+      metaDescription={`${article?.excerpt}`}
     >
       <ArticleDetailedComponent article={article} />;
     </Seo>
