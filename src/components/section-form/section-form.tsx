@@ -33,10 +33,6 @@ const SectionForm = ({ onClose, values }: SectionFormProps) => {
             isClosable: true,
           });
           onClose();
-          getSection({
-            courseId: course?._id,
-            callback: () => {},
-          });
         },
       });
     } else {
@@ -50,10 +46,6 @@ const SectionForm = ({ onClose, values }: SectionFormProps) => {
             isClosable: true,
           });
           onClose();
-          getSection({
-            courseId: course?._id,
-            callback: () => {},
-          });
         },
       });
     }

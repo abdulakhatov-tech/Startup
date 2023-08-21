@@ -27,16 +27,16 @@ import { LessonFormProps } from './lesson-form.props';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
-const LessonForm = ({ sectionId, values }: LessonFormProps) => {
+const LessonForm = ({ sectionId, values, onToggle }: LessonFormProps) => {
   const [initialValues, setInitialValues] = useState(manageLessonValues);
   const { createLesson, getSection, clearLessonError, editLesson } =
     useActions();
   const { course } = useTypedSelector((state) => state.instructor);
-  const { isLoading, error } = useTypedSelector((state) => state.lesson);
+  const { isLoading, error } = useTypedSelector((state) => state.section);
   const { t } = useTranslation();
   const toast = useToast();
 
-  const onSubmit = (formValues: FormikValues) => {
+  const onSubmit = (formValues: FormikValues, { resetForm }) => {
     const data = formValues as LessonType;
     if (values) {
       editLesson({
@@ -48,7 +48,8 @@ const LessonForm = ({ sectionId, values }: LessonFormProps) => {
             position: 'top-right',
             isClosable: true,
           });
-          getSection({ courseId: course?._id, callback: () => {} });
+          onToggle();
+          resetForm();
         },
       });
     } else {
@@ -61,7 +62,8 @@ const LessonForm = ({ sectionId, values }: LessonFormProps) => {
             position: 'top-right',
             isClosable: true,
           });
-          getSection({ courseId: course?._id, callback: () => {} });
+          onToggle();
+          resetForm();
         },
       });
     }
