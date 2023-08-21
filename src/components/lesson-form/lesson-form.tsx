@@ -44,7 +44,9 @@ const LessonForm = ({ sectionId, values, onToggle }: LessonFormProps) => {
         ...data,
         callback: () => {
           toast({
-            title: 'Successfully edited lesson',
+            title:
+              t('successfully_edited', { ns: 'instructor' }) ||
+              'Successfully edited lesson',
             position: 'top-right',
             isClosable: true,
           });
@@ -58,7 +60,9 @@ const LessonForm = ({ sectionId, values, onToggle }: LessonFormProps) => {
         sectionId,
         callback: () => {
           toast({
-            title: 'Successfully created new lesson',
+            title:
+              t('successfully_created_course', { ns: 'instructor' }) ||
+              'Successfully created new lesson',
             position: 'top-right',
             isClosable: true,
           });
@@ -128,7 +132,7 @@ const LessonForm = ({ sectionId, values, onToggle }: LessonFormProps) => {
                 isLoading={isLoading}
                 loadingText={`${t('loading', { ns: 'global' })}`}
               >
-                Submit
+                {t('account_recovery_btn_form3', { ns: 'global' }) || 'Submit'}
               </Button>
             </Stack>
           </Form>

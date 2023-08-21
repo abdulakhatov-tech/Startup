@@ -20,6 +20,7 @@ import {
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { BsFillPlusCircleFill } from 'react-icons/bs';
 import { SectionAccordion, SectionForm } from 'src/components';
 import SectionTitle from 'src/components/section-title/section-title';
@@ -27,6 +28,7 @@ import { useActions } from 'src/hooks/useActions';
 import { useTypedSelector } from 'src/hooks/useTypedSelector';
 
 const CurriculumPageComponent = () => {
+  const { t } = useTranslation();
   const [sectionTitle, setSectionTitle] = useState<{
     title: string;
     id: string;
@@ -46,13 +48,7 @@ const CurriculumPageComponent = () => {
   useEffect(() => {
     getSection({
       courseId: course?._id,
-      callback: () => {
-        toast({
-          title: 'Successfully get sections',
-          position: 'top-right',
-          isClosable: true,
-        });
-      },
+      callback: () => {},
     });
   }, [course]);
 
@@ -75,7 +71,10 @@ const CurriculumPageComponent = () => {
             <Stack>
               <SectionTitle
                 title={course?.title as string}
-                subtitle={`Manage curriculum for your  course`}
+                subtitle={
+                  t('curriculum_description', { ns: 'instructor' }) ||
+                  `Manage curriculum for your  course`
+                }
               />
             </Stack>
           </HStack>
@@ -85,7 +84,10 @@ const CurriculumPageComponent = () => {
       <Card mt={10}>
         <CardBody>
           <Flex mb={5} justify={'space-between'} align={'center'}>
-            <Text fontSize={'2xl'}>Create section</Text>
+            <Text fontSize={'2xl'}>
+              {' '}
+              {t('create_section', { ns: 'instructor' }) || 'Create section'}
+            </Text>
             <Icon
               as={BsFillPlusCircleFill}
               w={6}
@@ -119,7 +121,9 @@ const CurriculumPageComponent = () => {
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Create section</ModalHeader>
+          <ModalHeader>
+            {t('create_section', { ns: 'instructor' }) || 'Create section'}
+          </ModalHeader>
           <ModalCloseButton />
           <Divider />
           <ModalBody pb={5}>

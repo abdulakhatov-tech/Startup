@@ -54,11 +54,17 @@ const Instructors = () => {
               <HStack opacity={'.6'}>
                 <Flex align={'center'} gap={1}>
                   <Icon as={FaUserGraduate} />
-                  <Text>{item.students} students</Text>
+                  <Text>
+                    {item.students}{' '}
+                    {t('students_title', { ns: 'instructor' }) || 'students'}
+                  </Text>
                 </Flex>
                 <Flex align={'center'} gap={1}>
                   <Icon as={AiOutlinePlayCircle} />
-                  <Text>{item.courses} courses</Text>
+                  <Text>
+                    {item.courses}{' '}
+                    {t('courses', { ns: 'instructor' }) || 'courses'}
+                  </Text>
                 </Flex>
               </HStack>
             </Stack>

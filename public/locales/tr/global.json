@@ -100,5 +100,22 @@
   "send_to_verify_btn": "Doğrulamak için gönder",
   "link_to_your_lesson": "Dersinize baglanti",
   "successfully_sent": "Başarıyla gönderildi",
-  "contact_with_you_coming_soon": "Yakında sizinle iletişime geçeceğiz"
+  "contact_with_you_coming_soon": "Yakında sizinle iletişime geçeceğiz",
+  "title_is_required": "Başlık gerekli",
+  "title_min_char": "Başlık minimum 8 karakter olmalıdır",
+  "excerpt_is_required": "alıntı gerekli",
+  "excerpt_min_char": "Alıntı en az 15 karakter olmalıdır",
+  "level_is_required": "Seviye gerekli",
+  "category_is_required": "Kategori gerekli",
+  "price_is_required": "Fiyat gerekli",
+  "course_tags_is_required": "Kurs etiketleri gerekli",
+  "requirements_is_required": "Gereksinimler gereklidir",
+  "learn_is_required": "Öğrenmek gerekli",
+  "description_is_required": "Açıklama gerekli",
+  "description_min_char": "Açıklama en az 100 karakter olmalıdır",
+  "name_is_required": "İsim gerekli",
+  "embed_video_is_required": "Göm Video gereklidir",
+  "hour_is_required": "saat gerekli",
+  "minute_is_required": "Dakika gerekli",
+  "second_is_required": "saniye gerekli"
 }

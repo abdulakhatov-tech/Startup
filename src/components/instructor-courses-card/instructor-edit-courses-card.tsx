@@ -98,7 +98,7 @@ const InstructorEditCoursesCard: FC<InstructorCoursesCardProps> = ({
           </Flex>
         </HStack>
         <Divider />
-        <HStack>
+        <Flex flexWrap={'wrap'} gap={5}>
           <Button rightIcon={<VscOpenPreview />}>
             {t('preview', { ns: 'instructor' }) || 'Preview'}
           </Button>
@@ -117,7 +117,7 @@ const InstructorEditCoursesCard: FC<InstructorCoursesCardProps> = ({
           >
             {t('curriculum_course', { ns: 'instructor' }) || 'Curriculum'}
           </Button>
-        </HStack>
+        </Flex>
       </Stack>
     </Flex>
   );

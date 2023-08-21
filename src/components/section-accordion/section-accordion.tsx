@@ -21,6 +21,7 @@ import ErrorAlert from '../error-alert/error-alert';
 import LessonAccordionItem from '../lesson-accordion-item/lesson-accordion-item';
 import LessonForm from '../lesson-form/lesson-form';
 import { SectionAccordionProps } from './section-accordion.props';
+import { useTranslation } from 'react-i18next';
 
 const SectionAccordion = ({
   section,
@@ -35,11 +36,13 @@ const SectionAccordion = ({
     (state) => state.section
   );
   const { course } = useTypedSelector((state) => state.instructor);
-
+  const { t } = useTranslation();
   const toast = useToast();
 
   const onDelete = () => {
-    const isAgree = confirm('Are you sure?');
+    const isAgree = confirm(
+      t('is_agree', { ns: 'instructor' }) || 'Are you sure?'
+    );
 
     if (isAgree) {
       deleteSection({
@@ -47,7 +50,9 @@ const SectionAccordion = ({
         courseId: course?._id,
         callback: () => {
           toast({
-            title: 'Successfully deleted section',
+            title:
+              t('successfully_deleted', { ns: 'instructor' }) ||
+              'Successfully deleted',
             position: 'top-right',
             isClosable: true,
           });

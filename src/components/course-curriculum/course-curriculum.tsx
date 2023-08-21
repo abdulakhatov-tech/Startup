@@ -51,7 +51,9 @@ const CourseCurriculum = () => {
                 {m.title}
               </Box>
               <Flex flex={0}>
-                <Text fontSize={'sm'}>{m.lessons.length}ta&nbsp;Dars</Text>
+                <Text fontSize={'sm'}>
+                  {m.lessons.length}ta&nbsp;{t('lesson', { ns: 'instructor' })}
+                </Text>
               </Flex>
             </AccordionButton>
             <AccordionPanel pb={4}>

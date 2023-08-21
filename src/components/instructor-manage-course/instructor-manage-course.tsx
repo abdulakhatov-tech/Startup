@@ -105,18 +105,18 @@ const InstructorManageCourse = ({
                   <TextField
                     name="title"
                     label={t('title', { ns: 'instructor' }) || 'Title'}
-                    placeholder="JavaScript from zero to hero"
+                    placeholder=""
                   />
                   <TextAreaField
                     name="excert"
-                    placeholder="Full course about JavaScript"
+                    placeholder=""
                     height={'180px'}
                     label={t('excerpt', { ns: 'instructor' }) || 'Excerpt'}
                   />
                   <Flex gap={4}>
                     <TagField
                       name="learn"
-                      placeholder="Full project..."
+                      placeholder=""
                       formik={formik}
                       values={formik.values.learn}
                       label={
@@ -132,7 +132,7 @@ const InstructorManageCourse = ({
 
                     <TagField
                       name="requirements"
-                      placeholder="Basic JavaScript..."
+                      placeholder=""
                       formik={formik}
                       values={formik.values.requirements}
                       label={

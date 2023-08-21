@@ -42,11 +42,16 @@ const PopularCoursesCard = ({ item }: PopularCoursesCardProps): JSX.Element => {
       <HStack>
         <Flex align={'center'} gap={1}>
           <Icon as={CiViewList} />
-          <Text>{item.lessonCount} Lesson</Text>
+          <Text>
+            {item.lessonCount} {t('lesson', { ns: 'instructor' }) || 'Lesson'}
+          </Text>
         </Flex>
         <Flex align={'center'} gap={1}>
           <Icon as={AiOutlineClockCircle} />
-          <Text>{item.totalHour} Hour</Text>
+          <Text>
+            {item.totalHour} {item.lessonCount}{' '}
+            {t('hour', { ns: 'instructor' }) || 'Hour'}{' '}
+          </Text>
         </Flex>
         <Flex align={'center'} gap={1}>
           <Icon as={SiGoogleanalytics} />
