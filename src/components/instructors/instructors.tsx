@@ -3,22 +3,20 @@ import {
   Flex,
   Grid,
   GridItem,
-  HStack,
   Heading,
+  HStack,
   Icon,
   Stack,
   Text,
 } from '@chakra-ui/react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
-
 import { AiOutlinePlayCircle } from 'react-icons/ai';
 import { FaUserGraduate } from 'react-icons/fa';
-
+import { loadImage } from 'src/helpers/image.helper';
+import { useTypedSelector } from 'src/hooks/useTypedSelector';
 import SectionTitle from '../section-title/section-title';
-import Link from 'next/link';
-import { useTypedSelector } from '@/src/hooks/useTypedSelector';
-import Image from 'next/image';
-import { loadImage } from '@/src/helpers/image.helper';
 
 const Instructors = () => {
   const { t } = useTranslation();
@@ -56,21 +54,28 @@ const Instructors = () => {
                 />
               </Box>
               <Heading fontSize={'xl'}>{item.fullName}</Heading>
-              <Text color={'gray.500'}>Software engineer</Text>
+              <Text color={'gray.500'}>{item.job}</Text>
               <HStack opacity={'.6'}>
                 <Flex align={'center'} gap={1}>
                   <Icon as={FaUserGraduate} />
-                  <Text>200 students</Text>
+                  <Text>
+                    200{' '}
+                    {t('students_title', { ns: 'instructor' }) || 'students'}
+                  </Text>
                 </Flex>
                 <Flex align={'center'} gap={1}>
                   <Icon as={AiOutlinePlayCircle} />
-                  <Text>2 courses</Text>
+                  <Text>
+                    {item.totalCourses}{' '}
+                    {t('courses', { ns: 'instructor' }) || 'courses'}
+                  </Text>
                 </Flex>
               </HStack>
             </Stack>
           </GridItem>
         ))}
       </Grid>
+
       <Text textAlign={'center'}>
         {t('instructor_link_title', { ns: 'home' })}{' '}
         <Box
@@ -88,38 +93,3 @@ const Instructors = () => {
 };
 
 export default Instructors;
-
-const data = [
-  {
-    firstName: 'Samar',
-    lastName: 'Badriddinov',
-    job: 'Software Engineer',
-    students: 230,
-    courses: 20,
-    avatar: 'https://media.graphassets.com/NfxHACAlR4CkvdhnB3gs',
-  },
-  {
-    firstName: 'Samar',
-    lastName: 'Badrddinov',
-    job: 'Software Engineer',
-    students: 230,
-    courses: 20,
-    avatar: 'https://media.graphassets.com/NfxHACAlR4CkvdhnB3gs',
-  },
-  {
-    firstName: 'Samar',
-    lastName: 'Badrddinov',
-    job: 'Software Engineer',
-    students: 230,
-    courses: 20,
-    avatar: 'https://media.graphassets.com/NfxHACAlR4CkvdhnB3gs',
-  },
-  {
-    firstName: 'Samar',
-    lastName: 'Badrddinov',
-    job: 'Software Engineer',
-    students: 230,
-    courses: 20,
-    avatar: 'https://media.graphassets.com/NfxHACAlR4CkvdhnB3gs',
-  },
-];

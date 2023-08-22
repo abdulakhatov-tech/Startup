@@ -28,6 +28,7 @@ import { IoIosLogOut } from 'react-icons/io';
 import { language } from '@/src/config/constants';
 import { HeaderProps } from './header.props';
 import { useActions } from '@/src/hooks/useActions';
+import { RiAdminFill } from 'react-icons/ri';
 
 const Header = ({ onToggle }: HeaderProps): JSX.Element => {
   const { toggleColorMode, colorMode } = useColorMode();
@@ -121,6 +122,16 @@ const Header = ({ onToggle }: HeaderProps): JSX.Element => {
                 />
               </MenuButton>
               <MenuList p={0} m={0}>
+                {user.role === 'INSTRUCTOR' && (
+                  <MenuItem
+                    h={14}
+                    onClick={() => router.push('/instructor')}
+                    fontWeight={'bold'}
+                    icon={<RiAdminFill fontSize={17} />}
+                  >
+                    {t('instructor_admin', { ns: 'instructor' })}
+                  </MenuItem>
+                )}
                 <MenuItem
                   h={14}
                   onClick={() => router.push('/setting')}
@@ -129,6 +140,7 @@ const Header = ({ onToggle }: HeaderProps): JSX.Element => {
                 >
                   {t('settings', { ns: 'global' })}
                 </MenuItem>
+
                 <MenuItem
                   h={14}
                   onClick={logoutHandler}

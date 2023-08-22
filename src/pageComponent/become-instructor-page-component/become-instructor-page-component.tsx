@@ -31,7 +31,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import SectionTitle from '@/src/components/section-title/section-title';
-import { teachValues } from '@/src/config/constants';
+import { courseLng, teachValues } from '@/src/config/constants';
 import {
   LaunchCourseIcon,
   PlanCurriculumIcon,
@@ -43,7 +43,7 @@ import { GoVerified } from 'react-icons/go';
 import { InstructorValidation } from 'src/validations/instructor.validation';
 import { useActions } from '@/src/hooks/useActions';
 import { useTypedSelector } from '@/src/hooks/useTypedSelector';
-import { ErrorAlert } from '@/src/components';
+import { ErrorAlert, SelectField } from '@/src/components';
 
 const BecomeInstructorPageComponent = () => {
   const { t } = useTranslation();
@@ -169,7 +169,7 @@ const BecomeInstructorPageComponent = () => {
         </CardBody>
       </Card>
 
-      <Modal isOpen={isOpen} onClose={onClose} size={'4xl'} isCentered={true}>
+      <Modal isOpen={isOpen} onClose={onClose} size={'3xl'} isCentered={true}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader fontSize={'2xl'}>
@@ -210,6 +210,17 @@ const BecomeInstructorPageComponent = () => {
                     label={t('login_input_email_label', { ns: 'global' })}
                     placeholder={'info@sammi.ac'}
                     type={'email'}
+                  />
+                  <TextField
+                    name={'job'}
+                    label={t('label_job', { ns: 'instructor' })}
+                    placeholder={'Senior software engineer'}
+                  />
+                  <SelectField
+                    name="language"
+                    label={t('language', { ns: 'instructor' })}
+                    placeholder="-"
+                    arrOptions={courseLng}
                   />
                   <TextField
                     name={'socialMedia'}

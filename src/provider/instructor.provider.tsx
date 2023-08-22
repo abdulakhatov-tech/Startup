@@ -18,6 +18,8 @@ const InstructorProvider: FC<Props> = ({
   useEffect(() => {
     if (courses?.length) {
       instructorAllCourses(courses);
+    } else {
+      instructorAllCourses([]);
     }
     if (course) {
       instructorDetailedCourse(course);
