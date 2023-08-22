@@ -1,10 +1,13 @@
-import { Box, Card, CardBody, Flex, HStack } from '@chakra-ui/react';
+import AdminCourseCard from '@/src/components/admin-course-card/admin-course-card';
+import { useTypedSelector } from '@/src/hooks/useTypedSelector';
+import { Box, Card, CardBody, Flex, Grid, HStack } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import SectionTitle from 'src/components/section-title/section-title';
 import { LaunchCourseIcon } from 'src/icons';
 
 const CoursesPageComponent = () => {
   const { t } = useTranslation();
+  const { courses } = useTypedSelector((state) => state.admin);
   return (
     <>
       <Card mt={10}>
@@ -25,6 +28,11 @@ const CoursesPageComponent = () => {
           </HStack>
         </CardBody>
       </Card>
+      <Grid gridTemplateColumns={'repeat(3, 1fr)'} gap={4}>
+        {courses.map((c) => (
+          <AdminCourseCard key={c._id} course={c} />
+        ))}
+      </Grid>
     </>
   );
 };
