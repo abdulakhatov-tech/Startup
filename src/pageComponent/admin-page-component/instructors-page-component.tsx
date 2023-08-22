@@ -1,3 +1,4 @@
+import { useTypedSelector } from '@/src/hooks/useTypedSelector';
 import {
   Box,
   Card,
@@ -17,6 +18,7 @@ import { RecordVideoIcon } from 'src/icons';
 
 const InstructorsPageComponent = () => {
   const { t } = useTranslation();
+  const { instructors } = useTypedSelector((state) => state.admin);
 
   return (
     <>
@@ -41,28 +43,20 @@ const InstructorsPageComponent = () => {
           </HStack>
         </CardBody>
       </Card>
-      <Box mt={10} mx={'auto'}>
-        <Tabs isFitted variant="solid-rounded" colorScheme={'facebook'}>
-          <TabList mb="1em">
-            <Tab>
-              {t('approved_instructors', { ns: 'admin' }) ||
-                'Approved instructors'}
-            </Tab>
-            <Tab>
-              {t('applied_instructors', { ns: 'admin' }) ||
-                'Applied instructors'}
-            </Tab>
-          </TabList>
-          <TabPanels>
-            <TabPanel>
-              <AdminInstructorTable />
-            </TabPanel>
-            <TabPanel>
-              <AdminInstructorTable />
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
-      </Box>
+      <TabPanels>
+        <TabPanel>
+          <AdminInstructorTable
+            instructors={instructors.filter((c) => c.approved)}
+            approved={true}
+          />
+        </TabPanel>
+        <TabPanel>
+          <AdminInstructorTable
+            instructors={instructors.filter((c) => !c.approved)}
+            approved={false}
+          />
+        </TabPanel>
+      </TabPanels>
     </>
   );
 };

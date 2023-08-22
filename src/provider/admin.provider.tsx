@@ -17,23 +17,23 @@ const AdminProvider: FC<Props> = ({
   instructors,
   users,
 }): JSX.Element => {
-  const { getCourses, getInstructors, getUsers } = useActions();
+  const { getAdminCourses, getAdminInstructors, getAdminUsers } = useActions();
 
   useEffect(() => {
     if (courses?.length) {
-      getCourses(courses);
+      getAdminCourses(courses);
     } else {
-      getCourses([]);
+      getAdminCourses([]);
     }
     if (instructors?.length) {
-      getInstructors(instructors);
+      getAdminInstructors(instructors);
     } else {
-      getInstructors([]);
+      getAdminInstructors([]);
     }
     if (users?.length) {
-      getUsers(users);
+      getAdminUsers(users);
     } else {
-      getUsers([]);
+      getAdminUsers([]);
     }
   }, [courses, instructors, users]);
 
