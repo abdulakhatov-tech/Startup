@@ -1,7 +1,7 @@
 export interface CourseType {
-  slug: string;
   previewImage: string;
   title: string;
+  slug: string;
   lessonCount: number;
   totalHour: number;
   level: string;
