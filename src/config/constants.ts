@@ -2,11 +2,13 @@ import {
   AiFillAmazonCircle,
   AiOutlineDashboard,
   AiOutlineDollar,
+  AiOutlineUnorderedList,
 } from 'react-icons/ai';
 import { CiViewList } from 'react-icons/ci';
 import {
   FaApplePay,
   FaBookReader,
+  FaChalkboardTeacher,
   FaDraftingCompass,
   FaFirstdraft,
   FaListAlt,
@@ -42,6 +44,7 @@ import {
 } from 'src/icons';
 import { SiAmd, SiCisco, SiLogitech, SiSpotify } from 'react-icons/si';
 import { CourseType } from '../interfaces/course.interface';
+import { ImBooks } from 'react-icons/im';
 
 export const navigation = [
   {
@@ -481,6 +484,44 @@ export const courseUsers = [
   },
 ];
 
+export const instructorUsers = [
+  {
+    id: 1,
+    email: 'islomabdulakhatov@gmail.com',
+    fullName: 'Islom Abdulakhatov',
+    job: 'Software Engineer',
+    socialMedia: 'https://youtube.com',
+  },
+  {
+    id: 2,
+    email: 'ab@gmail.com',
+    fullName: 'Osman Ali',
+    job: 'JavaScript developer',
+    socialMedia: 'https://youtube.com',
+  },
+  {
+    id: 3,
+    email: 'ab@gmail.com',
+    fullName: 'Shox Abdulloh',
+    job: 'ReactJS developer',
+    socialMedia: 'https://youtube.com',
+  },
+  {
+    id: 4,
+    fullName: 'Abdulaziz Alimov',
+    email: 'ab@gmail.com',
+    job: 'Software Engineer',
+    socialMedia: 'https://youtube.com',
+  },
+  {
+    id: 5,
+    fullName: 'Yusuf Khamdamov',
+    email: 'ab@gmail.com',
+    job: 'Backend Engineer',
+    socialMedia: 'https://youtube.com',
+  },
+];
+
 export const courseLevel = ['Beginner', 'Intermediate', 'Expert'];
 
 export const courseCategory = [
@@ -495,3 +536,26 @@ export const courseCategory = [
 export const coursePrice = [10, 20, 30, 40, 50];
 
 export const courseLng = ['en', 'ru', 'tr', 'uz'];
+
+export const adminSidebar = [
+  {
+    name: 'Users',
+    icon: FaUserGraduate,
+    route: 'users',
+  },
+  {
+    name: 'Instructors',
+    icon: FaChalkboardTeacher,
+    route: 'instructors',
+  },
+  {
+    name: 'Courses',
+    icon: AiOutlineUnorderedList,
+    route: 'courses',
+  },
+  {
+    name: 'Books',
+    icon: ImBooks,
+    route: 'books',
+  },
+];

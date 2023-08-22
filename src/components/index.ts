@@ -29,3 +29,4 @@ export { default as SelectField } from './select-field/select-field';
 export { default as TagField } from './tag-field/tag-field';
 export { default as SectionAccordion } from './section-accordion/section-accordion';
 export { default as SectionForm } from './section-form/section-form';
+export { default as AdminInstructorTable } from './admin-instructor-table/admin-instructor-table';

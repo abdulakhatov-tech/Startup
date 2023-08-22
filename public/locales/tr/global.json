@@ -111,5 +111,8 @@
   "hour_is_required": "saat gerekli",
   "minute_is_required": "Dakika gerekli",
   "second_is_required": "saniye gerekli",
-  "instructor": "Eğitmen"
+  "instructor": "Eğitmen",
+  "job_required": "İşiniz zorunlu alan",
+  "preview_img_is_requried": "Önizleme resmi gerekli",
+  "pdf_is_requried": "PDF gereklidir"
 }
