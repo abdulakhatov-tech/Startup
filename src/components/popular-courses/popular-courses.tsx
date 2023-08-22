@@ -3,10 +3,11 @@ import { useTranslation } from 'react-i18next';
 
 import SectionTitle from '../section-title/section-title';
 import { courseCarousel } from 'src/config/carousel';
-import { courses } from '@/src/config/constants';
 import PopularCoursesCard from '../popular-courses-card/popular-courses-card';
+import { useTypedSelector } from '@/src/hooks/useTypedSelector';
 const PopularCourses = () => {
   const { t } = useTranslation();
+  const { courses } = useTypedSelector((state) => state.course);
 
   return (
     <>

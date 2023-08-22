@@ -1,10 +1,11 @@
 import {
+  Avatar,
+  Box,
   Divider,
   Flex,
   Heading,
   HStack,
   Icon,
-  Image,
   Stack,
   Text,
 } from '@chakra-ui/react';
@@ -16,27 +17,24 @@ import { SiGoogleanalytics } from 'react-icons/si';
 import { CiViewList } from 'react-icons/ci';
 
 import { PopularCoursesCardProps } from './popular-courses-card.props';
+import Image from 'next/image';
 
 const PopularCoursesCard = ({ item }: PopularCoursesCardProps): JSX.Element => {
   const { t } = useTranslation();
   return (
     <Stack spacing={3} p={3} cursor={'pointer'}>
-      <Image
-        src={item.previewImage}
-        alt={t(item.title, { ns: 'home' }) || ''}
-        objectFit={'cover'}
-        h={'210px'}
-        w={'full'}
-        borderRadius={'lg'}
-      />
-      <HStack>
-        <Text color={'#e59819'}>{item.reviewAvarage.toFixed(1)}</Text>
-        <ReactStars
-          edit={false}
-          value={item.reviewAvarage}
-          color2={'#e59819'}
+      <Box pos={'relative'} w={'full'} h="210px">
+        <Image
+          src={item.previewImage}
+          alt={t(item.title, { ns: 'home' }) || ''}
+          fill
+          style={{ objectFit: 'cover', borderRadius: '10px' }}
         />
-        <Text opacity={'.8'}>({item.reviewCount})</Text>
+      </Box>
+      <HStack>
+        <Text color={'#e59819'}>{5}</Text>
+        <ReactStars edit={false} value={5} color2={'#e59819'} />
+        <Text opacity={'.8'}>(3)</Text>
       </HStack>
       <Heading fontSize={'xl'}>{item.title}</Heading>
       <HStack>
@@ -49,7 +47,7 @@ const PopularCoursesCard = ({ item }: PopularCoursesCardProps): JSX.Element => {
         <Flex align={'center'} gap={1}>
           <Icon as={AiOutlineClockCircle} />
           <Text>
-            {item.totalHour} {item.lessonCount}{' '}
+            {item.totalHour || 10} {item.lessonCount}{' '}
             {t('hour', { ns: 'instructor' }) || 'Hour'}{' '}
           </Text>
         </Flex>
@@ -61,16 +59,9 @@ const PopularCoursesCard = ({ item }: PopularCoursesCardProps): JSX.Element => {
       <Divider />
       <Flex justify={'space-between'} align={'center'}>
         <HStack align={'center'}>
-          <Image
-            src={item.author.avatar}
-            alt={item.author.firstName}
-            w={50}
-            h={50}
-            borderRadius={'full'}
-          />
-          <Text>
-            {item.author.firstName} {item.author.lastName[0]}.
-          </Text>
+          <Avatar src={item.author.avatar} name={item.author.fullName} />
+
+          <Text>{item.author.fullName}</Text>
         </HStack>
         <Text>
           {item.price.toLocaleString('en-US', {

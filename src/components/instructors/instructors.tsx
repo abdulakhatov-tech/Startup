@@ -6,7 +6,6 @@ import {
   HStack,
   Heading,
   Icon,
-  Image,
   Stack,
   Text,
 } from '@chakra-ui/react';
@@ -17,9 +16,13 @@ import { FaUserGraduate } from 'react-icons/fa';
 
 import SectionTitle from '../section-title/section-title';
 import Link from 'next/link';
+import { useTypedSelector } from '@/src/hooks/useTypedSelector';
+import Image from 'next/image';
+import { loadImage } from '@/src/helpers/image.helper';
 
 const Instructors = () => {
   const { t } = useTranslation();
+  const { instructors } = useTypedSelector((state) => state.instructor);
 
   return (
     <>
@@ -37,41 +40,37 @@ const Instructors = () => {
         }}
         mt={5}
       >
-        {data?.map((item, index) => (
-          <GridItem key={index}>
+        {instructors.map((item, idx) => (
+          <GridItem key={idx}>
             <Stack spacing={3}>
-              <Image
-                src={item.avatar}
-                alt={item.firstName}
-                borderRadius={'lg'}
-                h={'330px'}
-                objectFit={'cover'}
-              />
-              <Heading fontSize={'xl'}>
-                {item.firstName} {item.lastName}
-              </Heading>
-              <Text color="gray.500">{item.job}</Text>
+              <Box pos={'relative'} w={'full'} h={'330px'}>
+                <Image
+                  src={
+                    item.avatar
+                      ? loadImage(item.avatar)
+                      : '/images/placeholder-portrait.png'
+                  }
+                  alt={item.fullName}
+                  fill
+                  style={{ objectFit: 'cover', borderRadius: '8px' }}
+                />
+              </Box>
+              <Heading fontSize={'xl'}>{item.fullName}</Heading>
+              <Text color={'gray.500'}>Software engineer</Text>
               <HStack opacity={'.6'}>
                 <Flex align={'center'} gap={1}>
                   <Icon as={FaUserGraduate} />
-                  <Text>
-                    {item.students}{' '}
-                    {t('students_title', { ns: 'instructor' }) || 'students'}
-                  </Text>
+                  <Text>200 students</Text>
                 </Flex>
                 <Flex align={'center'} gap={1}>
                   <Icon as={AiOutlinePlayCircle} />
-                  <Text>
-                    {item.courses}{' '}
-                    {t('courses', { ns: 'instructor' }) || 'courses'}
-                  </Text>
+                  <Text>2 courses</Text>
                 </Flex>
               </HStack>
             </Stack>
           </GridItem>
         ))}
       </Grid>
-
       <Text textAlign={'center'}>
         {t('instructor_link_title', { ns: 'home' })}{' '}
         <Box
