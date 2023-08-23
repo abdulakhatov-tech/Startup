@@ -1,10 +1,9 @@
-import { FC, FunctionComponent } from 'react';
-
-import { LayoutProps } from '../layout.props';
 import { Box, Container } from '@chakra-ui/react';
+import { FC, FunctionComponent } from 'react';
+import AdminProvider from 'src/provider/admin.provider';
+import { LayoutProps } from '../layout.props';
 import AdminSidebar from '../sidebar/admin-sidebar';
 import { AdminProps } from './admin.props';
-import AdminProvider from '@/src/provider/admin.provider';
 
 const Layout: FC<LayoutProps> = ({ children }): JSX.Element => {
   return (
@@ -33,6 +32,7 @@ export const withAdminLayout = <T extends Record<string, unknown> & AdminProps>(
           courses={props.courses}
           instructors={props.instructors}
           users={props.users}
+          books={props.books}
         >
           <Component {...props} />
         </AdminProvider>

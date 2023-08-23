@@ -1,30 +1,24 @@
 import { BooksModal } from '@/src/components';
+import { loadImage } from '@/src/helpers/image.helper';
+import { useActions } from '@/src/hooks/useActions';
+import { useTypedSelector } from '@/src/hooks/useTypedSelector';
+import { BooksType } from '@/src/interfaces/books.interface';
 import {
   Box,
   Button,
   Card,
   CardBody,
   Flex,
-  FormControl,
-  FormLabel,
   Grid,
   HStack,
   IconButton,
   Image,
-  Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  Select,
   Text,
   useColorModeValue,
   useDisclosure,
-  VStack,
+  useToast,
 } from '@chakra-ui/react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CgAdd } from 'react-icons/cg';
 import { FaEdit, FaTrash } from 'react-icons/fa';
@@ -35,8 +29,42 @@ import { PlanCurriculumIcon } from 'src/icons';
 const BooksPageComponent = () => {
   const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { books } = useTypedSelector((state) => state.books);
+  const [booksValue, setBooksValue] = useState<BooksType | null>(null);
 
   const priceBackgroundColor = useColorModeValue('gray.200', 'gray.900');
+  const { deleteBooks } = useActions();
+  const toast = useToast();
+
+  const deleteBooksHandler = (id: string) => {
+    const isAgree = confirm('Are you sure?');
+
+    if (isAgree) {
+      deleteBooks({
+        booksId: id,
+        callback: () => {
+          toast({
+            title:
+              t('successfully_deleted', { ns: 'instructor' }) ||
+              'Successfully deleted',
+            position: 'top-right',
+            isClosable: true,
+            status: 'success',
+          });
+        },
+      });
+    }
+  };
+
+  const editOpenModal = (book: BooksType) => {
+    setBooksValue(book);
+    onOpen();
+  };
+
+  const createOpenModal = () => {
+    setBooksValue(null);
+    onOpen();
+  };
 
   return (
     <>
@@ -63,7 +91,7 @@ const BooksPageComponent = () => {
           colorScheme="facebook"
           aria-label="Search database"
           icon={<CgAdd />}
-          onClick={onOpen}
+          onClick={createOpenModal}
         />
       </Flex>
       <Grid
@@ -76,11 +104,11 @@ const BooksPageComponent = () => {
         rowGap={20}
         mt={5}
       >
-        {data.map((item) => (
-          <Box key={item.name} pos={'relative'}>
+        {books.map((item) => (
+          <Box key={item._id} pos={'relative'}>
             <Image
-              src={item.image}
-              alt={item.name}
+              src={loadImage(item.image)}
+              alt={item.title}
               borderRadius={'lg'}
               w={'full'}
               h={'250px'}
@@ -100,7 +128,7 @@ const BooksPageComponent = () => {
               flexDir={'column'}
             >
               <Box>
-                <Text fontSize={'lg'}>{item.name}</Text>
+                <Text fontSize={'lg'}>{item.title}</Text>
                 <Text fontSize={'2xl'}>
                   {item.price.toLocaleString('en-US', {
                     style: 'currency',
@@ -109,10 +137,20 @@ const BooksPageComponent = () => {
                 </Text>
               </Box>
               <HStack>
-                <Button w={'full'} rightIcon={<FaTrash />} colorScheme={'red'}>
+                <Button
+                  w={'full'}
+                  rightIcon={<FaTrash />}
+                  colorScheme={'red'}
+                  onClick={() => deleteBooksHandler(item._id as string)}
+                >
                   {t('delete', { ns: 'admin' }) || 'Delete'}
                 </Button>
-                <Button w={'full'} rightIcon={<FaEdit />} colorScheme={'green'}>
+                <Button
+                  w={'full'}
+                  rightIcon={<FaEdit />}
+                  colorScheme={'green'}
+                  onClick={() => editOpenModal(item)}
+                >
                   {t('edit', { ns: 'admin' }) || 'Edit'}
                 </Button>
               </HStack>
@@ -121,7 +159,7 @@ const BooksPageComponent = () => {
         ))}
       </Grid>
 
-      <BooksModal isOpen={isOpen} onClose={onClose} />
+      <BooksModal isOpen={isOpen} onClose={onClose} booksValue={booksValue} />
     </>
   );
 };

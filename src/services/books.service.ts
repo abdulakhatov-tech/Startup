@@ -14,7 +14,7 @@ export const BooksService = {
   },
 
   async update(body: BooksType) {
-    const { data } = await $axios.post<BooksType>(
+    const { data } = await $axios.patch<BooksType>(
       `${getBooksUrl('update')}/${body._id}`,
       body
     );
@@ -23,7 +23,7 @@ export const BooksService = {
   },
 
   async delete(id: string) {
-    const { data } = await $axios.post<BooksType>(
+    const { data } = await $axios.delete<BooksType>(
       `${getBooksUrl('delete')}/${id}`
     );
 
@@ -32,7 +32,7 @@ export const BooksService = {
 
   async get() {
     const { data } = await axios.get<BooksType[]>(
-      `${API_URL}${getBooksUrl('findAll')}`
+      `${API_URL}${getBooksUrl('find-all')}`
     );
 
     return data;
