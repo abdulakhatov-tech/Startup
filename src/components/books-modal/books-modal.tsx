@@ -18,7 +18,7 @@ import Image from 'next/image';
 import { FC, useEffect, useState } from 'react';
 import { FileUploader } from 'react-drag-drop-files';
 import { FaTimes } from 'react-icons/fa';
-import { coursePrice } from 'src/config/constants';
+import { coursePrice, createBooksCategory } from 'src/config/constants';
 import { loadImage } from 'src/helpers/image.helper';
 import { useActions } from 'src/hooks/useActions';
 import { useTypedSelector } from 'src/hooks/useTypedSelector';
@@ -72,6 +72,7 @@ const BooksModal: FC<BookModalProps> = ({
         title: fomrikValues.title,
         pdf: fomrikValues.pdf,
         image: imageUrl as string,
+        category: fomrikValues.category,
         callback: () => {
           toast({
             title:
@@ -92,6 +93,7 @@ const BooksModal: FC<BookModalProps> = ({
         pdf: fomrikValues.pdf,
         _id: booksValue._id,
         image: imageUrl as string,
+        category: fomrikValues.category,
         callback: () => {
           toast({
             title: 'Successfully updated',
@@ -147,15 +149,22 @@ const BooksModal: FC<BookModalProps> = ({
                   label={t('name', { ns: 'admin' }) || 'Title'}
                   placeholder={'Harry Poter'}
                 />
+
+                <TextFiled
+                  name="pdf"
+                  label={t('pdf_link', { ns: 'admin' }) || 'PDF Link'}
+                />
                 <SelectField
                   name="price"
                   label={t('books_price', { ns: 'admin' }) || 'Books price'}
                   placeholder="-"
                   arrOptions={coursePrice}
                 />
-                <TextFiled
-                  name="pdf"
-                  label={t('pdf_link', { ns: 'admin' }) || 'PDF Link'}
+                <SelectField
+                  name="category"
+                  label={t('category', { ns: 'instructor' })}
+                  placeholder="-"
+                  arrOptions={createBooksCategory}
                 />
                 {file ? (
                   <Box pos={'relative'} w={'full'} h={200}>
@@ -223,4 +232,5 @@ const data = {
   title: '',
   pdf: '',
   price: 0,
+  category: '',
 };

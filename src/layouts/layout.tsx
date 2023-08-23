@@ -42,6 +42,7 @@ export const withLayout = <
           course={props.course}
           courses={props.courses}
           instructors={props.instructors}
+          books={props.books}
         >
           <Component {...props} />
         </AppProvider>
