@@ -29,6 +29,7 @@ import { courseUsers } from 'src/config/constants';
 
 const UsersPageComponent = () => {
   const [limit, setLimit] = useState<number>(15);
+  const [query, setQuery] = useState<string>('');
   const [chartData, setChartData] = useState({
     labels: courseUsers.map((data) => data.year),
     datasets: [
@@ -48,13 +49,17 @@ const UsersPageComponent = () => {
   });
   const { users } = useTypedSelector((state) => state.admin);
   const { t } = useTranslation();
-  const { moreAdminUser, clearAdminError } = useActions();
+  const { moreAdminUser, clearAdminError, searchAdminUsers } = useActions();
   const { isLoading, error } = useTypedSelector((state) => state.admin);
 
   const moreAdminUserHandler = () => {
     setLimit((prev) => prev + 5);
     const token = Cookies.get('refresh');
-    moreAdminUser({ limit: String(limit), token, callback: () => {} });
+    moreAdminUser({ limit: String(limit), token });
+  };
+
+  const searchUserHandler = () => {
+    searchAdminUsers({ query, limit: String(limit - 5) });
   };
 
   return (
@@ -94,6 +99,8 @@ const UsersPageComponent = () => {
             color={'gray.900'}
             placeholder={t('search_input_placeholder', { ns: 'courses' }) || ''}
             _placeholder={{ color: 'gray.500' }}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
           />
           <Button
             pos={'absolute'}
@@ -101,6 +108,7 @@ const UsersPageComponent = () => {
             top={2}
             colorScheme={'facebook'}
             zIndex={999}
+            onClick={searchUserHandler}
           >
             {t('search_input_btn', { ns: 'courses' })}
           </Button>

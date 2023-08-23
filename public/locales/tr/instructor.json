@@ -93,5 +93,6 @@
   "hour": "Saat",
   "minute": "Dakika",
   "second": "saniye",
-  "language": "Dil"
+  "language": "Dil",
+  "is_agree": "Emin misin?"
 }

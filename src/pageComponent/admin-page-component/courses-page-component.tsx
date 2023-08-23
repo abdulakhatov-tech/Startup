@@ -1,4 +1,6 @@
+import { ErrorAlert } from '@/src/components';
 import AdminCourseCard from '@/src/components/admin-course-card/admin-course-card';
+import { useActions } from '@/src/hooks/useActions';
 import { useTypedSelector } from '@/src/hooks/useTypedSelector';
 import { Box, Card, CardBody, Flex, Grid, HStack } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
@@ -7,7 +9,8 @@ import { LaunchCourseIcon } from 'src/icons';
 
 const CoursesPageComponent = () => {
   const { t } = useTranslation();
-  const { courses } = useTypedSelector((state) => state.admin);
+  const { courses, error } = useTypedSelector((state) => state.admin);
+  const { clearAdminError } = useActions();
   return (
     <>
       <Card mt={10}>
@@ -28,6 +31,11 @@ const CoursesPageComponent = () => {
           </HStack>
         </CardBody>
       </Card>
+      <>
+        {error && (
+          <ErrorAlert title={error as string} clearHandler={clearAdminError} />
+        )}
+      </>
       <Grid gridTemplateColumns={'repeat(3, 1fr)'} gap={4}>
         {courses.map((c) => (
           <AdminCourseCard key={c._id} course={c} />

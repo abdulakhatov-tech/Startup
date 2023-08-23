@@ -92,5 +92,6 @@
   "hour": "Час",
   "minute": "Минута",
   "seconds": "Секунды",
-  "language": "Язык"
+  "language": "Язык",
+  "is_agree": "Вы уверены?"
 }
