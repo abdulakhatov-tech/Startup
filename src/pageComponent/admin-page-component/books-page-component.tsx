@@ -1,3 +1,4 @@
+import { BooksModal } from '@/src/components';
 import {
   Box,
   Button,
@@ -120,58 +121,7 @@ const BooksPageComponent = () => {
         ))}
       </Grid>
 
-      <Modal isOpen={isOpen} onClose={onClose} isCentered={true} size={'xl'}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>
-            {t('add_books', { ns: 'admin' }) || 'Add books'}
-          </ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <VStack>
-              <FormControl isRequired>
-                <FormLabel>{t('name', { ns: 'admin' }) || 'Name'}</FormLabel>
-                <Input
-                  type="text"
-                  h={14}
-                  placeholder={'Harry Poter'}
-                  colorScheme={'facebook'}
-                />
-              </FormControl>
-              <FormControl isRequired>
-                <FormLabel>{t('price', { ns: 'admin' }) || 'Price'}</FormLabel>
-                <Select
-                  borderRadius={'8px'}
-                  height={14}
-                  focusBorderColor={'green.500'}
-                  placeholder={'-'}
-                >
-                  {coursePrice.map((option) => (
-                    <option key={option} value={option}>
-                      {option.toLocaleString('en-US', {
-                        style: 'currency',
-                        currency: 'USD',
-                      })}
-                    </option>
-                  ))}
-                </Select>
-              </FormControl>
-              <FormControl isRequired>
-                <FormLabel>
-                  {t('pdf_link', { ns: 'admin' }) || 'PDF Link'}
-                </FormLabel>
-                <Input type="text" h={14} colorScheme={'facebook'} />
-              </FormControl>
-            </VStack>
-          </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              {t('books_price', { ns: 'admin' }) || 'Add books'}
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+      <BooksModal isOpen={isOpen} onClose={onClose} />
     </>
   );
 };
