@@ -10,6 +10,7 @@ import {
   Input,
   Radio,
   RadioGroup,
+  Spinner,
   Stack,
   Text,
   useColorModeValue,
@@ -19,11 +20,52 @@ import { useTranslation } from 'react-i18next';
 
 import SectionTitle from '@/src/components/section-title/section-title';
 import { courses, coursesFilter } from '@/src/config/constants';
-import { FilterItemProps } from './courses-page-component.props';
+import {
+  FilterCourseType,
+  FilterItemProps,
+} from './courses-page-component.props';
 import { AllCoursesCard } from '@/src/components';
+import { useTypedSelector } from '@/src/hooks/useTypedSelector';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { CourseType } from '@/src/interfaces/course.interface';
+import { AppService } from '@/src/services/app.service';
 
 const CoursesPageComponent = () => {
+  const [filter, setFilter] = useState<FilterCourseType>({
+    id: '',
+    category: '',
+  });
+  const [allCourses, setAllCourses] = useState<CourseType[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const { t } = useTranslation();
+  const { courses } = useTypedSelector((state) => state.course);
+
+  useEffect(() => {
+    const getCoursesByLng = async (lng: string) => {
+      setIsLoading(true);
+      return await AppService.getCourses(lng);
+    };
+
+    if (filter.id == 'category') {
+      setAllCourses(courses.filter((c) => c.category == filter.category));
+    } else if (filter.id == 'rating') {
+      setAllCourses(
+        courses.filter((c) => c.reviewAvarage >= Number(filter.category))
+      );
+    } else if (filter.id == 'level') {
+      setAllCourses(courses.filter((c) => c.level == filter.category));
+    } else if (filter.id == 'language') {
+      getCoursesByLng(filter.category).then((res) => {
+        setIsLoading(false);
+        setAllCourses(res);
+      });
+    }
+  }, [filter]);
+
+  useEffect(() => {
+    setAllCourses(courses);
+  }, [courses]);
 
   return (
     <>
@@ -60,13 +102,26 @@ const CoursesPageComponent = () => {
           borderColor={useColorModeValue('gray.200', 'gray.700')}
         >
           {coursesFilter?.map((item, index) => (
-            <FilterItem item={item} index={index} key={item.id || index} />
+            <FilterItem
+              item={item}
+              index={index}
+              key={item.id || index}
+              setFilter={setFilter}
+            />
           ))}
         </Box>
         <Box w={{ base: '100%', lg: '70%' }}>
-          {courses?.map((item, index) => (
-            <AllCoursesCard course={item} key={index} />
-          ))}
+          {isLoading ? (
+            <Flex h={'60vh'} justify={'center'} align={'center'}>
+              <Spinner />
+            </Flex>
+          ) : (
+            <>
+              {allCourses.map((item) => (
+                <AllCoursesCard key={item.title} course={item} />
+              ))}
+            </>
+          )}
         </Box>
       </Flex>
     </>
@@ -78,16 +133,23 @@ export default CoursesPageComponent;
 const FilterItem = ({
   item,
   index,
+  setFilter,
 }: {
   item: FilterItemProps;
   index: number;
+  setFilter: Dispatch<SetStateAction<FilterCourseType>>;
 }) => {
   const { t } = useTranslation();
 
   const renderFilterItem = () => (
     <>
       {item?.categoryList?.map((c, index) => (
-        <Radio key={c?.id || index} value={c?.id} colorScheme="facebook">
+        <Radio
+          key={c?.id || index}
+          onChange={() => setFilter({ category: c.id, id: item.id })}
+          value={c?.id}
+          colorScheme="facebook"
+        >
           <Flex gap={2}>
             {item?.id === 'rating' && (
               <ReactStars value={Number(c?.id)} edit={false} color2="#e59819" />

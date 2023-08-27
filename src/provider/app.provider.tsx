@@ -30,7 +30,7 @@ const AppProvider: FC<Props> = ({
     if (instructors?.length) {
       getInstructors(instructors);
     } else {
-      getCourses([]);
+      getInstructors([]);
     }
     if (course) {
       getCourse(course);
