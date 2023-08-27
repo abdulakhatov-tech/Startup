@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { CourseType } from 'src/interfaces/course.interface';
 import { InstructorType } from 'src/interfaces/instructor.interface';
 import { BooksType } from '../interfaces/books.interface';
+import { CardType } from '../interfaces/constants.interface';
 
 export interface LayoutProps {
   children: ReactNode;
@@ -12,4 +13,5 @@ export interface AppProviderProps {
   course: CourseType;
   instructors: InstructorType[];
   books: BooksType[];
+  cards: CardType[];
 }

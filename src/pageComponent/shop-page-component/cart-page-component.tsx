@@ -1,3 +1,4 @@
+import { useActions } from '@/src/hooks/useActions';
 import {
   Box,
   Button,
@@ -26,6 +27,7 @@ import { useTypedSelector } from 'src/hooks/useTypedSelector';
 const CartPageComponent = () => {
   const cart = useTypedSelector((state) => state.cart);
   const router = useRouter();
+  const { removeBookFromCart } = useActions();
 
   const getSubtitle = () => {
     let textCourse: string = '';
@@ -88,6 +90,7 @@ const CartPageComponent = () => {
                     aria-label="remove"
                     icon={<BsFillTrashFill />}
                     colorScheme={'red'}
+                    onClick={() => removeBookFromCart(book._id)}
                   />
                 </Stack>
               </Flex>
