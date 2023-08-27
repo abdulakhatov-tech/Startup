@@ -31,3 +31,4 @@ export { default as SectionAccordion } from './section-accordion/section-accordi
 export { default as SectionForm } from './section-form/section-form';
 export { default as AdminInstructorTable } from './admin-instructor-table/admin-instructor-table';
 export { default as BooksModal } from './books-modal/books-modal';
+export { default as CheckoutForm } from './checkout-form/checkout-form';
