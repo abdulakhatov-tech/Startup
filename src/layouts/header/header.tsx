@@ -13,6 +13,7 @@ import {
   useColorModeValue,
   Icon,
   Avatar,
+  Badge,
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
@@ -21,7 +22,7 @@ import { useAuth } from '@/src/hooks/useAuth';
 
 import { BsFillMoonFill, BsFillSunFill, BsTranslate } from 'react-icons/bs';
 import { BiMenuAltLeft, BiUserCircle } from 'react-icons/bi';
-import { AiOutlineLogin } from 'react-icons/ai';
+import { AiOutlineLogin, AiOutlineShoppingCart } from 'react-icons/ai';
 import { TbFileSettings } from 'react-icons/tb';
 import { IoIosLogOut } from 'react-icons/io';
 
@@ -29,6 +30,7 @@ import { language } from '@/src/config/constants';
 import { HeaderProps } from './header.props';
 import { useActions } from '@/src/hooks/useActions';
 import { RiAdminFill } from 'react-icons/ri';
+import { useTypedSelector } from '@/src/hooks/useTypedSelector';
 
 const Header = ({ onToggle }: HeaderProps): JSX.Element => {
   const { toggleColorMode, colorMode } = useColorMode();
@@ -36,6 +38,7 @@ const Header = ({ onToggle }: HeaderProps): JSX.Element => {
   const router = useRouter();
   const { user } = useAuth();
   const { logout } = useActions();
+  const { courses, books } = useTypedSelector((state) => state.cart);
 
   const onLanguage = (lng: string) => {
     router.replace(router.asPath);
@@ -74,6 +77,28 @@ const Header = ({ onToggle }: HeaderProps): JSX.Element => {
           <Link href={'/'}>{colorMode === 'light' ? <Logo /> : <Logo />}</Link>
         </HStack>
         <HStack>
+          <Box pos={'relative'}>
+            <IconButton
+              aria-label="cart"
+              onClick={() => router.push('/shop/cart')}
+              icon={<AiOutlineShoppingCart />}
+              colorScheme={'facebook'}
+              variant={'solid'}
+            />
+            {[...courses, ...books].length ? (
+              <Badge
+                pos={'absolute'}
+                backgroundColor={'green.500'}
+                top={-2}
+                left={-3}
+                colorScheme={'green'}
+                px={2}
+                py={1}
+              >
+                {[...courses, ...books].length}
+              </Badge>
+            ) : null}
+          </Box>
           <Menu placement="bottom">
             <MenuButton
               as={Button}
