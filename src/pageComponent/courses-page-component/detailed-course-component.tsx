@@ -43,22 +43,23 @@ import {
   CourseOverview,
   CourseReview,
 } from '@/src/components';
+import { useTypedSelector } from '@/src/hooks/useTypedSelector';
+import { loadImage } from '@/src/helpers/image.helper';
+import { useActions } from '@/src/hooks/useActions';
 
 const DetailedCourseComponent = () => {
   const { t } = useTranslation();
-  const router = useRouter();
+  const { course } = useTypedSelector((state) => state.course);
+  const { sections } = useTypedSelector((state) => state.section);
   const [media] = useMediaQuery('min-width: 592px');
-
-  const [course, setData] = useState<CourseType>();
   const [tabIndex, setTabIndex] = useState(0);
-
-  useEffect(() => {
-    const currentCourse = courses.find((c) => c.slug === router.query.slug);
-    setData(currentCourse);
-  }, [router.query]);
+  const { getSection } = useActions();
 
   const tabHandler = (idx: number) => {
     setTabIndex(idx);
+    if (idx == 1 && !sections.length) {
+      getSection({ courseId: course?._id, callback: () => {} });
+    }
   };
 
   return (
@@ -70,11 +71,7 @@ const DetailedCourseComponent = () => {
               <Heading mt={5} fontSize={'3xl'}>
                 {course?.title}
               </Heading>
-              <Text mt={5}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum
-                fuga doloremque mollitia architecto minus? Laudantium
-                praesentium nam odio tempore nobis.
-              </Text>
+              <Text mt={5}>{course?.excerpt}</Text>
               <Stack mt={5} direction={media ? 'column' : 'row'} gap={3}>
                 <Flex fontSize={'sm'} align={'flex-end'}>
                   <Text>5.0</Text>
@@ -89,7 +86,8 @@ const DetailedCourseComponent = () => {
                   <Icon as={TfiAlarmClock} />
                   <Text>
                     {t('last_update', { ns: 'courses' })}{' '}
-                    {format(new Date(), 'dd, MMMM, yyyy')}
+                    {course &&
+                      format(new Date(course.updatedAt), 'dd MMMM, yyyy')}
                   </Text>
                 </Flex>
               </Stack>
@@ -103,7 +101,7 @@ const DetailedCourseComponent = () => {
               <Card variant={'outline'} boxShadow={'dark-lg'}>
                 <CardBody p={{ base: 2, lg: 5 }}>
                   <Image
-                    src={course?.previewImage}
+                    src={loadImage(course?.previewImage)}
                     alt={course?.title}
                     w={'full'}
                     h={'300px'}
@@ -116,14 +114,11 @@ const DetailedCourseComponent = () => {
                     justify={'space-between'}
                   >
                     <Heading fontSize={'2xl'}>
-                      {t('free', { ns: 'courses' })}
-                    </Heading>
-                    <Text textDecoration={'line-through'}>
                       {course?.price.toLocaleString('en-US', {
                         currency: 'USD',
                         style: 'currency',
                       })}
-                    </Text>
+                    </Heading>
                   </Stack>
                   <Button w={'full'} mt={5} h={14} colorScheme="facebook">
                     {t('enroll', { ns: 'courses' })}
@@ -192,7 +187,7 @@ const DetailedCourseComponent = () => {
                           {t('language', { ns: 'courses' })}
                         </Text>
                       </Flex>
-                      <Text>English</Text>
+                      <Text>{course?.language.toUpperCase()}</Text>
                     </Flex>
                     <Divider />
                     <Flex

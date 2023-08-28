@@ -1,7 +1,7 @@
 export interface CourseType {
+  slug: string;
   previewImage: string;
   title: string;
-  slug: string;
   lessonCount: number;
   totalHour: number;
   level: string;
@@ -18,8 +18,10 @@ export interface CourseType {
   _id: string;
   language: string;
   isActive: boolean;
+  updatedAt: Date;
 }
 export interface AuthorType {
   fullName: string;
   avatar: string;
+  job: string;
 }

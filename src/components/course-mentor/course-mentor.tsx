@@ -1,3 +1,4 @@
+import { useTypedSelector } from '@/src/hooks/useTypedSelector';
 import {
   Avatar,
   Box,
@@ -13,6 +14,7 @@ import { FaStar, FaUserGraduate } from 'react-icons/fa';
 
 const CourseMentor = () => {
   const { t } = useTranslation();
+  const { course } = useTypedSelector((state) => state.course);
 
   return (
     <>
@@ -20,14 +22,15 @@ const CourseMentor = () => {
       <Flex mt={5} gap={5} align={'center'}>
         <Avatar
           display={{ base: 'none', md: 'block' }}
-          src="https://media.graphassets.com/NfxHACAlR4CkvdhnB3gs"
+          src={course?.author.avatar}
+          name={course?.author.fullName}
           size={'2xl'}
         />
         <Box>
           <Text fontWeight={'bold'} fontSize={'20px'}>
-            Samar Badriddinov
+            {course?.author.fullName}
           </Text>
-          <Text>Software Engineer & Coding instructor</Text>
+          <Text>{course?.author.job}</Text>
           <Stack
             direction={{ base: 'column', md: 'row' }}
             mt={2}
@@ -51,7 +54,7 @@ const CourseMentor = () => {
       </Flex>
       <Text mt={4}>
         <Box as={'span'} fontWeight={'bold'} color={'facebook.500'}>
-          Samar Badriddinov
+          {course?.author.fullName}
         </Box>{' '}
         - Sammi platformasi asoschisi hamda Amerika, Tunisia va Rossiya
         do'vlatrida bir nachta StartUp loyihalarda ishtrok etgan. Xozirgi kunda
