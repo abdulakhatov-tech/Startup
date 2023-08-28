@@ -25,3 +25,4 @@ export { default as AdminBooksPageComponent } from './admin-page-component/books
 export { default as CartPageComponent } from './shop-page-component/cart-page-component';
 export { default as CheckoutPageComponent } from './shop-page-component/checkout-page-component';
 export { default as SuccessPageComponent } from './shop-page-component/success-page-component';
+export { default as DashboardPageComponent } from './courses-page-component/dashboard-page-component';

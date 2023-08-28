@@ -22,12 +22,13 @@ import { StripeAddressElement } from '@stripe/stripe-js';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import $axios from 'src/api/axios';
-import { getMailUrl } from 'src/config/api.config';
+import { getCourseUrl, getMailUrl } from 'src/config/api.config';
 import { getTotalPrice } from 'src/helpers/total-price.helper';
 import { useActions } from 'src/hooks/useActions';
 import { useTypedSelector } from 'src/hooks/useTypedSelector';
 import { CardType } from 'src/interfaces/constants.interface';
 import ErrorAlert from '../error-alert/error-alert';
+import Cookies from 'js-cookie';
 
 export default function CheckoutForm({ cards }: { cards: CardType[] }) {
   const stripe = useStripe();
@@ -40,7 +41,7 @@ export default function CheckoutForm({ cards }: { cards: CardType[] }) {
   const { courses, books, product } = useTypedSelector((state) => state.cart);
   const { colorMode } = useColorMode();
   const router = useRouter();
-  const { getBooks } = useActions();
+  const { getBooks, checkAuth } = useActions();
   const toast = useToast();
 
   const cardStyles = {
@@ -158,9 +159,12 @@ export default function CheckoutForm({ cards }: { cards: CardType[] }) {
                 description: 'Successfully purchased',
                 position: 'top-right',
               });
+              await $axios.put(`${getCourseUrl('enroll-user')}/${course._id}`);
             }
 
             if (counter == 0) {
+              const refreshToken = Cookies.get('refresh');
+              if (refreshToken) checkAuth();
               router.push('/shop/success');
             }
           }

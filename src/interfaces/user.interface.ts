@@ -1,6 +1,7 @@
 import { RoleUser } from './constants.interface';
 
 export interface UserType {
+  _id: string;
   email?: string;
   fullName?: string;
   role?: RoleUser;
@@ -8,4 +9,5 @@ export interface UserType {
   password?: string;
   avatar?: string;
   job?: string;
+  courses: string[];
 }
