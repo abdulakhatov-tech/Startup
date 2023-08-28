@@ -1,14 +1,10 @@
 import { Pricing } from '@/src/components';
+import { ProductsType } from '@/src/interfaces/constants.interface';
 import { Divider, Heading, Stack, Text } from '@chakra-ui/react';
+import { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const options = [
-  { id: 1, desc: '1 lorem ipsum' },
-  { id: 2, desc: 'Lorem, ipsum dolor.' },
-  { id: 3, desc: 'Monthly Updates' },
-];
-
-const PricingPageComponent = () => {
+const PricingPageComponent = ({ products }: { products: ProductsType[] }) => {
   const { t } = useTranslation();
 
   return (
@@ -34,12 +30,18 @@ const PricingPageComponent = () => {
             </Text>
           </Stack>
         </Stack>
-        <Divider />
-        <Pricing title={'Standard'} price={20} options={options} />
-        <Divider />
-        <Pricing title={'Premium'} price={32} options={options} checked />
-        <Divider />
-        <Pricing title={'Business'} price={50} options={options} />
+        {products.map((product) => (
+          <Fragment key={product.id}>
+            <Divider />
+            <Pricing
+              title={product.name}
+              price={product.default_price.unit_amount / 100}
+              options={product.description
+                .split(', ')
+                .map((c, idx) => ({ id: idx, desc: c }))}
+            />
+          </Fragment>
+        ))}
       </Stack>
     </>
   );

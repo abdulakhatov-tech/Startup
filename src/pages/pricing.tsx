@@ -3,8 +3,11 @@ import { useTranslation } from 'react-i18next';
 import Seo from '../layouts/seo/seo';
 import { withLayout } from '../layouts/layout';
 import { PricingPageComponent } from '../pageComponent';
+import { GetServerSideProps } from 'next';
+import { PaymentService } from '../services/payment.service';
+import { ProductsType } from 'src/interfaces/constants.interface';
 
-const PricingPage = () => {
+const PricingPage = ({ products }) => {
   const { t } = useTranslation();
 
   return (
@@ -17,9 +20,23 @@ const PricingPage = () => {
         'The best package for using and doing lessons on Education platform'
       }
     >
-      <PricingPageComponent />
+      <PricingPageComponent products={products} />
     </Seo>
   );
 };
 
 export default withLayout(PricingPage);
+
+export const getServerSideProps: GetServerSideProps<
+  PricingPageType
+> = async () => {
+  const products = await PaymentService.productList();
+
+  return {
+    props: { products },
+  };
+};
+
+interface PricingPageType extends Record<string, unknown> {
+  products: ProductsType[];
+}
