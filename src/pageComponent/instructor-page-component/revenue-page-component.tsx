@@ -1,4 +1,7 @@
 import SectionTitle from '@/src/components/section-title/section-title';
+import { getBalanceObject } from '@/src/helpers/total-price.helper';
+import { BalanceType } from '@/src/interfaces/instructor.interface';
+import { PaymentService } from '@/src/services/payment.service';
 import {
   Card,
   CardBody,
@@ -11,14 +14,21 @@ import {
 } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { AiOutlineDollarCircle } from 'react-icons/ai';
-import { FaFunnelDollar } from 'react-icons/fa';
 import { FiSettings } from 'react-icons/fi';
-import { MdOutlineAccountBalanceWallet } from 'react-icons/md';
+import {
+  MdAccountBalance,
+  MdOutlineAccountBalanceWallet,
+} from 'react-icons/md';
 import { SiFuturelearn } from 'react-icons/si';
 import { StatisticsCard } from 'src/components';
 
-const RevenuePageComponent = () => {
+const RevenuePageComponent = ({ balance }: { balance: BalanceType }) => {
   const { t } = useTranslation();
+
+  const openAccountLinks = async () => {
+    const data = await PaymentService.instructorAccountLink();
+    window.open(data);
+  };
 
   return (
     <>
@@ -41,7 +51,7 @@ const RevenuePageComponent = () => {
         />
         <StatisticsCard
           title={t('payouts', { ns: 'instructor' }) || 'Payouts'}
-          stat={Number('1000').toLocaleString('en-US', {
+          stat={getBalanceObject(balance).payouts.toLocaleString('en-US', {
             style: 'currency',
             currency: 'USD',
           })}
@@ -66,11 +76,7 @@ const RevenuePageComponent = () => {
             >
               {t('revenue_report', { ns: 'instructor' }) || 'Revenue report'}
             </Heading>
-            <Icon
-              as={FaFunnelDollar}
-              fontSize={{ base: 30, md: 40, lg: 50 }}
-              color={'facebook.400'}
-            />
+            <Icon as={MdAccountBalance} fontSize={60} />
           </HStack>
           <Text fontSize={{ base: 16, md: 20 }}>
             {t('revenue_report_description', { ns: 'instructor' }) ||
@@ -89,7 +95,7 @@ const RevenuePageComponent = () => {
               fontSize={{ base: 25, md: 35, lg: 40 }}
               color={'facebook.400'}
             >
-              {Number('500').toLocaleString('en-US', {
+              {getBalanceObject(balance).payouts.toLocaleString('en-US', {
                 style: 'currency',
                 currency: 'USD',
               })}
@@ -112,6 +118,8 @@ const RevenuePageComponent = () => {
               as={FiSettings}
               fontSize={{ base: 30, md: 40, lg: 50 }}
               color={'facebook.400'}
+              cursor={'pointer'}
+              onClick={openAccountLinks}
             />
           </HStack>
           <Text fontSize={{ base: 16, md: 20 }}>
