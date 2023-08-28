@@ -39,6 +39,7 @@ const PricingPageComponent = ({ products }: { products: ProductsType[] }) => {
               options={product.description
                 .split(', ')
                 .map((c, idx) => ({ id: idx, desc: c }))}
+              product={product}
             />
           </Fragment>
         ))}

@@ -11,15 +11,24 @@ import { useTranslation } from 'react-i18next';
 import { FaCheckCircle } from 'react-icons/fa';
 
 import { PricingProps } from './pricing.props';
+import { useActions } from '@/src/hooks/useActions';
+import { useRouter } from 'next/router';
 
-const Pricing = ({ options, price, title, checked }: PricingProps) => {
+const Pricing = ({ options, price, title, checked, product }: PricingProps) => {
   const { t } = useTranslation();
+  const { addProductToCart } = useActions();
+  const router = useRouter();
 
   const colorTextLight = checked ? 'white' : 'facebook.600';
   const bgColorLight = checked ? 'facebook.400' : 'gray.300';
 
   const colorTextDark = checked ? 'white' : 'facebook.500';
   const bgColorDark = checked ? 'facebook.400' : 'gray.300';
+
+  const addProductToCartHandler = () => {
+    addProductToCart(product);
+    router.push('/shop/checkout');
+  };
 
   return (
     <Stack
@@ -46,6 +55,7 @@ const Pricing = ({ options, price, title, checked }: PricingProps) => {
           size="md"
           color={useColorModeValue(colorTextLight, colorTextDark)}
           bgColor={useColorModeValue(bgColorLight, bgColorDark)}
+          onClick={addProductToCartHandler}
         >
           {t('pricing_btn', { ns: 'global' })}
         </Button>

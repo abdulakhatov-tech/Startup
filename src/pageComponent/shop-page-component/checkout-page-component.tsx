@@ -1,4 +1,3 @@
-import { CardType } from '@/src/interfaces/constants.interface';
 import {
   Box,
   Divider,
@@ -17,13 +16,14 @@ import { CheckoutForm } from 'src/components';
 import SectionTitle from 'src/components/section-title/section-title';
 import { loadImage } from 'src/helpers/image.helper';
 import { useTypedSelector } from 'src/hooks/useTypedSelector';
+import { CardType } from 'src/interfaces/constants.interface';
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
 );
 
 const CheckoutPageComponent = ({ cards }: { cards: CardType[] }) => {
-  const { books, courses } = useTypedSelector((state) => state.cart);
+  const { books, courses, product } = useTypedSelector((state) => state.cart);
   const { colorMode } = useColorMode();
 
   return (
@@ -56,18 +56,44 @@ const CheckoutPageComponent = ({ cards }: { cards: CardType[] }) => {
           <Text fontSize={'2xl'} fontWeight={'bold'}>
             Order details
           </Text>
-          {books.map((book) => (
-            <Fragment key={book._id}>
-              <OrderedDetailedCart item={book} image={book.image} />
+
+          {product.id ? (
+            <>
               <Divider my={5} />
-            </Fragment>
-          ))}
-          {courses.map((book) => (
-            <Fragment key={book._id}>
-              <OrderedDetailedCart item={book} image={book.previewImage} />
-              <Divider my={5} />
-            </Fragment>
-          ))}
+              <HStack justify={'space-between'}>
+                <Text>
+                  {product.name} -{' '}
+                  <Box as={'span'} fontWeight={'bold'}>
+                    Plan
+                  </Box>
+                </Text>
+                <Text fontWeight={'bold'} color={'facebook.500'}>
+                  {(product.default_price.unit_amount / 100).toLocaleString(
+                    'en-US',
+                    {
+                      style: 'currency',
+                      currency: 'USD',
+                    }
+                  )}
+                </Text>
+              </HStack>
+            </>
+          ) : (
+            <>
+              {books.map((book) => (
+                <Fragment key={book._id}>
+                  <OrderedDetailedCart item={book} image={book.image} />
+                  <Divider my={5} />
+                </Fragment>
+              ))}
+              {courses.map((book) => (
+                <Fragment key={book._id}>
+                  <OrderedDetailedCart item={book} image={book.previewImage} />
+                  <Divider my={5} />
+                </Fragment>
+              ))}
+            </>
+          )}
         </GridItem>
       </Grid>
     </>
