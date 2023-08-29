@@ -1,5 +1,6 @@
+import axios from 'axios';
 import $axios from 'src/api/axios';
-import { getCourseUrl } from 'src/config/api.config';
+import { API_URL, getCourseUrl, getReviewUrl } from 'src/config/api.config';
 import { CourseType } from 'src/interfaces/course.interface';
 
 export const CourseService = {
@@ -29,6 +30,41 @@ export const CourseService = {
 
   async draftCourse(id: string) {
     const response = await $axios.put(`${getCourseUrl('draft')}/${id}`);
+
+    return response.data;
+  },
+
+  async createReview(data) {
+    const response = await axios.post(
+      `${API_URL}${getReviewUrl('create')}`,
+      data
+    );
+
+    return response.data;
+  },
+
+  async editReview(data, reviewId: string) {
+    const response = await axios.put(
+      `${API_URL}${getReviewUrl('edit')}/${reviewId}`,
+      data
+    );
+
+    return response.data;
+  },
+
+  async getReviewByUser(data) {
+    const response = await axios.post(
+      `${API_URL}${getReviewUrl('get-by-user')}`,
+      data
+    );
+
+    return response.data;
+  },
+
+  async getReviews(courseId) {
+    const response = await axios.get(
+      `${API_URL}${getReviewUrl('get')}/${courseId}`
+    );
 
     return response.data;
   },

@@ -1,3 +1,4 @@
+import { CourseService } from '@/src/services/course.service';
 import {
   Box,
   Button,
@@ -16,6 +17,7 @@ import {
   useColorMode,
   useColorModeValue,
   useDisclosure,
+  useToast,
 } from '@chakra-ui/react';
 import { Form, Formik, FormikValues } from 'formik';
 import Link from 'next/link';
@@ -34,15 +36,62 @@ import { DarkLogo, LightLogo } from 'src/icons';
 
 const Header = () => {
   const [reviewVal, setReviewVal] = useState(val);
+  const [reviewId, setReviewId] = useState<string>();
 
   const { colorMode, toggleColorMode } = useColorMode();
   const { course } = useTypedSelector((state) => state.course);
   const { user } = useTypedSelector((state) => state.user);
-  const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const router = useRouter();
+  const toast = useToast();
 
-  const onReviewSubmit = (formikValues: FormikValues) => {
-    console.log(formikValues);
+  const onReviewSubmit = async (formikValues: FormikValues) => {
+    try {
+      if (reviewId) {
+        const data = {
+          summary: formikValues.summary,
+          rating: formikValues.rating,
+        };
+
+        await CourseService.editReview(data, reviewId);
+        toast({ title: 'Successfully edited', status: 'success' });
+        setReviewId('');
+        onClose();
+      } else {
+        const response = await CourseService.getReviewByUser({
+          course: course?._id,
+          user: user?.id,
+        });
+
+        if (response._id) {
+          setReviewVal({
+            ...reviewVal,
+            summary: response.summary,
+            rating: response.rating,
+          });
+          setReviewId(response._id);
+          toast({
+            title: 'Already have review, you can change it now',
+            status: 'warning',
+          });
+        } else {
+          const data = {
+            course: course?._id,
+            author: user?.id,
+            rating: formikValues.rating,
+            summary: formikValues.summary,
+          };
+          await CourseService.createReview(data);
+          toast({
+            title: 'Successfully created new review',
+            status: 'success',
+          });
+          onClose();
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {

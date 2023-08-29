@@ -21,7 +21,7 @@ import {
 import ReactStars from 'react-stars';
 import { format } from 'date-fns';
 
-import { CourseType } from '@/src/interfaces/course.interface';
+import { CourseType, ReviewType } from '@/src/interfaces/course.interface';
 import { useRouter } from 'next/router';
 import {
   FaBook,
@@ -46,6 +46,7 @@ import {
 import { useTypedSelector } from '@/src/hooks/useTypedSelector';
 import { loadImage } from '@/src/helpers/image.helper';
 import { useActions } from '@/src/hooks/useActions';
+import { CourseService } from '@/src/services/course.service';
 
 const DetailedCourseComponent = () => {
   const { t } = useTranslation();
@@ -54,15 +55,22 @@ const DetailedCourseComponent = () => {
   const { courses } = useTypedSelector((state) => state.cart);
   const { user } = useTypedSelector((state) => state.user);
   const [media] = useMediaQuery('min-width: 592px');
-  const [tabIndex, setTabIndex] = useState(0);
   const router = useRouter();
   const toast = useToast();
   const { getSection, addCourseToCart } = useActions();
+  const [isLoading, setIsLoading] = useState(false);
+  const [tabIndex, setTabIndex] = useState(0);
+  const [reviews, setReviews] = useState<ReviewType[]>([]);
 
-  const tabHandler = (idx: number) => {
+  const tabHandler = async (idx: number) => {
     setTabIndex(idx);
     if (idx == 1 && !sections.length) {
       getSection({ courseId: course?._id, callback: () => {} });
+    } else if (idx == 2 && !reviews.length) {
+      setIsLoading(true);
+      const response = await CourseService.getReviews(course?._id);
+      setReviews(response);
+      setIsLoading(false);
     }
   };
 
@@ -295,7 +303,9 @@ const DetailedCourseComponent = () => {
         <Box w={'full'}>
           {tabIndex === 0 && <CourseOverview />}
           {tabIndex === 1 && <CourseCurriculum />}
-          {tabIndex === 2 && <CourseReview />}
+          {tabIndex === 2 && (
+            <CourseReview reviews={reviews} isLoading={isLoading} />
+          )}
           {tabIndex === 3 && <CourseMentor />}
         </Box>
       </Tabs>
