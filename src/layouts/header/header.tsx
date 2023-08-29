@@ -22,7 +22,11 @@ import { useAuth } from '@/src/hooks/useAuth';
 
 import { BsFillMoonFill, BsFillSunFill, BsTranslate } from 'react-icons/bs';
 import { BiMenuAltLeft, BiUserCircle } from 'react-icons/bi';
-import { AiOutlineLogin, AiOutlineShoppingCart } from 'react-icons/ai';
+import {
+  AiOutlineDashboard,
+  AiOutlineLogin,
+  AiOutlineShoppingCart,
+} from 'react-icons/ai';
 import { TbFileSettings } from 'react-icons/tb';
 import { IoIosLogOut } from 'react-icons/io';
 
@@ -157,13 +161,14 @@ const Header = ({ onToggle }: HeaderProps): JSX.Element => {
                     {t('instructor_admin', { ns: 'instructor' })}
                   </MenuItem>
                 )}
+
                 <MenuItem
                   h={14}
-                  onClick={() => router.push('/setting')}
+                  onClick={() => router.push('/dashboard')}
                   fontWeight={'bold'}
-                  icon={<TbFileSettings fontSize={17} />}
+                  icon={<AiOutlineDashboard fontSize={17} />}
                 >
-                  {t('settings', { ns: 'global' })}
+                  Dashboard
                 </MenuItem>
 
                 <MenuItem
