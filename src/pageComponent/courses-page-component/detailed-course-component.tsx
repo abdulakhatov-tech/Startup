@@ -108,13 +108,15 @@ const DetailedCourseComponent = () => {
               <Text mt={5}>{course?.excerpt}</Text>
               <Stack mt={5} direction={media ? 'column' : 'row'} gap={3}>
                 <Flex fontSize={'sm'} align={'flex-end'}>
-                  <Text>5.0</Text>
-                  <ReactStars edit={false} value={5} />
-                  <Text>(10)</Text>
+                  <Text>{course?.reviewAvg || 0}</Text>
+                  <ReactStars edit={false} value={course?.reviewAvg || 5} />
+                  <Text>({course?.reviewCount})</Text>
                 </Flex>
                 <Flex fontSize={'sm'} align={'center'} gap={1}>
                   <Icon as={FaUserGraduate} />
-                  <Text>100 {t('students', { ns: 'courses' })}</Text>
+                  <Text>
+                    {course?.allStudents} {t('students', { ns: 'courses' })}
+                  </Text>
                 </Flex>
                 <Flex fontSize={'sm'} align={'center'} gap={1}>
                   <Icon as={TfiAlarmClock} />

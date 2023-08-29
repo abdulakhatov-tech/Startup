@@ -19,7 +19,7 @@ import ReactStars from 'react-stars';
 import { useTranslation } from 'react-i18next';
 
 import SectionTitle from '@/src/components/section-title/section-title';
-import { courses, coursesFilter } from '@/src/config/constants';
+import { coursesFilter } from '@/src/config/constants';
 import {
   FilterCourseType,
   FilterItemProps,
@@ -51,7 +51,7 @@ const CoursesPageComponent = () => {
       setAllCourses(courses.filter((c) => c.category == filter.category));
     } else if (filter.id == 'rating') {
       setAllCourses(
-        courses.filter((c) => c.reviewAvarage >= Number(filter.category))
+        courses.filter((c) => c.reviewAvg >= Number(filter.category))
       );
     } else if (filter.id == 'level') {
       setAllCourses(courses.filter((c) => c.level == filter.category));

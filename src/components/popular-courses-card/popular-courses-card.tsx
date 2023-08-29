@@ -32,9 +32,13 @@ const PopularCoursesCard = ({ item }: PopularCoursesCardProps): JSX.Element => {
         />
       </Box>
       <HStack>
-        <Text color={'#e59819'}>{5}</Text>
-        <ReactStars edit={false} value={5} color2={'#e59819'} />
-        <Text opacity={'.8'}>(3)</Text>
+        <Text color={'#e59819'}>{item.reviewAvg || 0}</Text>
+        <ReactStars
+          edit={false}
+          value={item.reviewAvg || 5}
+          color2={'#e59819'}
+        />
+        <Text opacity={'.8'}>(item.reviewCount)</Text>
       </HStack>
       <Heading fontSize={'xl'}>{item.title}</Heading>
       <HStack>
