@@ -8,6 +8,7 @@ import {
 } from 'src/config/api.config';
 import { removeTokensCookie, saveTokensCookie } from 'src/helpers/auth.helper';
 import { AuthUserResponse } from 'src/store/user/user.interface';
+import $axios from '../api/axios';
 
 export const AuthService = {
   async register(email: string, password: string) {
@@ -116,6 +117,16 @@ export const AuthService = {
           },
         }
       );
+
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  async updateUser(body) {
+    try {
+      const { data } = await $axios.put(`${getUserUrl('update')}`, body);
 
       return data;
     } catch (error) {

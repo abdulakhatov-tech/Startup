@@ -11,9 +11,12 @@ import {
 import { format } from 'date-fns';
 import { MdAlternateEmail, MdUpdate } from 'react-icons/md';
 import { SiAwesomelists } from 'react-icons/si';
+import { useTypedSelector } from 'src/hooks/useTypedSelector';
 import { StatsCardProps } from './dashboard.props';
 
 const Account = () => {
+  const { user } = useTypedSelector((state) => state.user);
+
   return (
     <>
       <Box maxW="7xl" mx={'auto'} px={{ base: 2, sm: 12, md: 17 }}>
@@ -25,21 +28,27 @@ const Account = () => {
         >
           Your account information.
         </chakra.h1>
-        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
+        <SimpleGrid
+          columns={{ base: 1, md: 2, lg: 3 }}
+          spacing={{ base: 5, lg: 6 }}
+        >
           <StatsCard
             title={"Ro'yhatdan o'tgan sana"}
-            stat={`${format(new Date(), 'dd MMMM, yyyy')}`}
-            icon={<MdUpdate size={'3em'} />}
+            stat={`${format(
+              new Date(user?.createdAt as Date),
+              'dd MMMM, yyyy'
+            )}`}
+            icon={<MdUpdate size={'2em'} />}
           />
           <StatsCard
-            title={'info@sammi.ac'}
-            stat={'Email manzilingiz'}
-            icon={<MdAlternateEmail size={'3em'} />}
+            title={'Email manzilingiz'}
+            stat={user?.email as string}
+            icon={<MdAlternateEmail size={'2em'} />}
           />
           <StatsCard
             title={'Kurslar'}
-            stat={'7 ta'}
-            icon={<SiAwesomelists size={'3em'} />}
+            stat={`${user?.courses.length} ta`}
+            icon={<SiAwesomelists size={'2em'} />}
           />
         </SimpleGrid>
       </Box>
@@ -60,13 +69,14 @@ function StatsCard(props: StatsCardProps) {
       border={'1px solid'}
       borderColor={useColorModeValue('gray.800', 'gray.500')}
       rounded={'lg'}
+      overflowX={'hidden'}
     >
       <Flex justifyContent={'space-between'}>
         <Box>
           <StatLabel fontWeight={'medium'} isTruncated>
             {title}
           </StatLabel>
-          <StatNumber fontSize={'lg'} fontWeight={'bold'}>
+          <StatNumber fontSize={'md'} fontWeight={'bold'}>
             {stat}
           </StatNumber>
         </Box>
