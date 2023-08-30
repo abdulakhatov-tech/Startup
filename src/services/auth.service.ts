@@ -133,4 +133,34 @@ export const AuthService = {
       console.log(error);
     }
   },
+
+  async getTransactions() {
+    try {
+      const { data } = await $axios.get(`${getUserUrl('transactions')}`);
+
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  async getMyCourses() {
+    try {
+      const { data } = await $axios.get(`${getUserUrl('my-courses')}`);
+
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  async getSavedCards() {
+    try {
+      const { data } = await $axios.get(`/customer/saved-cards`);
+
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
