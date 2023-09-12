@@ -5,7 +5,6 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
-  Button,
   Flex,
   Input,
   Radio,
@@ -17,6 +16,13 @@ import {
 } from '@chakra-ui/react';
 import ReactStars from 'react-stars';
 import { useTranslation } from 'react-i18next';
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from 'react';
 
 import SectionTitle from '@/src/components/section-title/section-title';
 import { coursesFilter } from '@/src/config/constants';
@@ -26,11 +32,12 @@ import {
 } from './courses-page-component.props';
 import { AllCoursesCard } from '@/src/components';
 import { useTypedSelector } from '@/src/hooks/useTypedSelector';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+
 import { CourseType } from '@/src/interfaces/course.interface';
 import { AppService } from '@/src/services/app.service';
 
 const CoursesPageComponent = () => {
+  const [searchVal, setSearchVal] = useState<string>('');
   const [filter, setFilter] = useState<FilterCourseType>({
     id: '',
     category: '',
@@ -63,6 +70,17 @@ const CoursesPageComponent = () => {
     }
   }, [filter]);
 
+  const searchHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchVal(e.target.value);
+    setAllCourses(
+      courses.filter(
+        (course) =>
+          course.title.toLowerCase().indexOf(e.target.value.toLowerCase()) !==
+          -1
+      )
+    );
+  };
+
   useEffect(() => {
     setAllCourses(courses);
   }, [courses]);
@@ -79,18 +97,11 @@ const CoursesPageComponent = () => {
           w={'full'}
           bg={'transparent'}
           color={'gray'}
+          value={searchVal}
+          onChange={searchHandler}
           placeholder={t('search_input_placeholder', { ns: 'courses' }) || ''}
           _placeholder={{ color: 'gray.500' }}
         />
-        <Button
-          pos={'absolute'}
-          right={2}
-          top={2}
-          colorScheme={'gray'}
-          zIndex={999}
-        >
-          {t('search_input_btn', { ns: 'courses' })}
-        </Button>
       </Box>
       <Flex mt={5} gap={5} direction={{ base: 'column', lg: 'row' }}>
         <Box

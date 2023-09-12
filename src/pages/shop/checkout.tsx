@@ -1,3 +1,4 @@
+import Seo from '@/src/layouts/seo/seo';
 import axios from 'axios';
 import { GetServerSideProps, NextPage } from 'next';
 import { API_URL } from 'src/config/api.config';
@@ -12,9 +13,9 @@ const CheckoutPage: NextPage<CheckoutPageProps> = ({ cards }) => {
   const checkCard = () => books.length || courses.length || product.id;
 
   return (
-    <>
+    <Seo metaTitle="Checkout">
       {checkCard() ? <CheckoutPageComponent cards={cards} /> : <>Empty cart</>}
-    </>
+    </Seo>
   );
 };
 

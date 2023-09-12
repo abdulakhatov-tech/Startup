@@ -9,11 +9,13 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { FaJava } from 'react-icons/fa';
+import { useRouter } from 'next/router';
 import { VscDebugStart } from 'react-icons/vsc';
 import { useTranslation } from 'react-i18next';
 
 const Hero = () => {
   const { t } = useTranslation();
+  const router = useRouter();
 
   return (
     <Card mt={10}>
@@ -33,10 +35,16 @@ const Hero = () => {
                 h={14}
                 colorScheme={'facebook'}
                 rightIcon={<VscDebugStart />}
+                onClick={() => router.push('/courses')}
               >
                 {t('hero_start_learning_btn', { ns: 'home' })}
               </Button>
-              <Button h={14} colorScheme={'facebook'} variant={'outline'}>
+              <Button
+                h={14}
+                colorScheme={'facebook'}
+                variant={'outline'}
+                onClick={() => router.push('/become-instructor')}
+              >
                 {t('hero_become_instructor_btn', { ns: 'home' })}
               </Button>
             </Grid>

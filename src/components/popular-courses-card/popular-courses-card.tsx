@@ -9,7 +9,9 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react';
+import Image from 'next/image';
 import ReactStars from 'react-stars';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 
 import { AiOutlineClockCircle } from 'react-icons/ai';
@@ -17,12 +19,19 @@ import { SiGoogleanalytics } from 'react-icons/si';
 import { CiViewList } from 'react-icons/ci';
 
 import { PopularCoursesCardProps } from './popular-courses-card.props';
-import Image from 'next/image';
+import { loadImage } from '@/src/helpers/image.helper';
 
 const PopularCoursesCard = ({ item }: PopularCoursesCardProps): JSX.Element => {
   const { t } = useTranslation();
+  const router = useRouter();
+
   return (
-    <Stack spacing={3} p={3} cursor={'pointer'}>
+    <Stack
+      spacing={3}
+      p={3}
+      cursor={'pointer'}
+      onClick={() => router.push(`/courses/${item?.slug}`)}
+    >
       <Box pos={'relative'} w={'full'} h="210px">
         <Image
           src={item.previewImage}
@@ -63,7 +72,10 @@ const PopularCoursesCard = ({ item }: PopularCoursesCardProps): JSX.Element => {
       <Divider />
       <Flex justify={'space-between'} align={'center'}>
         <HStack align={'center'}>
-          <Avatar src={item.author.avatar} name={item.author.fullName} />
+          <Avatar
+            src={loadImage(item.author.avatar)}
+            name={item.author.fullName}
+          />
 
           <Text>{item.author.fullName}</Text>
         </HStack>

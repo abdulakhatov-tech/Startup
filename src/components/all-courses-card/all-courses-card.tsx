@@ -87,7 +87,7 @@ const AllCoursesCard = ({ course, isMyCourse }: AllCoursesCardProps) => {
                 flexWrap={'wrap'}
               >
                 <Avatar
-                  src={course.author.avatar}
+                  src={loadImage(course.author.avatar)}
                   name={course.author.fullName}
                 />
 
