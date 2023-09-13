@@ -23,6 +23,7 @@ import {
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Fragment, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { BsFillTrashFill } from 'react-icons/bs';
 import SectionTitle from 'src/components/section-title/section-title';
 import { loadImage } from 'src/helpers/image.helper';
@@ -30,6 +31,7 @@ import { getTotalPrice } from 'src/helpers/total-price.helper';
 import { useTypedSelector } from 'src/hooks/useTypedSelector';
 
 const CartPageComponent = () => {
+  const { t } = useTranslation();
   const [active, setActive] = useState<boolean>(false);
   const [coupon, setCoupon] = useState<string>('');
   const [error, setError] = useState<string>('');
@@ -46,11 +48,17 @@ const CartPageComponent = () => {
     const courses = cart.courses;
     const books = cart.books;
 
-    textCourse = courses.length ? `${courses.length} Courses in cart` : '';
-    textBooks = books.length ? `${books.length} Books in cart` : '';
-    const isAnd = courses.length ? true : false;
+    textCourse = courses.length
+      ? `${courses.length} ${t('courses_in_cart', { ns: 'cart' })}`
+      : '';
+    textBooks = books.length
+      ? `${books.length} ${t('books_in_cart', { ns: 'cart' })}`
+      : '';
+    const isAnd = books.length ? true : false;
 
-    return `${textCourse} ${isAnd ? 'and' : ''} ${textBooks}`;
+    return `${textCourse} ${
+      isAnd ? `${t('and', { ns: 'cart' })}` : ''
+    } ${textBooks}`;
   };
 
   const applyCouponHandler = async () => {
@@ -71,13 +79,16 @@ const CartPageComponent = () => {
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
-      setError('Coupon is not valid');
+      setError(`${t('coupon_is_invalid', { ns: 'cart' })}`);
     }
   };
 
   return (
     <>
-      <SectionTitle title={'Shopping cart'} subtitle={getSubtitle()} />
+      <SectionTitle
+        title={t('title', { ns: 'cart' })}
+        subtitle={getSubtitle()}
+      />
       <Grid gridTemplateColumns={{ base: '1fr', md: '70% 30%' }} gap={5}>
         <GridItem>
           <Divider my={5} />
@@ -103,7 +114,7 @@ const CartPageComponent = () => {
             p={5}
           >
             <Text fontWeight={'bold'} fontSize={'xl'} opacity={'.7'}>
-              Total:
+              {t('total', { ns: 'cart' })}:
             </Text>
             <Heading>
               {getTotalPrice(cart.courses, cart.books).toLocaleString('en-US', {
@@ -117,7 +128,7 @@ const CartPageComponent = () => {
               borderRadius={0}
               onClick={() => router.push('/shop/checkout')}
             >
-              Checkout
+              {t('checkout', { ns: 'cart' })}
             </Button>
             <Divider />
             {error && (
@@ -126,18 +137,18 @@ const CartPageComponent = () => {
             {active && (
               <Alert status="success">
                 <AlertIcon />
-                Coupon was successfully applied
+                {t('coupon_successful', { ns: 'cart' })}
               </Alert>
             )}
             <Text fontWeight={'bold'} fontSize={'lg'}>
-              Promotions
+              {t('promotions', { ns: 'cart' })}
             </Text>
             <Box pos={'relative'} mt={5}>
               <Input
                 w={'full'}
                 bg={'white'}
                 color={'gray.900'}
-                placeholder={'Enter coupon'}
+                placeholder={`${t('enter_coupon', { ns: 'cart' })}`}
                 _placeholder={{ color: 'gray.500' }}
                 borderRadius={0}
                 value={coupon}
@@ -153,7 +164,7 @@ const CartPageComponent = () => {
                 zIndex={999}
                 borderRadius={0}
               >
-                Apply
+                {t('apply', { ns: 'cart' })}
               </Button>
             </Box>
           </Stack>
@@ -166,6 +177,7 @@ const CartPageComponent = () => {
 export default CartPageComponent;
 
 const ShoppingCartCard = ({ item, image }) => {
+  const { t } = useTranslation();
   const { removeBookFromCart, removeCourseFromCart } = useActions();
 
   const removeCartItem = () => {
@@ -179,10 +191,14 @@ const ShoppingCartCard = ({ item, image }) => {
   return (
     <Flex
       justify={{ base: 'flex-start', md: 'space-between' }}
-      direction={{ base: 'column', md: 'row' }}
+      direction={{ base: 'column', xl: 'row' }}
     >
-      <HStack>
-        <Box pos={'relative'} w={'200px'} h={'100px'}>
+      <Flex gap={'20px'} direction={{ base: 'column', sm: 'row' }}>
+        <Box
+          pos={'relative'}
+          w={{ base: '100%', sm: '200px' }}
+          h={{ base: '180px', sm: '100px' }}
+        >
           <Image
             fill
             src={loadImage(image)}
@@ -194,14 +210,14 @@ const ShoppingCartCard = ({ item, image }) => {
           <Heading fontSize={'xl'}>{item.title}</Heading>
           <Text>by Admin Platform</Text>
           <HStack>
-            <Tag colorScheme={'facebook'}>Books</Tag>
-            <Tag colorScheme={'facebook'}>Useful</Tag>
+            <Tag colorScheme={'facebook'}>{t('books', { ns: 'cart' })}</Tag>
+            <Tag colorScheme={'facebook'}>{t('useful', { ns: 'cart' })}</Tag>
             <Tag colorScheme={'facebook'} textTransform={'capitalize'}>
               {item.category}
             </Tag>
           </HStack>
         </Stack>
-      </HStack>
+      </Flex>
       <Stack spacing={0} mt={{ base: 5, md: 0 }}>
         <Text
           color={'facebook.300'}

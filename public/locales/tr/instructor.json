@@ -94,5 +94,6 @@
   "minute": "Dakika",
   "second": "saniye",
   "language": "Dil",
-  "is_agree": "Emin misin?"
+  "is_agree": "Emin misin?",
+  "job_label": "Meslek"
 }

@@ -1,0 +1,10 @@
+{
+  "title": "Ödeme",
+  "description": "İlgi çekici, özel olarak hazırlanmış kursları makul bir fiyata sunma misyonundayız.",
+  "pay_now": "Şimdi öde",
+  "new_credit_cart": "Yeni Kredi kartı",
+  "order_detail": "Sipariş ayrıntıları",
+  "payment_couldntbe_verified": "Ödeme bilgileriniz doğrulanamadı",
+  "successfully_purchased": "Başarıyla satın alındı",
+  "security_code": "Güvenlik kodu"
+}

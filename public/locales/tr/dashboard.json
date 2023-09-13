@@ -1,0 +1,22 @@
+{
+  "account": "Hesap",
+  "settings": "Ayarlar",
+  "transactions": "İşlemler",
+  "my_courses": "Kurslarım",
+  "saved_cards": "Kayıtlı Kartlar",
+  "danger_zone": "Tehlikeli Bölge",
+  "your_account_information": "Hesap bilgileriniz",
+  "date_of_registration": "Kayıt tarihi",
+  "email": "E-posta",
+  "courses": "Kurslar",
+  "your_profile_update_successfully": "Profiliniz başarıyla güncellendi",
+  "image_size_is_big": "Resmin boyutu çok büyük, en az 2mb",
+  "image_type_error": "Üzgünüz, yalnızca PNG ve JPG dosyalarını destekliyoruz",
+  "first_name": "Ad",
+  "last_name": "Soyadı",
+  "date_of_birth": "Doğum tarihi",
+  "about_yourself": "Kendiniz hakkında",
+  "submit": "Gönder",
+  "information": "Bilgi",
+  "change_password": "Şifreyi değiştir"
+}

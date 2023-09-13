@@ -1,0 +1,22 @@
+{
+  "account": "Hisob",
+  "settings": "Sozlamalar",
+  "transactions": "Tranzaksiyalar",
+  "my_courses": "Mening kurslarim",
+  "saved_cards": "Saqlangan kartalar",
+  "danger_zone": "Xavfli zona",
+  "your_account_information": "Sizning hisobingiz haqidagi ma'lumot",
+  "date_of_registration": "Ro'yxatdan o'tgan sana",
+  "email": "Elektron pochta",
+  "courses": "Kurslar",
+  "your_profile_update_successfully": "Profilingiz muvaffaqiyatli yangilandi",
+  "image_size_is_big": "Rasm hajmi juda katta, kamida 2mb",
+  "image_type_error": "Kechirasiz, biz faqat PNG va JPG fayllarni qo'llab-quvvatlaymiz",
+  "first_name": "Ismi",
+  "last_name": "Familiya",
+  "date_of_birth": "Tug'ilgan sana",
+  "about_yourself": "O'zingiz haqingizda",
+  "submit": "yuborish",
+  "information": "Information",
+  "change_password": "Parolni o'zgartirish"
+}

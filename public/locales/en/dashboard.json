@@ -1,0 +1,22 @@
+{
+  "account": "Account",
+  "settings": "Settings",
+  "transactions": "Transactions",
+  "my_courses": "My Courses",
+  "saved_cards": "Saved Cards",
+  "danger_zone": "Danger Zone",
+  "your_account_information": "Your account information",
+  "date_of_registration": "Date of registration",
+  "email": "Email",
+  "courses": "Courses",
+  "your_profile_update_successfully": "Your profile updated successfully",
+  "image_size_is_big": "The size of the image is very large, at least 2mb",
+  "image_type_error": "Sorry, we only support PNG and JPG files",
+  "first_name": "First name",
+  "last_name": "Last name",
+  "date_of_birth": "Date of birth",
+  "about_yourself": "About yourself",
+  "submit": "Submit",
+  "information": "Information",
+  "change_password": "Change password"
+}

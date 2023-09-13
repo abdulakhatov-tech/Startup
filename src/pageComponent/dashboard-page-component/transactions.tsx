@@ -1,17 +1,21 @@
-import { Divider, HStack, Stack, Text } from '@chakra-ui/react';
 import { format } from 'date-fns';
 import { FC, Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Divider, HStack, Stack, Text } from '@chakra-ui/react';
+
 import { TransactionsProps } from './dashboard.props';
 
 const Transactions: FC<TransactionsProps> = ({ transactions }): JSX.Element => {
+  const { t } = useTranslation();
+
   return (
     <>
       <HStack justify={'space-between'}>
         <Text fontSize={'xl'} fontWeight={'bold'}>
-          Information
+          {t('information', { ns: 'dashboard' })}
         </Text>
         <Text fontSize={'xl'} fontWeight={'bold'}>
-          Transactions
+          {t('transactions', { ns: 'dashboard' })}
         </Text>
       </HStack>
       <Divider my={5} />

@@ -17,7 +17,7 @@ const EditCoursesPageComponent = () => {
           'Managing courses and create curriculum for your courses'
         }
       />
-      <Grid gridTemplateColumns={'1fr 1fr'} gap={4}>
+      <Grid gridTemplateColumns={{ base: '1fr', md: '1fr 1fr' }} gap={4}>
         {courses.map((item) => (
           <InstructorEditCoursesCard key={item.slug} item={item} />
         ))}

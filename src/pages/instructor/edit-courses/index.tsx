@@ -4,9 +4,14 @@ import { withInstructorLayout } from '@/src/layouts/Instructor';
 import { InstructorEditCoursesPageComponent } from '@/src/pageComponent';
 import { InstructorService } from '@/src/services/instructor.service';
 import { CourseType } from '@/src/interfaces/course.interface';
+import Seo from '@/src/layouts/seo/seo';
 
 const EditCourses: NextPage = () => {
-  return <InstructorEditCoursesPageComponent />;
+  return (
+    <Seo metaTitle="Edit Course">
+      <InstructorEditCoursesPageComponent />
+    </Seo>
+  );
 };
 
 export default withInstructorLayout(EditCourses);

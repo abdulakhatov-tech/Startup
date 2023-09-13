@@ -1,3 +1,4 @@
+import { loadImage } from '@/src/helpers/image.helper';
 import { useTypedSelector } from '@/src/hooks/useTypedSelector';
 import {
   Avatar,
@@ -21,10 +22,10 @@ const CourseMentor = () => {
       <Heading mt={5}>{t('mentor', { ns: 'courses' })}</Heading>
       <Flex mt={5} gap={5} align={'center'}>
         <Avatar
-          display={{ base: 'none', md: 'block' }}
-          src={course?.author.avatar}
+          display={{ base: 'none', md: 'flex' }}
+          src={loadImage(course?.author?.avatar)}
           name={course?.author.fullName}
-          size={'2xl'}
+          size={'xl'}
         />
         <Box>
           <Text fontWeight={'bold'} fontSize={'20px'}>

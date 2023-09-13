@@ -95,13 +95,13 @@ const AllCoursesCard = ({ course, isMyCourse }: AllCoursesCardProps) => {
                   <Flex align={'center'} gap={1}>
                     <Icon as={CiViewList} />
                     <Text>
-                      {course.lessonCount} {t('lessons', { ns: 'courses' })}
+                      {course.lessonCount} {t('lesson', { ns: 'courses' })}
                     </Text>
                   </Flex>
                   <Flex align={'center'} gap={1}>
                     <Icon as={AiOutlineClockCircle} />
                     <Text>
-                      {course.totalHour} {t('hours', { ns: 'courses' })}
+                      {course.totalHour} {t('hour', { ns: 'courses' })}
                     </Text>
                   </Flex>
                   <Flex align={'center'} gap={1}>

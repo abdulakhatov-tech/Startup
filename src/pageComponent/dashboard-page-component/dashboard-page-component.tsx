@@ -20,8 +20,10 @@ import MyCourses from './my-courses';
 import SavedCards from './saved-cards';
 import Settings from './settings';
 import Transactions from './transactions';
+import { useTranslation } from 'react-i18next';
 
 const DashboardPageComponent = () => {
+  const { t } = useTranslation();
   const [tabIndex, setTabIndex] = useState(0);
   const { user } = useTypedSelector((state) => state.user);
   const [isLoading, setIsLoading] = useState(false);
@@ -45,7 +47,6 @@ const DashboardPageComponent = () => {
       }
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
     }
   };
@@ -58,19 +59,31 @@ const DashboardPageComponent = () => {
             isFitted
             variant="enclosed-colored"
             colorScheme={'facebook'}
-            orientation={'vertical'}
+            orientation={'horizontal'}
             onChange={tabHandler}
             defaultValue={tabIndex}
           >
-            <TabList mb="1em" h={'300'}>
-              <Tab>Account</Tab>
-              <Tab>Settings</Tab>
-              <Tab>Transactions</Tab>
-              <Tab>My Courses</Tab>
-              <Tab>Saved Cards</Tab>
-              <Tab>Danger Zone</Tab>
+            <TabList mb="1em" h={'auto'} display="flex" flexWrap={'wrap'}>
+              <Tab fontSize={{ base: '12px', sm: '14px', md: '16px' }}>
+                {t('account', { ns: 'dashboard' })}
+              </Tab>
+              <Tab fontSize={{ base: '12px', sm: '14px', md: '16px' }}>
+                {t('settings', { ns: 'dashboard' })}
+              </Tab>
+              <Tab fontSize={{ base: '12px', sm: '14px', md: '16px' }}>
+                {t('transactions', { ns: 'dashboard' })}
+              </Tab>
+              <Tab fontSize={{ base: '12px', sm: '14px', md: '16px' }}>
+                {t('my_courses', { ns: 'dashboard' })}
+              </Tab>
+              <Tab fontSize={{ base: '12px', sm: '14px', md: '16px' }}>
+                {t('saved_cards', { ns: 'dashboard' })}
+              </Tab>
+              <Tab fontSize={{ base: '12px', sm: '14px', md: '16px' }}>
+                {t('danger_zone', { ns: 'dashboard' })}
+              </Tab>
             </TabList>
-            <TabPanels px={5}>
+            <TabPanels>
               {isLoading ? (
                 <Center>
                   <Spinner />

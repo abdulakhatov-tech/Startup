@@ -28,10 +28,7 @@ import {
   CourseValidation,
   manageCourseValues,
 } from '@/src/validations/course.validation';
-import {
-  InstructorManageCourseProps,
-  SubmitValuesInterface,
-} from './instructor-manage-course.props';
+import { InstructorManageCourseProps } from './instructor-manage-course.props';
 import TagField from '../tag-field/tag-field';
 import TextField from '../text-field/text-field';
 import SelectField from '../select-field/select-field';
@@ -100,8 +97,13 @@ const InstructorManageCourse = ({
       >
         {(formik) => (
           <Form>
-            <Flex mt={12} gap={4}>
-              <Box w="70%">
+            <Flex
+              mt={12}
+              gap={4}
+              direction={{ base: 'column-reverse', md: 'row' }}
+              alignItems={{ base: 'center' }}
+            >
+              <Box w={{ base: '100%', md: '65%' }}>
                 <Stack spacing={5}>
                   <TextField
                     name="title"
@@ -129,7 +131,6 @@ const InstructorManageCourse = ({
                         : ''
                     }
                   />
-
                   <TagField
                     name="requirements"
                     placeholder=""
@@ -197,7 +198,7 @@ const InstructorManageCourse = ({
                   </Button>
                 </Stack>
               </Box>
-              <Box w="30%">
+              <Box w={{ base: '100%', md: '35%' }}>
                 <Stack spacing={5}>
                   <SelectField
                     name="level"

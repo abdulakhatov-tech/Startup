@@ -3,9 +3,14 @@ import { GetServerSideProps, NextPage } from 'next';
 import { withInstructorLayout } from '@/src/layouts/Instructor';
 import { InstructorCreateCoursePageComponent } from '@/src/pageComponent';
 import { AuthService } from '@/src/services/auth.service';
+import Seo from '@/src/layouts/seo/seo';
 
 const CreateCourse: NextPage = () => {
-  return <InstructorCreateCoursePageComponent />;
+  return (
+    <Seo metaTitle="Instructor Create Course">
+      <InstructorCreateCoursePageComponent />;
+    </Seo>
+  );
 };
 
 export default withInstructorLayout(CreateCourse);

@@ -66,19 +66,22 @@ const RevenuePageComponent = ({ balance }: { balance: BalanceType }) => {
           icon={<MdOutlineAccountBalanceWallet size={'3em'} />}
         />
       </SimpleGrid>
-      <Card mt={20}>
+      <Card mt={{ base: 10, md: 20 }}>
         <CardBody>
           <HStack justify={'space-between'}>
             <Heading
               fontFamily={'mono'}
               letterSpacing={5}
-              fontSize={{ base: 25, md: 35, lg: 40 }}
+              fontSize={{ base: '18px', md: '30px', lg: '35px' }}
             >
               {t('revenue_report', { ns: 'instructor' }) || 'Revenue report'}
             </Heading>
-            <Icon as={MdAccountBalance} fontSize={60} />
+            <Icon
+              as={MdAccountBalance}
+              fontSize={{ base: 30, sm: 40, md: 50 }}
+            />
           </HStack>
-          <Text fontSize={{ base: 16, md: 20 }}>
+          <Text fontSize={{ base: '12px', sm: '16px', md: '20px' }}>
             {t('revenue_report_description', { ns: 'instructor' }) ||
               'You get paid directly from stripe yo your bank account every 48 hours'}
           </Text>
@@ -87,12 +90,12 @@ const RevenuePageComponent = ({ balance }: { balance: BalanceType }) => {
             <Heading
               fontFamily={'mono'}
               letterSpacing={5}
-              fontSize={{ base: 25, md: 35, lg: 40 }}
+              fontSize={{ base: '18px', md: '30px', lg: '35px' }}
             >
               {t('pending_balance', { ns: 'instructor' }) || 'Pending balance'}
             </Heading>
             <Text
-              fontSize={{ base: 25, md: 35, lg: 40 }}
+              fontSize={{ base: '20px', md: '22px' }}
               color={'facebook.400'}
             >
               {getBalanceObject(balance).payouts.toLocaleString('en-US', {
@@ -101,7 +104,7 @@ const RevenuePageComponent = ({ balance }: { balance: BalanceType }) => {
               })}
             </Text>
           </HStack>
-          <Text fontSize={{ base: 16, md: 20 }}>
+          <Text fontSize={{ base: '12px', sm: '16px', md: '20px' }}>
             {t('pending_balance_description', { ns: 'instructor' }) ||
               'For 48 hours'}
           </Text>
@@ -110,19 +113,19 @@ const RevenuePageComponent = ({ balance }: { balance: BalanceType }) => {
             <Heading
               fontFamily={'mono'}
               letterSpacing={5}
-              fontSize={{ base: 25, md: 35, lg: 40 }}
+              fontSize={{ base: '18px', md: '30px', lg: '35px' }}
             >
               {t('payouts', { ns: 'instructor' }) || 'Payouts'}
             </Heading>
             <Icon
               as={FiSettings}
-              fontSize={{ base: 30, md: 40, lg: 50 }}
+              fontSize={{ base: 30, sm: 40, md: 50 }}
               color={'facebook.400'}
               cursor={'pointer'}
               onClick={openAccountLinks}
             />
           </HStack>
-          <Text fontSize={{ base: 16, md: 20 }}>
+          <Text fontSize={{ base: '12px', sm: '16px', md: '20px' }}>
             {t('payouts_description', { ns: 'instructor' }) ||
               'Update your account details or view previous payouts'}
           </Text>

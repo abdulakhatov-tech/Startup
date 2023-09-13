@@ -121,7 +121,6 @@ const DetailedCourseComponent = () => {
                 <Flex fontSize={'sm'} align={'center'} gap={1}>
                   <Icon as={TfiAlarmClock} />
                   <Text>
-                    {t('last_update', { ns: 'courses' })}{' '}
                     {course &&
                       format(new Date(course.updatedAt), 'dd MMMM, yyyy')}
                   </Text>
@@ -164,8 +163,8 @@ const DetailedCourseComponent = () => {
                     onClick={navigateUser}
                   >
                     {user?.courses.includes(course?._id as string)
-                      ? 'Watch'
-                      : 'Add to cart'}
+                      ? t('watch', { ns: 'courses' })
+                      : t('add_to_cart', { ns: 'courses' })}
                   </Button>
                   <Box mt={3}>
                     <Flex
@@ -284,7 +283,7 @@ const DetailedCourseComponent = () => {
         isFitted
         colorScheme={'facebook'}
       >
-        <TabList>
+        <TabList gap={3}>
           {tablist?.map((tab) => (
             <Tab
               key={tab.name}
@@ -292,12 +291,13 @@ const DetailedCourseComponent = () => {
               textTransform="capitalize"
               w="100%"
               justifyContent={'center'}
+              overflow={'hidden'}
             >
               <Icon
                 as={tab.Icon}
                 mr="2"
                 display={{ base: 'none', md: 'block' }}
-              />{' '}
+              />
               {t(tab.name, { ns: 'courses' })}
             </Tab>
           ))}

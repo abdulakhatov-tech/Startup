@@ -2,6 +2,7 @@ import { useTypedSelector } from '@/src/hooks/useTypedSelector';
 import {
   Card,
   CardBody,
+  Flex,
   HStack,
   Stack,
   Tab,
@@ -23,7 +24,13 @@ const CoursesPageComponent = () => {
     <>
       <Card>
         <CardBody p={0}>
-          <HStack justify={'center'}>
+          <Flex
+            alignItems={'center'}
+            px={5}
+            py={{ base: 5, md: 0 }}
+            direction={{ base: 'column-reverse', md: 'row' }}
+            gap={'30px'}
+          >
             <Stack>
               <SectionTitle
                 title={t('all_courses_title', { ns: 'instructor' })}
@@ -37,7 +44,7 @@ const CoursesPageComponent = () => {
               src="/images/manage.png"
               alt="instructor"
             />
-          </HStack>
+          </Flex>
         </CardBody>
       </Card>
 

@@ -10,17 +10,18 @@ import {
 import { Form, Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import TextFiled from 'src/components/text-field/text-field';
+
 import { useActions } from 'src/hooks/useActions';
 import { useShowPassword } from 'src/hooks/useShowPassword';
+import TextFiled from 'src/components/text-field/text-field';
 import { useTypedSelector } from 'src/hooks/useTypedSelector';
 import { AuthValidation } from 'src/validations/auth.validation';
 
 const DangerZone = () => {
-  const { editProfilePassword } = useActions();
-  const { user } = useTypedSelector((state) => state.user);
   const toast = useToast();
   const { t } = useTranslation();
+  const { editProfilePassword } = useActions();
+  const { user } = useTypedSelector((state) => state.user);
   const { show, toggleShow, showConfirm, toggleShowConfirm } =
     useShowPassword();
 
@@ -44,7 +45,7 @@ const DangerZone = () => {
 
   return (
     <>
-      <Text fontSize={'2xl'}>Change password</Text>
+      <Text fontSize={'2xl'}>{t('change_password', { ns: 'dashboard' })}</Text>
       <Divider my={5} />
       <Box w={{ base: '100%', md: '70%' }}>
         <Formik

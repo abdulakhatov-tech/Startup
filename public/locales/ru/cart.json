@@ -1,0 +1,15 @@
+{
+  "title": "Корзина",
+  "courses_in_cart": "Курсы в корзине",
+  "books_in_cart": "Книги в корзине",
+  "and": "и",
+  "books": "Книги",
+  "useful": "Полезно",
+  "total": "Итого",
+  "checkout": "Оформление заказа",
+  "coupon_is_invalid": "Купон недействителен",
+  "coupon_successful": "Купон успешно применен",
+  "promotions": "Акции",
+  "enter_coupon": "Введите купон",
+  "apply": "Применить"
+}

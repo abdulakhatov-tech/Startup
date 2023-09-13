@@ -12,6 +12,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import Image from 'next/image';
 import { Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
 import { CheckoutForm } from 'src/components';
 import SectionTitle from 'src/components/section-title/section-title';
 import { loadImage } from 'src/helpers/image.helper';
@@ -23,16 +24,15 @@ const stripePromise = loadStripe(
 );
 
 const CheckoutPageComponent = ({ cards }: { cards: CardType[] }) => {
+  const { t } = useTranslation();
   const { books, courses, product } = useTypedSelector((state) => state.cart);
   const { colorMode } = useColorMode();
 
   return (
     <>
       <SectionTitle
-        title={'Checkout'}
-        subtitle={
-          'We’re on a mission to deliver engaging, curated courses at a reasonable price.'
-        }
+        title={`${t('title', { ns: 'checkout' })}`}
+        subtitle={`${t('description', { ns: 'checkout' })}`}
       />
       <Grid gridTemplateColumns={{ base: '1fr', md: '70% 30%' }} gap={5}>
         <GridItem>
@@ -54,7 +54,7 @@ const CheckoutPageComponent = ({ cards }: { cards: CardType[] }) => {
           borderColor={useColorModeValue('gray.200', 'gray.700')}
         >
           <Text fontSize={'2xl'} fontWeight={'bold'}>
-            Order details
+            {t('order_detail', { ns: 'checkout' })}
           </Text>
 
           {product.id ? (
@@ -109,7 +109,7 @@ const OrderedDetailedCart = ({ item, image }) => (
         <Image
           src={loadImage(image)}
           fill
-          alt={item.title}
+          alt={item?.title}
           style={{ objectFit: 'cover' }}
         />
       </Box>

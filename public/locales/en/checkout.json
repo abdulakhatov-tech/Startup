@@ -1,0 +1,10 @@
+{
+  "title": "Checkout",
+  "description": "We’re on a mission to deliver engaging, curated courses at a reasonable price.",
+  "pay_now": "Pay now",
+  "new_credit_cart": "New Credit card",
+  "order_detail": "Order details",
+  "payment_couldntbe_verified": "Your payment details couldn't be verified",
+  "successfully_purchased": "Successfully purchased",
+  "security_code": "Security code"
+}

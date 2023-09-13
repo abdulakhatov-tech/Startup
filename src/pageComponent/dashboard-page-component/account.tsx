@@ -9,12 +9,15 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { format } from 'date-fns';
-import { MdAlternateEmail, MdUpdate } from 'react-icons/md';
+import { useTranslation } from 'react-i18next';
 import { SiAwesomelists } from 'react-icons/si';
+import { MdAlternateEmail, MdUpdate } from 'react-icons/md';
+
 import { useTypedSelector } from 'src/hooks/useTypedSelector';
 import { StatsCardProps } from './dashboard.props';
 
 const Account = () => {
+  const { t } = useTranslation();
   const { user } = useTypedSelector((state) => state.user);
 
   return (
@@ -22,18 +25,18 @@ const Account = () => {
       <Box maxW="7xl" mx={'auto'}>
         <chakra.h1
           textAlign={'center'}
-          fontSize={{ base: '2xl', md: '4xl' }}
+          fontSize={{ base: 'xl', md: '2xl', lg: '4xl' }}
           pb={6}
           fontWeight={'bold'}
         >
-          Your account information.
+          {t('your_account_information', { ns: 'dashboard' })}
         </chakra.h1>
         <SimpleGrid
           columns={{ base: 1, md: 2, lg: 3 }}
           spacing={{ base: 5, lg: 6 }}
         >
           <StatsCard
-            title={"Ro'yhatdan o'tgan sana"}
+            title={t('date_of_registration', { ns: 'dashboard' })}
             stat={`${format(
               new Date(user?.createdAt as Date),
               'dd MMMM, yyyy'
@@ -41,12 +44,12 @@ const Account = () => {
             icon={<MdUpdate size={'2em'} />}
           />
           <StatsCard
-            title={'Email manzilingiz'}
+            title={t('email', { ns: 'dashboard' })}
             stat={user?.email as string}
             icon={<MdAlternateEmail size={'2em'} />}
           />
           <StatsCard
-            title={'Kurslar'}
+            title={t('courses', { ns: 'dashboard' })}
             stat={`${user?.courses.length} ta`}
             icon={<SiAwesomelists size={'2em'} />}
           />

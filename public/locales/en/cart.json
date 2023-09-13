@@ -1,0 +1,15 @@
+{
+  "title": "Shopping cart",
+  "courses_in_cart": "Courses in cart",
+  "books_in_cart": "Books in cart",
+  "and": "and",
+  "books": "Books",
+  "useful": "Useful",
+  "total": "Total",
+  "checkout": "Checkout",
+  "coupon_is_invalid": "Coupon is not valid",
+  "coupon_successful": "Coupon was successfully applied",
+  "promotions": "Promotions",
+  "enter_coupon": "Enter coupon",
+  "apply": "Apply"
+}

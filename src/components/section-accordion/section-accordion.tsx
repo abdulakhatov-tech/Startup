@@ -9,6 +9,7 @@ import {
   Flex,
   Icon,
   List,
+  Text,
   useDisclosure,
   useToast,
 } from '@chakra-ui/react';
@@ -96,22 +97,43 @@ const SectionAccordion = ({
       </>
 
       <AccordionButton
-        h={14}
-        p={2}
+        h={{ base: 'fit-content', sm: 14 }}
+        p={{ base: 0, sm: 2 }}
+        py={{ base: 2, sm: 0 }}
         fontWeight={'bold'}
         cursor={isLoading ? 'progress' : 'pointer'}
         draggable
         onDragStart={onDragStartSection}
         onDrop={onDropSection}
       >
-        <Flex w={'100%'} align={'center'} justify={'space-between'}>
+        <Flex w={'100%'} align={'center'} justify={'space-between'} gap={2}>
           <Flex align={'center'} gap={2}>
-            <Icon as={AiOutlineMenu} w={5} h={5} />
-            {section.title}
+            <Icon
+              as={AiOutlineMenu}
+              w={{ base: 4, sm: 5 }}
+              h={{ base: 4, sm: 5 }}
+            />
+            <Text
+              maxW={{ base: '200px', sm: '100%' }}
+              w={'100%'}
+              overflowX={'hidden'}
+            >
+              {section.title}
+            </Text>
           </Flex>
-          <Flex fontSize={'15px'} align={'center'} gap={3}>
-            <Icon as={MdEdit} w={5} h={5} onClick={onEditSection} />
-            <Icon as={MdDelete} w={5} h={5} onClick={onDelete} />
+          <Flex fontSize={'15px'} align={'center'} gap={{ base: 1, md: 3 }}>
+            <Icon
+              as={MdEdit}
+              w={{ base: 4, sm: 5 }}
+              h={{ base: 4, sm: 5 }}
+              onClick={onEditSection}
+            />
+            <Icon
+              as={MdDelete}
+              w={{ base: 4, sm: 5 }}
+              h={{ base: 4, sm: 5 }}
+              onClick={onDelete}
+            />
             <AccordionIcon />
           </Flex>
         </Flex>
@@ -134,7 +156,9 @@ const SectionAccordion = ({
             _hover={{ textDecoration: 'underline' }}
             onClick={onToggle}
           >
-            {isOpen ? 'Close form' : 'Create lesson'}
+            {isOpen
+              ? t('close_form', { ns: 'instructor' })
+              : t('create_lesson', { ns: 'instructor' })}
           </Button>
         </Center>
         <Collapse in={isOpen} animateOpacity>

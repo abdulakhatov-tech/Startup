@@ -19,8 +19,6 @@ const Sidebar = ({ toggle }: SidebarProps): JSX.Element => {
   const router = useRouter();
   const { t } = useTranslation();
 
-  console.log(router.asPath);
-
   if (router.asPath == '/auth') {
     return (
       <Flex

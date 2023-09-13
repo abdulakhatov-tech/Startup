@@ -1,0 +1,15 @@
+{
+  "title": "Alışveriş sepeti",
+  "courses_in_cart": "Sepetteki kurslar",
+  "books_in_cart": "Sepetteki kitaplar",
+  "and": "ve",
+  "books": "Kitaplar",
+  "useful": "Yararlı",
+  "total": "Toplam",
+  "checkout": "Ödeme",
+  "coupon_is_invalid": "Kupon geçerli değil",
+  "coupon_successful": "Kupon başarıyla uygulandı",
+  "promotions": "Promosyonlar",
+  "enter_coupon": "Kuponu girin",
+  "apply": "Uygula"
+}

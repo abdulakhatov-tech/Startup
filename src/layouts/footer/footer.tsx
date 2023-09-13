@@ -14,16 +14,21 @@ const Footer = () => {
 
   return (
     <Box
-      pl={{ base: 0, lg: '320px' }}
+      pl={{ base: '0px', md: '30px', lg: '320px' }}
       mt={10}
       w={'full'}
       borderTop={'1px'}
       bg={useColorModeValue('gray.50', 'gray.900')}
       color={useColorModeValue('gray.700', 'gray.200')}
       borderTopColor={useColorModeValue('gray.200', 'gray.700')}
-      h={'10vh'}
+      h={{ base: '13vh', md: '10vh' }}
     >
-      <Flex justify={'space-between'} align={'center'} h={'full'}>
+      <Flex
+        justify={{ base: 'space-around', md: 'space-between' }}
+        align={'center'}
+        direction={{ base: 'column', md: 'row' }}
+        h={'full'}
+      >
         <Text>
           © {format(new Date(), 'yyyy')} Education.{' '}
           {t('footer', { ns: 'layout' })}

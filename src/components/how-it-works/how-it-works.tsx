@@ -24,7 +24,12 @@ const HowItWorks = () => {
         subtitle={t('how_it_works_description', { ns: 'home' })}
       />
 
-      <SimpleGrid mt={10} columns={5} spacing={10} alignItems={'center'}>
+      <SimpleGrid
+        mt={10}
+        columns={{ sm: 1, md: 5 }}
+        spacing={10}
+        alignItems={'center'}
+      >
         {howItWorks?.map((item, index) => {
           const odd = index % 2;
           return (
@@ -47,7 +52,12 @@ const HowItWorks = () => {
                 </Stack>
               ) : (
                 <Stack justify={'center'}>
-                  <Icon as={item.icon} w="142px" h="21px" />
+                  <Icon
+                    as={item.icon}
+                    w={{ base: '100px', mg: '120px', lg: '142px' }}
+                    h={{ base: '16px', mg: '18px', lg: '21px' }}
+                    display={{ base: 'none', md: 'block' }}
+                  />
                 </Stack>
               )}
             </Fragment>

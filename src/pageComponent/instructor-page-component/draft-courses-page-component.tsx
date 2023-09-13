@@ -3,6 +3,7 @@ import {
   Box,
   Card,
   CardBody,
+  Flex,
   Grid,
   HStack,
   Stack,
@@ -26,7 +27,13 @@ const DraftCoursesPageComponent = () => {
     <>
       <Card>
         <CardBody p={0}>
-          <HStack justify={'center'}>
+          <Flex
+            alignItems={'center'}
+            px={5}
+            py={{ base: 5, md: 0 }}
+            direction={{ base: 'column-reverse', md: 'row' }}
+            gap={'30px'}
+          >
             <Stack>
               <SectionTitle
                 title={
@@ -45,7 +52,7 @@ const DraftCoursesPageComponent = () => {
               src="/images/draft.png"
               alt="instructor"
             />
-          </HStack>
+          </Flex>
         </CardBody>
       </Card>
       <Box mt={10}>
@@ -56,7 +63,10 @@ const DraftCoursesPageComponent = () => {
           </TabList>
           <TabPanels>
             <TabPanel>
-              <Grid gridTemplateColumns={'1fr 1fr'} gap={4}>
+              <Grid
+                gridTemplateColumns={{ base: '1fr', md: '1fr 1fr' }}
+                gap={4}
+              >
                 {courses
                   .filter((c) => !c.isActive)
                   .map((item) => (
@@ -65,7 +75,10 @@ const DraftCoursesPageComponent = () => {
               </Grid>
             </TabPanel>
             <TabPanel>
-              <Grid gridTemplateColumns={'1fr 1fr'} gap={4}>
+              <Grid
+                gridTemplateColumns={{ base: '1fr', md: '1fr 1fr' }}
+                gap={4}
+              >
                 {courses
                   .filter((c) => c.isActive)
                   .map((item) => (

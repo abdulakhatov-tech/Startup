@@ -81,7 +81,6 @@ const Sidebar: FC<CourseDashboardProps> = ({ ...props }) => {
       }
       setIsComplete(false);
     } catch (error) {
-      console.log(error);
       setIsComplete(false);
     }
   };

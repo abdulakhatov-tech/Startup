@@ -95,7 +95,7 @@ const LessonForm = ({ sectionId, values, onToggle }: LessonFormProps) => {
       >
         {(formik) => (
           <Form>
-            <Stack spacing={5}>
+            <Stack spacing={{ base: 1, sm: 3 }}>
               <>
                 {error && (
                   <ErrorAlert
@@ -104,12 +104,33 @@ const LessonForm = ({ sectionId, values, onToggle }: LessonFormProps) => {
                   />
                 )}
               </>
-              <TextField name="name" label="Name" />
-              <TextAreaField name="embedVideo" label="Embed video" />
-              <Flex gap={3}>
-                <TextField name="hour" label="Hour" type="number" />
-                <TextField name="minute" label="Minute" type="number" />
-                <TextField name="second" label="Second" type="number" />
+              <TextField
+                name="name"
+                label={`${t('name', { ns: 'instructor' })}`}
+              />
+              <TextAreaField
+                name="embedVideo"
+                label={`${t('embed_video', { ns: 'instructor' })}`}
+              />
+              <Flex
+                gap={{ base: 1, sm: 3 }}
+                direction={{ base: 'column', sm: 'row' }}
+              >
+                <TextField
+                  name="hour"
+                  label={`${t('hour', { ns: 'instructor' })}`}
+                  type="number"
+                />
+                <TextField
+                  name="minute"
+                  label={`${t('minute', { ns: 'instructor' })}`}
+                  type="number"
+                />
+                <TextField
+                  name="second"
+                  label={`${t('second', { ns: 'instructor' })}`}
+                  type="number"
+                />
               </Flex>
               <Box>
                 <ReactQuill

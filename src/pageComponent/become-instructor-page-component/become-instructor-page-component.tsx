@@ -9,7 +9,6 @@ import {
   HStack,
   Heading,
   Icon,
-  Image,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -44,6 +43,7 @@ import { InstructorValidation } from 'src/validations/instructor.validation';
 import { useActions } from '@/src/hooks/useActions';
 import { useTypedSelector } from '@/src/hooks/useTypedSelector';
 import { ErrorAlert, SelectField } from '@/src/components';
+import Image from 'next/image';
 
 const BecomeInstructorPageComponent = () => {
   const { t } = useTranslation();
@@ -70,8 +70,13 @@ const BecomeInstructorPageComponent = () => {
   return (
     <Stack spacing={5}>
       <Card>
-        <CardBody p={0}>
-          <HStack>
+        <CardBody p={{ base: 3, md: 5 }}>
+          <Flex
+            alignItems={'center'}
+            justifyContent={'space-around'}
+            direction={{ base: 'column-reverse', lg: 'row' }}
+            gap="30px"
+          >
             <Stack px={5}>
               <SectionTitle
                 textAlign={'center'}
@@ -84,8 +89,13 @@ const BecomeInstructorPageComponent = () => {
                 {t('instructor_page_get_started', { ns: 'instructor' })}
               </Button>
             </Stack>
-            <Image src="/images/instructor.png" alt="instructor" />
-          </HStack>
+            <Image
+              src="/images/instructor.png"
+              alt="instructor"
+              width={500}
+              height={500}
+            />
+          </Flex>
         </CardBody>
       </Card>
       <Heading mt={10} textAlign={'center'}>
@@ -99,16 +109,27 @@ const BecomeInstructorPageComponent = () => {
       <Heading mt={10} textAlign={'center'}>
         {t('how_to_begin', { ns: 'instructor' })}
       </Heading>
+
       <Tabs isFitted variant="enclosed">
         <TabList mb="1em">
-          <Tab>{t('how_to_begin_1', { ns: 'instructor' })}</Tab>
-          <Tab>{t('how_to_begin_2', { ns: 'instructor' })}</Tab>
-          <Tab>{t('how_to_begin_3', { ns: 'instructor' })}</Tab>
+          <Tab overflow={'scroll'}>
+            {t('how_to_begin_1', { ns: 'instructor' })}
+          </Tab>
+          <Tab overflow={'scroll'}>
+            {t('how_to_begin_2', { ns: 'instructor' })}
+          </Tab>
+          <Tab overflow={'scroll'}>
+            {t('how_to_begin_3', { ns: 'instructor' })}
+          </Tab>
         </TabList>
         <TabPanels>
           <TabPanel>
-            <HStack>
-              <Stack w={'50%'}>
+            <Flex
+              alignItems={'center'}
+              direction={{ base: 'column-reverse', md: 'row' }}
+              justifyContent={'center'}
+            >
+              <Stack w={{ base: '100%', md: '50%' }}>
                 <Text>{t('how_to_begin_1_text_1', { ns: 'instructor' })}</Text>
                 <Text>{t('how_to_begin_1_text_2', { ns: 'instructor' })}</Text>
                 <Text fontWeight={'bold'}>
@@ -116,14 +137,22 @@ const BecomeInstructorPageComponent = () => {
                 </Text>
                 <Text>{t('how_to_begin_1_text_3', { ns: 'instructor' })}</Text>
               </Stack>
-              <Box w={'50%'}>
+              <Box
+                w={{ base: '100%', md: '50%' }}
+                display={'flex'}
+                justifyContent={'center'}
+              >
                 <PlanCurriculumIcon />
               </Box>
-            </HStack>
+            </Flex>
           </TabPanel>
           <TabPanel>
-            <HStack>
-              <Stack w={'50%'}>
+            <Flex
+              alignItems={'center'}
+              direction={{ base: 'column-reverse', md: 'row' }}
+              justifyContent={'center'}
+            >
+              <Stack w={{ base: '100%', md: '50%' }}>
                 <Text>{t('how_to_begin_2_text_1', { ns: 'instructor' })}</Text>
                 <Text>{t('how_to_begin_2_text_2', { ns: 'instructor' })}</Text>
                 <Text fontWeight={'bold'}>
@@ -131,14 +160,22 @@ const BecomeInstructorPageComponent = () => {
                 </Text>
                 <Text>{t('how_to_begin_2_text_3', { ns: 'instructor' })}</Text>
               </Stack>
-              <Box w={'50%'}>
+              <Box
+                w={{ base: '100%', md: '50%' }}
+                display={'flex'}
+                justifyContent={'center'}
+              >
                 <RecordVideoIcon />
               </Box>
-            </HStack>
+            </Flex>
           </TabPanel>
           <TabPanel>
-            <HStack>
-              <Stack w={'50%'}>
+            <Flex
+              alignItems={'center'}
+              direction={{ base: 'column-reverse', md: 'row' }}
+              justifyContent={'center'}
+            >
+              <Stack w={{ base: '100%', md: '50%' }}>
                 <Text>{t('how_to_begin_3_text_1', { ns: 'instructor' })}</Text>
                 <Text>{t('how_to_begin_3_text_2', { ns: 'instructor' })}</Text>
                 <Text fontWeight={'bold'}>
@@ -146,10 +183,14 @@ const BecomeInstructorPageComponent = () => {
                 </Text>
                 <Text>{t('how_to_begin_3_text_3', { ns: 'instructor' })}</Text>
               </Stack>
-              <Box w={'50%'}>
+              <Box
+                w={{ base: '100%', md: '50%' }}
+                display={'flex'}
+                justifyContent={'center'}
+              >
                 <LaunchCourseIcon />
               </Box>
-            </HStack>
+            </Flex>
           </TabPanel>
         </TabPanels>
       </Tabs>
@@ -213,7 +254,7 @@ const BecomeInstructorPageComponent = () => {
                   />
                   <TextField
                     name={'job'}
-                    label={t('label_job', { ns: 'instructor' })}
+                    label={t('job_label', { ns: 'instructor' })}
                     placeholder={'Senior software engineer'}
                   />
                   <SelectField

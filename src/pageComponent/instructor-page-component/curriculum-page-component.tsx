@@ -4,7 +4,6 @@ import {
   CardBody,
   Divider,
   Flex,
-  HStack,
   Icon,
   Modal,
   ModalBody,
@@ -61,10 +60,16 @@ const CurriculumPageComponent = () => {
     <>
       <Card>
         <CardBody p={0}>
-          <HStack justify={'center'}>
+          <Flex
+            justifyContent={'center'}
+            gap={'20px'}
+            alignItems={'center'}
+            p={5}
+            direction={{ base: 'column', md: 'row' }}
+          >
             <Image
-              width={480}
-              height={480}
+              width={430}
+              height={430}
               src="/images/curriculum.png"
               alt="curriculum"
             />
@@ -77,7 +82,7 @@ const CurriculumPageComponent = () => {
                 }
               />
             </Stack>
-          </HStack>
+          </Flex>
         </CardBody>
       </Card>
 
@@ -85,7 +90,6 @@ const CurriculumPageComponent = () => {
         <CardBody>
           <Flex mb={5} justify={'space-between'} align={'center'}>
             <Text fontSize={'2xl'}>
-              {' '}
               {t('create_section', { ns: 'instructor' }) || 'Create section'}
             </Text>
             <Icon

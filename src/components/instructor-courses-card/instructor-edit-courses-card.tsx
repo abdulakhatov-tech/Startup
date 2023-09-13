@@ -79,7 +79,7 @@ const InstructorEditCoursesCard: FC<InstructorCoursesCardProps> = ({
           {item.level}
         </Text>
         <Heading>{item.title}</Heading>
-        <HStack>
+        <Flex gap={'15px'} alignItems={'center'} flexWrap={'wrap'}>
           <Flex align={'center'} gap={1}>
             <Icon as={CiViewList} />
             <Text>
@@ -96,7 +96,7 @@ const InstructorEditCoursesCard: FC<InstructorCoursesCardProps> = ({
             <Icon as={SiGoogleanalytics} />
             <Text>{item.level}</Text>
           </Flex>
-        </HStack>
+        </Flex>
         <Divider />
         <Flex flexWrap={'wrap'} gap={5}>
           <Button rightIcon={<VscOpenPreview />}>

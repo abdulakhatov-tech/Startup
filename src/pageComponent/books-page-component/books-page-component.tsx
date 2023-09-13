@@ -120,6 +120,7 @@ const BooksPageComponent = () => {
                 bottom={-10}
                 p={2}
                 justify={'space-between'}
+                direction={{ md: 'column' }}
               >
                 <Box>
                   <Text fontSize={'md'}>{item.title}</Text>
@@ -140,7 +141,7 @@ const BooksPageComponent = () => {
                       : false
                   }
                 >
-                  {t('buy', { ns: 'books' })}
+                  {t('add_to_cart', { ns: 'courses' })}
                 </Button>
               </HStack>
             </Box>

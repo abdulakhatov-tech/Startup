@@ -29,8 +29,10 @@ import { useTypedSelector } from 'src/hooks/useTypedSelector';
 import { CardType } from 'src/interfaces/constants.interface';
 import ErrorAlert from '../error-alert/error-alert';
 import Cookies from 'js-cookie';
+import { useTranslation } from 'react-i18next';
 
 export default function CheckoutForm({ cards }: { cards: CardType[] }) {
+  const { t } = useTranslation();
   const stripe = useStripe();
   const elements = useElements();
 
@@ -83,8 +85,11 @@ export default function CheckoutForm({ cards }: { cards: CardType[] }) {
     });
 
     if (error) {
-      setError(`Your payment details couldn't be verified: ${error.message}`);
-      console.log(error);
+      setError(
+        `${t('payment_couldntbe_verified', { ns: 'checkout' })}: ${
+          error.message
+        }`
+      );
       setIsLoading(false);
     } else {
       paymentIntent(paymentMethod.id);
@@ -107,7 +112,7 @@ export default function CheckoutForm({ cards }: { cards: CardType[] }) {
         });
 
         toast({
-          title: 'Successfully purchased',
+          title: `${t('successfully_purchased', { ns: 'checkout' })}`,
           position: 'top-right',
         });
         router.push('/shop/success');
@@ -123,7 +128,9 @@ export default function CheckoutForm({ cards }: { cards: CardType[] }) {
           if (payload.error) {
             setIsLoading(false);
             setError(
-              `Your payment details couldn't be verified: ${payload.error.message}`
+              `${t('payment_couldntbe_verified', { ns: 'checkout' })}: ${
+                payload.error.message
+              }`
             );
           } else {
             for (const book of books) {
@@ -150,13 +157,17 @@ export default function CheckoutForm({ cards }: { cards: CardType[] }) {
             if (payload.error) {
               setIsLoading(false);
               setError(
-                `Your payment details couldn't be verified: ${payload.error.message}`
+                `${t('payment_couldntbe_verified', { ns: 'checkout' })}: ${
+                  payload.error.message
+                }`
               );
             } else {
               counter -= 1;
               toast({
                 title: course.title,
-                description: 'Successfully purchased',
+                description: `${t('successfully_purchased', {
+                  ns: 'checkout',
+                })}`,
                 position: 'top-right',
               });
               await $axios.put(`${getCourseUrl('enroll-user')}/${course._id}`);
@@ -211,8 +222,9 @@ export default function CheckoutForm({ cards }: { cards: CardType[] }) {
                     isActive
                     onClick={() => savedCardHandler(card.id)}
                     colorScheme={'facebook'}
+                    textColor={'white'}
                   >
-                    Pay now{' '}
+                    {t('pay_now', { ns: 'checkout' })}:
                     {product.id
                       ? (
                           product.default_price.unit_amount / 100
@@ -238,7 +250,9 @@ export default function CheckoutForm({ cards }: { cards: CardType[] }) {
             )}
             bg={useColorModeValue('white', '#30303d')}
           >
-            <Radio value={`${cards.length + 1}`}>New Credit card</Radio>
+            <Radio value={`${cards.length + 1}`}>
+              {t('new_credit_cart', { ns: 'checkout' })}
+            </Radio>
           </Box>
         </Stack>
       </RadioGroup>
@@ -307,7 +321,10 @@ export default function CheckoutForm({ cards }: { cards: CardType[] }) {
               bg={useColorModeValue('white', '#30303d')}
             >
               <CardCvcElement
-                options={{ style: cardStyles, placeholder: 'Security code' }}
+                options={{
+                  style: cardStyles,
+                  placeholder: `${t('security_code', { ns: 'checkout' })}`,
+                }}
               />
             </Box>
           </Flex>
@@ -321,7 +338,7 @@ export default function CheckoutForm({ cards }: { cards: CardType[] }) {
             boxShadow={'xl'}
             onClick={handleSubmit}
           >
-            Pay now{' '}
+            {t('pay_now', { ns: 'checkout' })}`:
             {product.id
               ? (product.default_price.unit_amount / 100).toLocaleString(
                   'en-US',

@@ -20,14 +20,13 @@ import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
 import { useAuth } from '@/src/hooks/useAuth';
 
-import { BsFillMoonFill, BsFillSunFill, BsTranslate } from 'react-icons/bs';
+import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
 import { BiMenuAltLeft, BiUserCircle } from 'react-icons/bi';
 import {
   AiOutlineDashboard,
   AiOutlineLogin,
   AiOutlineShoppingCart,
 } from 'react-icons/ai';
-import { TbFileSettings } from 'react-icons/tb';
 import { IoIosLogOut } from 'react-icons/io';
 
 import { language } from '@/src/config/constants';
@@ -35,6 +34,7 @@ import { HeaderProps } from './header.props';
 import { useActions } from '@/src/hooks/useActions';
 import { RiAdminFill } from 'react-icons/ri';
 import { useTypedSelector } from '@/src/hooks/useTypedSelector';
+import { loadImage } from '@/src/helpers/image.helper';
 
 const Header = ({ onToggle }: HeaderProps): JSX.Element => {
   const { toggleColorMode, colorMode } = useColorMode();
@@ -80,7 +80,7 @@ const Header = ({ onToggle }: HeaderProps): JSX.Element => {
           />
           <Link href={'/'}>{colorMode === 'light' ? <Logo /> : <Logo />}</Link>
         </HStack>
-        <HStack>
+        <HStack spacing={{ base: 2, md: 4 }}>
           <Box pos={'relative'}>
             <IconButton
               aria-label="cart"
@@ -106,7 +106,7 @@ const Header = ({ onToggle }: HeaderProps): JSX.Element => {
           <Menu placement="bottom">
             <MenuButton
               as={Button}
-              rightIcon={<BsTranslate />}
+              // rightIcon={<BsTranslate />}
               colorScheme={'gray'}
               variant={'outline'}
               textTransform={'capitalize'}
@@ -134,6 +134,7 @@ const Header = ({ onToggle }: HeaderProps): JSX.Element => {
             icon={colorMode == 'light' ? <BsFillMoonFill /> : <BsFillSunFill />}
             colorScheme={'facebook'}
             variant={'outline'}
+            display={{ base: 'none', sm: 'flex' }}
           />
           {user ? (
             <Menu>
@@ -146,8 +147,10 @@ const Header = ({ onToggle }: HeaderProps): JSX.Element => {
               >
                 <Avatar
                   backgroundColor={'facebook.500'}
-                  name={user.fullName}
-                  src={user.avatar}
+                  name={user?.fullName}
+                  src={loadImage(user?.avatar)}
+                  w={'40px'}
+                  h={'40px'}
                 />
               </MenuButton>
               <MenuList p={0} m={0}>
@@ -169,6 +172,22 @@ const Header = ({ onToggle }: HeaderProps): JSX.Element => {
                   icon={<AiOutlineDashboard fontSize={17} />}
                 >
                   Dashboard
+                </MenuItem>
+
+                <MenuItem
+                  h={14}
+                  onClick={toggleColorMode}
+                  fontWeight={'bold'}
+                  display={{ base: 'flex', sm: 'none' }}
+                  icon={
+                    colorMode == 'light' ? (
+                      <BsFillMoonFill />
+                    ) : (
+                      <BsFillSunFill />
+                    )
+                  }
+                >
+                  {colorMode == 'light' ? 'Dark Mode' : 'Light Mode'}
                 </MenuItem>
 
                 <MenuItem

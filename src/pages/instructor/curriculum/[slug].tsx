@@ -1,11 +1,16 @@
 import { CourseType } from '@/src/interfaces/course.interface';
 import { withInstructorLayout } from '@/src/layouts/Instructor';
+import Seo from '@/src/layouts/seo/seo';
 import { CurriculumPageComponent } from '@/src/pageComponent';
 import { InstructorService } from '@/src/services/instructor.service';
 import { GetServerSideProps, NextPage } from 'next';
 
 const CurriculumPage: NextPage = () => {
-  return <CurriculumPageComponent />;
+  return (
+    <Seo metaTitle="Curriculum">
+      <CurriculumPageComponent />
+    </Seo>
+  );
 };
 
 export default withInstructorLayout(CurriculumPage);

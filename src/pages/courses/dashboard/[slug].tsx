@@ -1,3 +1,4 @@
+import Seo from '@/src/layouts/seo/seo';
 import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
@@ -43,7 +44,11 @@ const DashboardCourse: NextPage<CourseDashboardPage> = ({ course }) => {
     }
   }, [sections]);
 
-  return <DashboardPageComponent />;
+  return (
+    <Seo metaTitle="Dashboard Course">
+      <DashboardPageComponent />
+    </Seo>
+  );
 };
 
 export default DashboardCourse;

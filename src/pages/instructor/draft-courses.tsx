@@ -5,9 +5,14 @@ import { InstructorDraftCoursesPageComponent } from '@/src/pageComponent';
 import { InstructorService } from '@/src/services/instructor.service';
 import { CourseType } from '@/src/interfaces/course.interface';
 import { AuthService } from '@/src/services/auth.service';
+import Seo from '@/src/layouts/seo/seo';
 
 const DraftCourses: NextPage = () => {
-  return <InstructorDraftCoursesPageComponent />;
+  return (
+    <Seo metaTitle="Instructor Draft Courses">
+      <InstructorDraftCoursesPageComponent />
+    </Seo>
+  );
 };
 
 export default withInstructorLayout(DraftCourses);

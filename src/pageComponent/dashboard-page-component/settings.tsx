@@ -1,4 +1,3 @@
-import { useActions } from '@/src/hooks/useActions';
 import {
   Avatar,
   AvatarBadge,
@@ -11,19 +10,23 @@ import {
   VStack,
   useToast,
 } from '@chakra-ui/react';
-import { Form, Formik, FormikValues } from 'formik';
+import Cookies from 'js-cookie';
 import { MdEdit } from 'react-icons/md';
+import { useTranslation } from 'react-i18next';
+import { AiOutlineClose } from 'react-icons/ai';
+import { Form, Formik, FormikValues } from 'formik';
+import { useState, ChangeEvent, useEffect } from 'react';
+
 import TextAreaField from 'src/components/text-area-field/text-area-field';
 import TextFiled from 'src/components/text-field/text-field';
 import { useTypedSelector } from 'src/hooks/useTypedSelector';
-import { useState, ChangeEvent, useEffect } from 'react';
-import Cookies from 'js-cookie';
 import { FileService } from '@/src/services/file.service';
 import { AuthService } from '@/src/services/auth.service';
 import { loadImage } from '@/src/helpers/image.helper';
-import { AiOutlineClose } from 'react-icons/ai';
+import { useActions } from '@/src/hooks/useActions';
 
 const Settings = () => {
+  const { t } = useTranslation();
   const [avatar, setAvatar] = useState<File>();
   const [values, setValues] = useState(data);
   const [isLoading, setIsLoading] = useState(false);
@@ -52,7 +55,7 @@ const Settings = () => {
         if (refreshToken) checkAuth();
         setIsLoading(false);
         toast({
-          title: 'Your profile updated successfully',
+          title: t('your_profile_update_successfully', { ns: 'dashboard' }),
           status: 'success',
           position: 'top-right',
         });
@@ -68,7 +71,7 @@ const Settings = () => {
 
     if (file && file.size > 2081800) {
       toast({
-        title: "Rasim hajmi juda katta, kamida 2mb bo'lishi kerak",
+        title: t('image_size_is_big', { ns: 'dashboard' }),
         status: 'error',
       });
       return;
@@ -78,7 +81,7 @@ const Settings = () => {
       setAvatar(file);
     } else {
       toast({
-        title: "Xatolik, biz faqat PNG va JPG fayllarini qo'llab-quvvatlaymiz",
+        title: t('image_type_error', { ns: 'dashboard' }),
         status: 'error',
       });
     }
@@ -93,7 +96,6 @@ const Settings = () => {
     if (user) {
       const { fullName, job, bio, birthday } = user;
       const full: string[] = fullName?.split(' ') as string[];
-      console.log(user, 'full');
 
       setValues({
         firstName: full?.length ? full[0] : '',
@@ -153,7 +155,7 @@ const Settings = () => {
           </Text>
           <Text>
             <Box fontWeight={'bold'} as={'span'}>
-              Email
+              {t('email', { ns: 'dashboard' })}
             </Box>
             : {user?.email}
           </Text>
@@ -165,8 +167,16 @@ const Settings = () => {
             gap={{ base: 1, md: 5 }}
             direction={{ base: 'column', md: 'row' }}
           >
-            <TextFiled name="firstName" label="Ismingiz" placeholder="Omar" />
-            <TextFiled name="lastName" label="Sharfingiz" placeholder="Osman" />
+            <TextFiled
+              name="firstName"
+              label={t('first_name', { ns: 'dashboard' })}
+              placeholder="Omar"
+            />
+            <TextFiled
+              name="lastName"
+              label={t('last_name', { ns: 'dashboard' })}
+              placeholder="Osman"
+            />
           </Flex>
           <Flex
             gap={{ base: 1, md: 5 }}
@@ -174,20 +184,20 @@ const Settings = () => {
           >
             <TextFiled
               name="birthday"
-              label="Tug'ilgan sana"
-              placeholder="birthday"
+              label={t('date_of_birth', { ns: 'dashboard' })}
+              placeholder={`${t('date_of_birth', { ns: 'dashboard' })}`}
               type="date"
             />
             <TextFiled
               name="job"
-              label="Kasbingiz"
+              label={t('profession', { ns: 'dashboard' })}
               placeholder="Front-End developer"
             />
           </Flex>
           <TextAreaField
             name="bio"
-            placeholder="O'zingiz haqingizda"
-            label="Ma'lumot"
+            placeholder={`${t('about_yourself', { ns: 'dashboard' })}`}
+            label={`${t('about_yourself', { ns: 'dashboard' })}`}
             height="100"
           />
           <Button
@@ -199,7 +209,7 @@ const Settings = () => {
             type="submit"
             isLoading={isLoading}
           >
-            Submit
+            {t('submit', { ns: 'dashboard' })}
           </Button>
         </Form>
       </Formik>

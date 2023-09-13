@@ -93,5 +93,6 @@
   "minute": "Minute",
   "second": "Seconds",
   "language": "Language",
-  "is_agree": "Are you sure?"
+  "is_agree": "Are you sure?",
+  "job_label": "Profession"
 }

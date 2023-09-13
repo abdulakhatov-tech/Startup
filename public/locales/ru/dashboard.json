@@ -1,0 +1,22 @@
+{
+  "account": "Аккаунт",
+  "settings": "Настройки",
+  "transactions": "Транзакции",
+  "my_courses": "Мои курсы",
+  "saved_cards": "Сохраненные карты",
+  "danger_zone": "Опасная зона",
+  "your_account_information": "Информация о вашей учетной записи",
+  "date_of_registration": "Дата регистрации",
+  "email": "Электронная почта",
+  "courses": "Курсы",
+  "your_profile_update_successful": "Ваш профиль успешно обновлен",
+  "image_size_is_big": "Размер изображения очень большой, не менее 2 МБ",
+  "image_type_error": "Извините, мы поддерживаем только файлы PNG и JPG",
+  "first_name": "Имя",
+  "last_name": "Фамилия",
+  "date_of_birth": "Дата рождения",
+  "about_yourself": "О себе",
+  "submit": "Отправить",
+  "information": "Информация",
+  "change_password": "Изменить пароль"
+}
